@@ -40,7 +40,6 @@ std::string Dictionary::Sanitize(std::string &str)
 
    std::regex r("\\[[^\\]]+\\]");
    str = std::regex_replace(str, r, "");
-   
 
    // spdlog::debug("Dictionary :{}", str);
    return str;
@@ -85,7 +84,7 @@ std::pair<std::string, std::string> Dictionary::Split(const std::string &str)
    auto key = str.substr(1, delimiter_pos - 1);
    // value length = str-key-1(for fisrt ")-1(for last ")-3(for delimiter)
    auto value = str.substr(delimiter_pos + 3, str.length() - key.length() - 5);
-   
+
    Sanitize(key);
    EraseStringComma(key);
    return std::make_pair(EraseFrontBackBlank(key), Sanitize(value));
@@ -151,8 +150,7 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
          if (it != this->dict.end())
          {
             result = std::regex_replace(match[0].str(), r, it->second);
-            spdlog::debug("\n#Search :{}", input);
-            spdlog::debug("#REGEX :{}", find);
+            spdlog::debug("\n#Search :{}\n#REGEX :{}", input, find);
             spdlog::debug("#Match0 :{}", result);
 
             std::string matched;
@@ -167,7 +165,6 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
                   if (result.find(matched) != std::string::npos) result.replace(result.find(matched), matched.length(), it.value());
                   else spdlog::debug("#Can't find :{}:{}:", matched, result);
                }
-               // spdlog::debug("##Result {}", result);
             }
             this->dict_log.emplace(input, result);
             spdlog::debug("##Result :{}\n", result);
@@ -188,22 +185,18 @@ std::optional<std::string> Dictionary::Get(const std::string &key)
    {
       return std::nullopt;
    }
-
    std::string input(key);
-   EraseFrontBackBlank(input);
-
+   EraseStringComma(input);
    if (this->dict_log.find(input) != this->dict_log.end())
    {
       return this->dict_log.at(input);
    }
-
    if (this->dict.find(input) != this->dict.end())
    {
       return this->dict.at(input);
    }
    auto ret = RegexSearch(input);
    if (ret) return ret;
-
    return std::nullopt;
 }
 
@@ -218,7 +211,7 @@ void Dictionary::PrepareBufferOut()
       {
          keyLine.erase(keyLine.find(this->SKIP));
          this->dict_multi.emplace(keyLine, this->SKIP);
-         //spdlog::debug("dictIn key {} ",keyLine);
+         // spdlog::debug("dictIn key {} ",keyLine);
          index++;
       }
       else if (this->value_queue.empty())
@@ -230,6 +223,7 @@ void Dictionary::PrepareBufferOut()
             outLine = "";
          }
          this->dict_multi.emplace(keyLine, lastText);
+         spdlog::debug("Dcit input{} :{} :{}", index, keyLine, lastText);
          index++;
       }
       else
@@ -243,6 +237,7 @@ void Dictionary::PrepareBufferOut()
             if (wstr.length() + 1 > this->line_limit)
             {
                this->dict_multi.emplace(keyLine, outLine);
+               spdlog::debug("Dcit input{} :{} :{}", index, keyLine, outLine);
                outLine = "";
                index++;
             }
@@ -279,7 +274,7 @@ void Dictionary::TranslationBuffer()
       if (delimiterPos != std::string::npos)
       {
          std::string tstr = buffer.substr(0, delimiterPos);
-         auto translation = Get(EraseStringComma(tstr));
+         auto translation = Get(tstr);
          if (translation)
          {
             this->value_queue.push(translation.value());
@@ -297,10 +292,6 @@ void Dictionary::TranslationBuffer()
    if (buffer.size() > 0)
    {
       spdlog::debug("Tran LEFT:{}", buffer);
-
-      // auto translation = Get(buffer);
-      // if (translation) this->value_queue.push(translation.value());
-      // else this->value_queue.push(buffer);
    }
 }
 
@@ -332,10 +323,10 @@ std::optional<std::string> Dictionary::StoreStringBuffer(const char *key, int x,
 {
    std::string str(key);
    std::string multiKey = str + "#" + std::to_string(x) + "#" + std::to_string(y);
-   // spdlog::debug("Input>{}", str);
-   //  버퍼 번역 처리, 같은 줄이 아닐때 이전 줄 번호가 1줄 초과 될때 첫 줄번호가 현재 줄보다 클때
-   if (this->start_line != -1 && y != this->pre_line && (y - this->pre_line > 1 || y <= this->start_line))
+   // 버퍼 번역 처리, 같은 줄이 아닐때 이전 줄 번호가 1줄 초과 될때 시작 줄번호가 현재 줄보다 클때
+   if (this->start_line != -1 && (y != pre_line || this->string_buffer.compare(str) == 0) && (y - this->pre_line > 1 || y <= this->start_line))
    {
+      spdlog::debug("flush {}", this->string_buffer);
       FlushBuffer();
    }
    // 이전 결과 처리
@@ -346,12 +337,17 @@ std::optional<std::string> Dictionary::StoreStringBuffer(const char *key, int x,
    // 첫줄 입력
    if (this->start_line == -1)
    {
+      InitBuffer();
       this->start_line = y;
       this->pre_line = y;
       this->string_buffer = str;
+      this->line_limit = str.length() * 0.7;
+      if(this->is_top) this->line_limit = 33;
       this->key_vec.emplace_back(multiKey);
-      // spdlog::debug("##Start buffer {}", this->string_buffer);
-
+      if (str.length() - 1 == str.find('.'))
+      {
+         FlushBuffer();
+      }
       return std::nullopt;
    }
    // 입력
@@ -361,7 +357,6 @@ std::optional<std::string> Dictionary::StoreStringBuffer(const char *key, int x,
       {
          std::string skip = multiKey + this->SKIP;
          this->key_vec.emplace_back(skip);
-         //spdlog::debug("Skip {}", str);
       }
       else
       {
@@ -370,7 +365,6 @@ std::optional<std::string> Dictionary::StoreStringBuffer(const char *key, int x,
       this->pre_line = y;
       this->string_buffer += " " + str;
       if (this->string_buffer.size() > 1000) InitBuffer();
-      // spdlog::debug("Buffer {}", this->string_buffer);
    }
    return std::nullopt;
 }
@@ -383,7 +377,6 @@ std::optional<std::string> Dictionary::GetMulti(const char *key, int x, int y, b
    {
       return std::nullopt;
    }
-
    auto ret = StoreStringBuffer(key, x, y);
    if (ret) return ret.value();
    return std::nullopt;

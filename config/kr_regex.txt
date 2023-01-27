@@ -5,9 +5,42 @@
 # ([\\d]*)		>> {d} 숫자
 # $1,$2,$3... 매칭된 값 들어가는 곳
 ########################
-{d}nd {s}=$1번째 $2
-Early {s}=이른 $1
-Late {s}=늦은 $1
+{d}nd {s,}=$1번째 $2
+Early {s,}=이른 $1
+Late {s,}=늦은 $1
+Year {d}=$1 년
+Elevation {d}=$1 층
+{d} Years Old{s,}=$1 살, $2
+Unmet need=불만족 요구
+
+She was {s,} when {s,}=그녀는 $2 때문에 $1 했었다.
+She=그녀는
+she=그녀
+at {s,}=$1것에
+when {s,}=$1을 때
+as {s,} was caught up in {s,}=$2에 $1가 휘말리면서
+
+{s,} felt bitter {s,}=$1 $2 쓴맛을 느꼈다.     
+{s,} felt empathy {s,}=$1 $2 공감을 했다. 
+{s,} felt euphoria {s,}=$1 $2 희열을 느꼈다.
+{s,} felt fondness {s,}=$1 $2 애정을 느꼈다.
+{s,} felt gratitude {s,}=$1 $2 고마움을 느꼈다.
+{s,} felt guilt {s,}=$1 $2 죄책감을 느꼈다.
+{s,} felt happy {s,}=$1 $2 행복감을 느꼈다.
+{s,} felt hopeless {s,}=$1 $2 가망없음을 느꼈다.
+{s,} felt indignant {s,}=$1 $2 분노를 느꼈다.
+{s,} felt isolated {s,}=$1 $2 고립감을 느꼈다.
+{s,} felt lonely {s,}=$1 $2 외로움을 느꼈다.    
+{s,} felt pleasure {s,}=$1 $2 기쁨을 느꼈다.
+{s,} felt sad {s,}=$1 $2 슬픔을 느꼈다.  
+{s,} felt satisfied {s,}=$1 $2 만족감을 느꼈다.
+{s,} felt self-pity {s,}=$1 $2 자기연민을 느꼈다.
+{s,} felt sympathy {s,}=$1 $2 동정을 느꼈다.
+{s,} felt vengeful {s,}=$1 $2 복수심을 느꼈다.
+{s,} felt love {s,}=$1 $2 사랑을 느꼈다.
+{s,} felt tenderness {s,}=$1 $2 다정함을 느꼈다.
+
+
 
 
 She is unfettered {s,}=그녀는 $1 영향이 없다.
@@ -38,4 +71,5 @@ He has {s}=그는 $1 가졌다
 Overall, he is {s}=전반적으로 그는 $1
 
 
-He=그
+He=그는
+he=그

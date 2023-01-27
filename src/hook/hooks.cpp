@@ -22,7 +22,7 @@ namespace Hook
 
    // cache for textures id
    LRUCache<std::string, long> texture_id_cache(500);
-   LRUCache<std::wstring, long> texture_ws_id_cache(2350);
+   LRUCache<std::wstring, long> texture_ws_id_cache(15000);
 
    // setup texture to texture vector and recieve tex_pos
    SETUP_ORIG_FUNC(add_texture);
@@ -282,7 +282,7 @@ namespace Hook
    {
       if (gps && !str.empty() && Config::Setting::enable_translation && !ttf_injection_lock)
       {
-         // spdlog::debug("#addst :{}:",str);
+         //spdlog::debug("#addst :{}:",str);
          auto translation = Dictionary::GetSingleton()->Get(str);
          if (translation)
          {
@@ -297,18 +297,6 @@ namespace Hook
       }
       ORIGINAL(addst)(gps, str, justify, space);
    }
-
-   // void GetCoordStringToInt(std::string &str, int &x, int &y)
-   // {
-   //    if (str.find('#') != std::string::npos)
-   //    {
-   //       std::string coord_x = str.substr(str.find('#') + 1, str.find_last_of('#') - str.find('#') - 1);
-   //       std::string coord_y = str.substr(str.find_last_of('#') + 1);
-   //       str.erase(str.find('#'));
-   //       x = std::stoi(coord_x);
-   //       y = std::stoi(coord_y);
-   //    }
-   // }
 
    bool StringSkipCheck(std::string &str, graphicst_ *gps)
    {
@@ -362,8 +350,7 @@ namespace Hook
             std::string tstr(translation.value());
             StringSkipCheck(tstr, gps);
             int count = InjectTTFwstring<ScreenManager::ScreenType::Main>(tstr, gps->screenx, gps->screeny, justify_left, len);
-            std::string blank;
-            blank.resize(len, ' ');
+            std::string blank(len,' ');
             g_main_replace = true;
             LockedCall(ttf_injection_lock, ORIGINAL(addcoloredst), gps, blank.c_str(), a3);
             g_main_replace = false;

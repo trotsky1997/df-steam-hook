@@ -36,15 +36,13 @@ class Dictionary
    void RegexRplace(std::string &str, bool on);
 
    std::optional<std::string> StoreStringBuffer(const char *key, int x, int y);
-   // void StoreTopString(const char *key, int x, int y);
    void InitBuffer();
    void TranslationBuffer();
    void PrepareBufferOut();
    void FlushBuffer();
-   // void MakeupString();
 
    const std::string SKIP = "$SKIP";
-   const int line_limit = 32;
+   int line_limit = 33;
    int start_line = -1;
    int pre_line = -1;
    bool is_top = false;
