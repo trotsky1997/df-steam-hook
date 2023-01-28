@@ -1,12 +1,12 @@
 #include "dictionary.h"
 
+#include "ttf_manager.h"
 #include "utils.hpp"
 
 void Dictionary::ReplaceAll(std::string &subject, const std::string &search, const std::string &replace)
 {
    size_t pos = 0;
-   while ((pos = subject.find(search, pos)) != std::string::npos)
-   {
+   while ((pos = subject.find(search, pos)) != std::string::npos) {
       subject.replace(pos, search.length(), replace);
       pos += replace.length();
    }
@@ -24,7 +24,7 @@ std::string Dictionary::EraseFrontBackBlank(std::string &str)
 
 std::string Dictionary::EraseStringComma(std::string &str)
 {
-   ReplaceAll(str, ",", "");
+   // ReplaceAll(str, ",", "");
    ReplaceAll(str, ".", "");
    ReplaceAll(str, "  ", " ");
    return str;
@@ -50,8 +50,7 @@ void Dictionary::SplitRegex(const std::string &str)
    const std::regex re("(.*)=(.*)");
 
    std::smatch match;
-   if (std::regex_search(str, match, re))
-   {
+   if (std::regex_search(str, match, re)) {
       std::string key = match[1];
       std::string arg = match[2];
       this->Add(key, arg);
@@ -63,14 +62,11 @@ void Dictionary::SplitRegex(const std::string &str)
 
 void Dictionary::RegexRplace(std::string &str, bool on)
 {
-   if (on)
-   {
+   if (on) {
       ReplaceAll(str, "{s}", "([^\\.^\\,]*)[,.]");
       ReplaceAll(str, "{s,}", "(.*)");
       ReplaceAll(str, "{d}", "([\\d]*)");
-   }
-   else
-   {
+   } else {
       ReplaceAll(str, "([^\\.^\\,]*)[,.]", "{s}");
       ReplaceAll(str, "(.*)", "{s,}");
       ReplaceAll(str, "([\\d]*)", "{d}");
@@ -95,8 +91,7 @@ void Dictionary::LoadCsv(const std::string &filename, const std::string &regex_f
 {
    logger::info("trying to load dictionary from csv file {}", filename);
    std::ifstream file(filename);
-   if (!file.is_open())
-   {
+   if (!file.is_open()) {
       logger::critical("unable to open csv file {}", filename);
       MessageBoxA(nullptr, "unable to find csv dictionary file", "dfint hook error", MB_ICONERROR);
       exit(2);
@@ -106,8 +101,7 @@ void Dictionary::LoadCsv(const std::string &filename, const std::string &regex_f
 
    std::string line;
    int i = 0;
-   while (std::getline(file, line))
-   {
+   while (std::getline(file, line)) {
       auto pair = Split(line);
       this->Add(pair);
    }
@@ -116,8 +110,7 @@ void Dictionary::LoadCsv(const std::string &filename, const std::string &regex_f
 
    std::ifstream regex_file;
    regex_file.open(regex_filename);
-   if (!regex_file.is_open())
-   {
+   if (!regex_file.is_open()) {
       logger::critical("unable to open regex file {}", regex_filename);
       MessageBoxA(nullptr, "unable to open regex file", "dfint hook error", MB_ICONERROR);
       exit(2);
@@ -125,8 +118,7 @@ void Dictionary::LoadCsv(const std::string &filename, const std::string &regex_f
       return;
    }
 
-   while (std::getline(regex_file, line))
-   {
+   while (std::getline(regex_file, line)) {
       SplitRegex(line);
    }
    regex_file.close();
@@ -137,41 +129,29 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
 {
    std::string input(key);
    std::smatch match;
-   for (const auto regex_string : this->regex_vector)
-   {
+   for (const auto regex_string : this->regex_vector) {
       std::regex r(regex_string);
-      if (std::regex_match(input, match, r) && match.size() > 1)
-      {
+      if (std::regex_match(input, match, r) && match.size() > 1) {
          std::string find(regex_string);
          RegexRplace(find, false);
          std::string result;
 
          auto it = this->dict.find(find);
-         if (it != this->dict.end())
-         {
+         if (it != this->dict.end()) {
             result = std::regex_replace(match[0].str(), r, it->second);
-            spdlog::debug("\n#Search :{}\n#REGEX :{}", input, find);
-            spdlog::debug("#Match0 :{}", result);
-
             std::string matched;
-            for (int i = 1; i < match.size(); i++)
-            {
+            for (int i = 1; i < match.size(); i++) {
                matched = match[i].str();
-               spdlog::debug("#Match{} :{}", i, matched);
                auto it = Get(matched);
-               if (it)
-               {
-                  spdlog::debug("#Replace :{}", result);
+               if (it) {
                   if (result.find(matched) != std::string::npos) result.replace(result.find(matched), matched.length(), it.value());
                   else spdlog::debug("#Can't find :{}:{}:", matched, result);
                }
             }
             this->dict_log.emplace(input, result);
-            spdlog::debug("##Result :{}\n", result);
+            spdlog::debug("\n#Result :{}", result);
             return result;
-         }
-         else
-         {
+         } else {
             return std::nullopt;
          }
       }
@@ -181,18 +161,17 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
 
 std::optional<std::string> Dictionary::Get(const std::string &key)
 {
-   if (key.empty())
-   {
+   if (key.empty()) {
       return std::nullopt;
    }
    std::string input(key);
    EraseStringComma(input);
-   if (this->dict_log.find(input) != this->dict_log.end())
-   {
+   EraseFrontBackBlank(input);
+
+   if (this->dict_log.find(input) != this->dict_log.end()) {
       return this->dict_log.at(input);
    }
-   if (this->dict.find(input) != this->dict.end())
-   {
+   if (this->dict.find(input) != this->dict.end()) {
       return this->dict.at(input);
    }
    auto ret = RegexSearch(input);
@@ -200,184 +179,270 @@ std::optional<std::string> Dictionary::Get(const std::string &key)
    return std::nullopt;
 }
 
-void Dictionary::PrepareBufferOut()
-{
-   int index = 0;
-   std::string outLine;
-   while (index < this->key_vec.size())
-   {
-      std::string keyLine = this->key_vec[index];
-      if (keyLine.find(this->SKIP) != std::string::npos)
-      {
-         keyLine.erase(keyLine.find(this->SKIP));
-         this->dict_multi.emplace(keyLine, this->SKIP);
-         // spdlog::debug("dictIn key {} ",keyLine);
-         index++;
-      }
-      else if (this->value_queue.empty())
-      {
-         std::string lastText = this->SKIP;
-         if (!outLine.empty())
-         {
-            lastText = outLine;
-            outLine = "";
-         }
-         this->dict_multi.emplace(keyLine, lastText);
-         spdlog::debug("Dcit input{} :{} :{}", index, keyLine, lastText);
-         index++;
-      }
-      else
-      {
-         std::stringstream valueLine(this->value_queue.front());
-         this->value_queue.pop();
-         std::string word;
-         while (valueLine >> word)
-         {
-            std::wstring wstr = Utils::s2ws(outLine + word);
-            if (wstr.length() + 1 > this->line_limit)
-            {
-               this->dict_multi.emplace(keyLine, outLine);
-               spdlog::debug("Dcit input{} :{} :{}", index, keyLine, outLine);
-               outLine = "";
-               index++;
-            }
-            outLine += word + " ";
-         }
-      }
-   }
-}
-
 void Dictionary::InitBuffer()
 {
-   if (!this->value_queue.empty())
-   {
-      for (int i = 0; i < this->value_queue.size(); i++)
-      {
-         this->value_queue.pop();
-      }
-   }
    this->key_vec.clear();
-   this->string_buffer = "";
-   this->start_line = -1;
+   // this->string_buffer = "";
+   this->string_translation = "";
+   this->start_y = -1;
+}
+// 문자열 위치를 정해서 버퍼에 저장
+void Dictionary::StoreBuffer(const std::string &buffer, const std::string &key, int x, int y)
+{
+   // 처음 시작되는 첫 문자열의 위치를 결정하고 저장 다음 문자열은 시작 문자열 뒤로 붙는다
+   if (this->start_y == -1) {
+      // 앞에 줄과 같은 줄인 경우
+      if (this->pre_line == y ){ //&& std::abs(x - this->pre_len_x) >= 1) {
+         this->start_x = this->pre_len_x;
+         this->start_y = y;
+         spdlog::debug("\n#1 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+      }  // 앞에 줄보다 위 아래인 경우 // && std::abs(x - this->pre_len_x) > 1
+      else if (abs(this->pre_line - y) == 1 && this->string_buffer.length() > 15) {
+         this->start_y = this->pre_line - y == 1 ? y + 1 : y;
+         this->start_x = this->pre_line - y == 1 ? this->pre_len_x : this->first_line_x;
+         spdlog::debug("\n#2 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+      } else {  // 새롭게 시작하는 문자열
+         this->start_x = x;
+         this->first_line_x = x;
+         this->start_y = y;
+         spdlog::debug("\n#3 x{}y{}, sx{}sy{}, pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+      }
+      this->key_vec.push_back(key);
+      this->pre_line = y;
+      this->pre_len_x = x + buffer.length();
+      this->string_buffer = buffer;
+      EraseFrontBackBlank(this->string_buffer);
+   } else {  // 다음 문자열
+      this->key_vec.push_back(key);
+      if (this->pre_len_x - x == 0) this->string_buffer += buffer;
+      else this->string_buffer += " " + buffer;
+      if (this->string_buffer.size() > 1000) InitBuffer();  // 이상하게 길게 붙었을 경우 초기화
+      this->pre_line = y;
+      this->pre_len_x = x + buffer.length();
+   }
+}
+// 단어를 원본에 맞춰서 비교하고 출력될 위치를 조정하여 맵에 저장
+void Dictionary::SaveToStringMap(int index, int &preX, int &preY, int &length, std::string &temp, bool isSrc)
+{
+   int x, y, tempLen;
+   Utils::CoordExtract(temp, x, y);
+
+   if (isSrc) {
+      tempLen = Utils::GetStringLength(temp);
+   } else {
+      std::wstring input = Utils::s2ws(temp);
+      tempLen = TTFManager::GetSingleton()->CreateWSTexture(input);
+   }
+   length += tempLen;
+   if (length > this->GetLineLimit()) {
+      preX = this->first_line_x;
+      preY++;
+      this->pre_line = preY;
+      length = 0;
+      this->start_x = this->first_line_x;
+   }
+   if (isSrc) temp += "$SRC#" + std::to_string(preX) + "#" + std::to_string(preY);
+   else temp += "#" + std::to_string(preX) + "#" + std::to_string(preY);
+   preX += tempLen + 1;
+   length += tempLen + 1;
+   this->pre_len_x = preX;
+   spdlog::debug("(x{} y{}), (sx{} sy{}), prelen {}, first {} Limit{} {}", preX, preY, this->start_x, this->start_y, this->pre_len_x,
+                 this->first_line_x, this->GetLineLimit(), temp);
+   this->dict_multi.emplace(this->key_vec[index], temp);
 }
 
+// 번역된 문자열 출력되기전 준비
+void Dictionary::PrepareBufferOut()
+{
+   std::vector<std::string> valueVec;
+   int len = this->GetLineLimit();
+   std::stringstream ss(this->string_translation);
+   std::string valueLine, word;
+   // 단어가 아닌 문장으로 된 문자열이 들어와서 단어 단위로 잘라서 제한 길이에 맞춰 저장
+   if (this->str_type == StringType::Colored) {
+      while (getline(ss, word, ' ')) {
+         if (word.empty()) continue;
+         std::string temp = valueLine + word;
+         if (Utils::GetStringLength(temp) + 1 > len && !valueLine.empty()) {
+            valueVec.push_back(valueLine);
+            valueLine = "";
+         }
+         valueLine += word + " ";
+      }
+      if (!valueLine.empty()) {
+         valueVec.push_back(valueLine);
+      }
+   } else {  // 단어 단위로 잘라서 저장
+      while (getline(ss, word, ' ')) {
+         if (word.empty()) continue;
+         valueVec.push_back(word);
+      }
+   }
+
+   std::unordered_map<std::string, int> position_map;
+   for (int i = 0; i < this->key_vec.size(); i++) {
+      std::string temp = this->key_vec[i].substr(0, this->key_vec[i].find("#"));
+      position_map[temp] = i;
+      // spdlog::debug("position {}", temp);
+   }
+
+   int preX, preY, length = 0;
+   std::string temp = this->key_vec[0];
+   Utils::CoordExtract(temp, preX, preY);
+   preX = this->start_x;
+   preY = this->start_y;
+   // 원본의 순서대로 위치에 맞게 번역 저장
+   for (int index = 0; index < this->key_vec.size(); index++) {
+      for (int i = index; i < valueVec.size(); i++) {
+         if (position_map.count(valueVec[i])) {
+            int position = position_map[valueVec[i]];
+            std::string key = this->key_vec[position];
+            SaveToStringMap(index, preX, preY, length, key, true);
+            break;
+         } else {
+            SaveToStringMap(index, preX, preY, length, valueVec[i], false);
+            break;
+         }
+      }
+      if (index >= valueVec.size()) this->dict_multi.emplace(this->key_vec[index], this->SKIP);
+   }
+}
+
+// 사전에서 번역 문자열로 교체
 void Dictionary::TranslationBuffer()
 {
-   std::string delimiter = ",.";
-   if (this->is_top) delimiter = ".";
+   // spdlog::debug("TranslationBuffer");
+   std::string delimiter = (this->str_type == StringType::Top) ? ".:!?" : ".,:!?";
    std::string buffer = this->string_buffer;
-   spdlog::debug("#Trans SRC:{}", buffer);
    int delimiterPos = 0;
-   while (delimiterPos != std::string::npos)
-   {
+   while (delimiterPos != std::string::npos) {
       delimiterPos = buffer.find_first_of(delimiter);
-      if (delimiterPos != std::string::npos)
-      {
+      if (delimiterPos != std::string::npos) {
          std::string tstr = buffer.substr(0, delimiterPos);
-         auto translation = Get(tstr);
-         if (translation)
-         {
-            this->value_queue.push(translation.value());
-            spdlog::debug("#Trans RESULT:{}", translation.value());
-         }
-         else
-         {
-            this->value_queue.push(tstr);
-            spdlog::debug("Trans FAIL:{}", tstr);
-         }
+         std::string translation = GetTranslation(tstr);
+         this->string_translation += " " + translation;
          buffer.erase(0, delimiterPos + 2);
+         spdlog::debug("trans {}", this->string_translation);
       }
    }
 
-   if (buffer.size() > 0)
-   {
-      spdlog::debug("Tran LEFT:{}", buffer);
+   if (!buffer.empty()) {
+      std::string translation = GetTranslation(buffer);
+      this->string_translation += " " + translation;
+      spdlog::debug("trans {}", this->string_translation);
    }
 }
 
+std::string Dictionary::GetTranslation(const std::string &tstr)
+{
+   auto translation = Get(tstr);
+   return translation ? translation.value() : tstr;
+}
+
+// 버퍼 문자열 비우기
 void Dictionary::FlushBuffer()
 {
-   //  버퍼가 한줄 일때 바로 번역 처리
-   if (this->key_vec.size() == 1)
-   {
-      auto ret = Get(EraseStringComma(this->string_buffer));
-      if (ret)
-      {
-         this->dict_multi.emplace(this->key_vec.front(), ret.value());
-      }
-      else
-      {
-         this->dict_multi.emplace(this->key_vec.front(), this->string_buffer);
+   if (this->key_vec.size() == 1 || this->string_buffer.length() < 15) {
+      auto ret = Get(this->string_buffer);
+      if (ret) {
+         for (int i = 0; i < this->key_vec.size(); i++) {
+            if (i == 0) this->dict_multi.emplace(this->key_vec[i], ret.value());
+            else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
+         }
+      } else {
+         this->string_buffer += "$SRC";
+         for (int i = 0; i < this->key_vec.size(); i++) {
+            if (i == 0) this->dict_multi.emplace(this->key_vec[i], this->string_buffer);
+            else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
+         }
       }
       InitBuffer();
-   }
-   else
-   {
+   } else {
       TranslationBuffer();
       PrepareBufferOut();
       InitBuffer();
    }
 }
-
-std::optional<std::string> Dictionary::StoreStringBuffer(const char *key, int x, int y)
+// 버퍼 초기화 확인
+bool Dictionary::shouldInitBuffer(int y) const
 {
-   std::string str(key);
-   std::string multiKey = str + "#" + std::to_string(x) + "#" + std::to_string(y);
-   // 버퍼 번역 처리, 같은 줄이 아닐때 이전 줄 번호가 1줄 초과 될때 시작 줄번호가 현재 줄보다 클때
-   if (this->start_line != -1 && (y != pre_line || this->string_buffer.compare(str) == 0) && (y - this->pre_line > 1 || y <= this->start_line))
-   {
-      spdlog::debug("flush {}", this->string_buffer);
+   // bool isSame = false;
+   // if (!this->key_vec.empty()) isSame = this->dict_multi.count(this->key_vec) > 0;
+   return this->start_y == -1;  // || y < this->start_y;
+}
+// 영문 대문자 확인
+bool is_uppercase(char c)
+{
+   return c >= 'A' && c <= 'Z';
+}
+// 문자열 버퍼를 번역 해야 되는지 더 저장 해야 되는지 판단
+bool Dictionary::shouldFlushBuffer(int y, int x, int length, const std::string &buffer)
+{
+   bool isNotInitialValue = this->start_y != -1;                                 // 초기값이 아닐때
+   bool isLessThanStartingValue = y < this->pre_line;                            // 이전줄보다 앞에 줄일때
+   bool isXDiffGreaterThanOne = y == this->pre_line && x - this->pre_len_x > 1;  // 이전줄과 같고 간격이 1칸 넘을때
+   bool endsWithSpecial = endsWithSpecialCharacter(this->string_buffer);         // 문자열 끝이 특수문자일때
+   bool isLineDiffGreaterThanOne = y - this->pre_line > 1;                       // 이전줄과의 간격이 1줄 이상일때
+   bool isLineDiffOneAndStringLengthLessThan =
+       y - this->pre_line == 1 && this->string_buffer.length() < 43 && (buffer.find(" ") != std::string::npos || is_uppercase(buffer.front()));
+
+   return (isNotInitialValue &&
+           (isLessThanStartingValue || isXDiffGreaterThanOne || endsWithSpecial || isLineDiffGreaterThanOne || isLineDiffOneAndStringLengthLessThan));
+}
+// 문자열이 특수문자로 끝나는지 확인
+bool Dictionary::endsWithSpecialCharacter(const std::string &buffer)
+{
+   return buffer.length() > 0 && (buffer[buffer.length() - 1] == '.' || buffer[buffer.length() - 1] == ':' || buffer[buffer.length() - 1] == '?' ||
+                                  buffer[buffer.length() - 1] == '!' || buffer[buffer.length() - 1] == ')');
+}
+// 문자열 버퍼 저장 컨트롤
+std::optional<std::string> Dictionary::StringBufferControl(const std::string &buffer, int x, int y, StringType type)
+{
+   const std::string keyWithCoord = buffer + "#" + std::to_string(x) + "#" + std::to_string(y);
+
+   if (shouldFlushBuffer(y, x, buffer.length(), buffer)) {
+      spdlog::debug("FLUSH {}:{}", this->key_vec.size(), this->string_buffer);
       FlushBuffer();
    }
-   // 이전 결과 처리
-   if (this->dict_multi.find(multiKey) != this->dict_multi.end())
-   {
-      return this->dict_multi.at(multiKey);
+
+   if (this->dict_multi.count(keyWithCoord) > 0) {
+      return this->dict_multi.at(keyWithCoord);
    }
-   // 첫줄 입력
-   if (this->start_line == -1)
-   {
+
+   this->str_type = type;
+   if (shouldInitBuffer(y)) {
       InitBuffer();
-      this->start_line = y;
-      this->pre_line = y;
-      this->string_buffer = str;
-      this->line_limit = str.length() * 0.7;
-      if(this->is_top) this->line_limit = 33;
-      this->key_vec.emplace_back(multiKey);
-      if (str.length() - 1 == str.find('.'))
-      {
-         FlushBuffer();
+      // 여러줄 조합 단어, 1줄 문장 혼합해서 들어와서 여기서 공백기준으로 문장만 걸러냄
+      if (this->str_type == StringType::Main) {
+         char charToCount = ' ';
+         int count = std::count(buffer.begin(), buffer.end(), charToCount);
+         if (count >= 1) {
+            this->key_vec.push_back(keyWithCoord);
+            this->start_x = x;
+            this->first_line_x = x;
+            this->start_y = y;
+            this->pre_line = y;
+            this->pre_len_x = x + buffer.length();
+            this->string_buffer = buffer;
+            EraseFrontBackBlank(this->string_buffer);
+            FlushBuffer();
+            return std::nullopt;
+         }
       }
-      return std::nullopt;
    }
-   // 입력
-   if (this->start_line != -1)
-   {
-      if (y == this->pre_line || y == this->start_line)
-      {
-         std::string skip = multiKey + this->SKIP;
-         this->key_vec.emplace_back(skip);
-      }
-      else
-      {
-         this->key_vec.emplace_back(multiKey);
-      }
-      this->pre_line = y;
-      this->string_buffer += " " + str;
-      if (this->string_buffer.size() > 1000) InitBuffer();
-   }
+
+   StoreBuffer(buffer, keyWithCoord, x, y);
    return std::nullopt;
 }
 
-std::optional<std::string> Dictionary::GetMulti(const char *key, int x, int y, bool top)
+std::optional<std::string> Dictionary::GetMulti(const char *key, int x, int y, StringType type)
 {
-   this->is_top = top;
    auto len = strnlen_s(key, 1000);
-   if (!key || len <= 0 || len >= 1000)
-   {
+   if (!key || len <= 0 || len >= 1000) {
       return std::nullopt;
    }
-   auto ret = StoreStringBuffer(key, x, y);
+
+   auto ret = StringBufferControl(key, x, y, type);
    if (ret) return ret.value();
    return std::nullopt;
 }

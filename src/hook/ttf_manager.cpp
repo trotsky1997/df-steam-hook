@@ -240,7 +240,7 @@ int TTFManager::CreateWSTexture(const std::wstring& wstr, int flag, SDL_Color fo
    // std::wstring wstr = Utils::s2ws(str);
    auto texture = TTF_RenderUNICODE_Blended(this->font, (Uint16*)wstr.c_str(), font_color);
    if (texture == NULL) {
-      spdlog::error("texture generation error on string");
+      spdlog::error("texture generation error on string {}", Utils::ws2s(wstr));
       return false;
    }
 

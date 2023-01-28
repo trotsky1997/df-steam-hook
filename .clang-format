@@ -1,4 +1,4 @@
-BasedOnStyle: Microsoft
+BasedOnStyle: Google
 IndentWidth: 3
 AlignAfterOpenBracket: true
 AlignOperands: true

@@ -11,6 +11,7 @@
 #include <list>
 #include <locale> // for std::wstring_convert - myabe not needed cause we can render utf8
 #include <set>
+#include <algorithm>
 #include <stacktrace>
 #include <stdexcept>
 #include <thread>
@@ -20,6 +21,8 @@
 #include <utility>
 #include <queue>
 #include <string>
+#include <stack>
+
 
 /* disable unused headers from Windows.h */
 #define WIN32_LEAN_AND_MEAN
