@@ -45,23 +45,24 @@ class Dictionary
 
    ~Dictionary() = default;
 
-   void ReplaceAll(std::string &subject, const std::string &search, const std::string &replace);
    std::string EraseFrontBackBlank(std::string &str);
    std::string EraseStringComma(std::string &str);
    std::pair<std::string, std::string> Split(const std::string &str);
    std::string Sanitize(std::string &str);
+   void ReplaceAll(std::string &subject, const std::string &search, const std::string &replace);
 
-   std::optional<std::string> RegexSearch(const std::string &key);
    void SplitRegex(const std::string &str);
    void RegexRplace(std::string &str, bool on);
+   std::optional<std::string> RegexSearch(const std::string &key);
 
-   std::optional<std::string> StringBufferControl(const std::string &buffer, int x, int y, StringType type);
    void InitBuffer();
-   void StoreBuffer(const std::string &buffer, const std::string &key, int x, int y);
-   void TranslationBuffer();
-   std::string GetTranslation(const std::string &tstr);
-   void PrepareBufferOut();
    void FlushBuffer();
+   void PrepareBufferOut();
+   void TranslationBuffer();
+   void StoreBuffer(const std::string &buffer, const std::string &key, int x, int y);
+   void SaveToStringMap(int index, int &preX, int &preY, int &length, std::string &temp, bool isSrc);
+   std::string GetTranslation(const std::string &tstr);
+   std::optional<std::string> StringBufferControl(const std::string &buffer, int x, int y, StringType type);
 
    bool shouldInitBuffer(int y) const;
    bool shouldFlushBuffer(int y, int x, int length, const std::string &buffer);
@@ -84,5 +85,4 @@ class Dictionary
    std::vector<std::string> key_vec;
    std::string string_buffer;
    std::string string_translation;
-   void SaveToStringMap(int index, int &preX, int &preY, int &length, std::string &temp, bool isSrc);
 };

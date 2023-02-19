@@ -149,7 +149,7 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
                }
             }
             this->dict_log.emplace(input, result);
-            spdlog::debug("\n#Result :{}", result);
+            spdlog::debug("\n#TRANS:{}", result);
             return result;
          } else {
             return std::nullopt;
@@ -192,20 +192,21 @@ void Dictionary::StoreBuffer(const std::string &buffer, const std::string &key, 
    // 처음 시작되는 첫 문자열의 위치를 결정하고 저장 다음 문자열은 시작 문자열 뒤로 붙는다
    if (this->start_y == -1) {
       // 앞에 줄과 같은 줄인 경우
-      if (this->pre_line == y ){ //&& std::abs(x - this->pre_len_x) >= 1) {
+      if (this->pre_line == y) {  //&& std::abs(x - this->pre_len_x) >= 1) {
          this->start_x = this->pre_len_x;
          this->start_y = y;
-         spdlog::debug("\n#1 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+         // spdlog::debug("\n#1 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
       }  // 앞에 줄보다 위 아래인 경우 // && std::abs(x - this->pre_len_x) > 1
       else if (abs(this->pre_line - y) == 1 && this->string_buffer.length() > 15) {
          this->start_y = this->pre_line - y == 1 ? y + 1 : y;
          this->start_x = this->pre_line - y == 1 ? this->pre_len_x : this->first_line_x;
-         spdlog::debug("\n#2 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+         // spdlog::debug("\n#2 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
       } else {  // 새롭게 시작하는 문자열
          this->start_x = x;
          this->first_line_x = x;
          this->start_y = y;
-         spdlog::debug("\n#3 x{}y{}, sx{}sy{}, pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+         // spdlog::debug("\n#3 x{}y{}, sx{}sy{}, pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x,
+         // buffer);
       }
       this->key_vec.push_back(key);
       this->pre_line = y;
@@ -233,6 +234,12 @@ void Dictionary::SaveToStringMap(int index, int &preX, int &preY, int &length, s
       std::wstring input = Utils::s2ws(temp);
       tempLen = TTFManager::GetSingleton()->CreateWSTexture(input);
    }
+
+   if (tempLen == 0) {
+      this->dict_multi.emplace(this->key_vec[index], this->SKIP);
+      return;
+   }
+
    length += tempLen;
    if (length > this->GetLineLimit()) {
       preX = this->first_line_x;
@@ -241,13 +248,13 @@ void Dictionary::SaveToStringMap(int index, int &preX, int &preY, int &length, s
       length = 0;
       this->start_x = this->first_line_x;
    }
-   if (isSrc) temp += "$SRC#" + std::to_string(preX) + "#" + std::to_string(preY);
+   if (isSrc) temp += "#" + std::to_string(preX) + "#" + std::to_string(preY) + "$SRC";
    else temp += "#" + std::to_string(preX) + "#" + std::to_string(preY);
    preX += tempLen + 1;
    length += tempLen + 1;
    this->pre_len_x = preX;
-   spdlog::debug("(x{} y{}), (sx{} sy{}), prelen {}, first {} Limit{} {}", preX, preY, this->start_x, this->start_y, this->pre_len_x,
-                 this->first_line_x, this->GetLineLimit(), temp);
+   // spdlog::debug("(x{} y{}), (sx{} sy{}), prelen {}, first {} Limit{} {}", preX, preY, this->start_x, this->start_y, this->pre_len_x,
+   // this->first_line_x, this->GetLineLimit(), temp);
    this->dict_multi.emplace(this->key_vec[index], temp);
 }
 
@@ -322,14 +329,14 @@ void Dictionary::TranslationBuffer()
          std::string translation = GetTranslation(tstr);
          this->string_translation += " " + translation;
          buffer.erase(0, delimiterPos + 2);
-         spdlog::debug("trans {}", this->string_translation);
+         spdlog::debug("TRANS:{}", this->string_translation);
       }
    }
 
    if (!buffer.empty()) {
       std::string translation = GetTranslation(buffer);
       this->string_translation += " " + translation;
-      spdlog::debug("trans {}", this->string_translation);
+      spdlog::debug("TRANS:{}", this->string_translation);
    }
 }
 
@@ -345,15 +352,21 @@ void Dictionary::FlushBuffer()
    if (this->key_vec.size() == 1 || this->string_buffer.length() < 15) {
       auto ret = Get(this->string_buffer);
       if (ret) {
+         spdlog::debug("TRANS:{}", ret.value());
          for (int i = 0; i < this->key_vec.size(); i++) {
             if (i == 0) this->dict_multi.emplace(this->key_vec[i], ret.value());
             else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
          }
       } else {
-         this->string_buffer += "$SRC";
+         spdlog::debug("Trans fail:{}", this->string_buffer);
+         // this->string_buffer += "$SRC";
          for (int i = 0; i < this->key_vec.size(); i++) {
-            if (i == 0) this->dict_multi.emplace(this->key_vec[i], this->string_buffer);
-            else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
+            // if (i == 0) this->dict_multi.emplace(this->key_vec[i], this->string_buffer);
+            // else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
+            std::string temp = this->key_vec[i] + "$SRC";
+            // int x, y;
+            // Utils::CoordExtract(temp, x, y);
+            this->dict_multi.emplace(this->key_vec[i], temp);
          }
       }
       InitBuffer();
@@ -383,8 +396,8 @@ bool Dictionary::shouldFlushBuffer(int y, int x, int length, const std::string &
    bool isXDiffGreaterThanOne = y == this->pre_line && x - this->pre_len_x > 1;  // 이전줄과 같고 간격이 1칸 넘을때
    bool endsWithSpecial = endsWithSpecialCharacter(this->string_buffer);         // 문자열 끝이 특수문자일때
    bool isLineDiffGreaterThanOne = y - this->pre_line > 1;                       // 이전줄과의 간격이 1줄 이상일때
-   bool isLineDiffOneAndStringLengthLessThan =
-       y - this->pre_line == 1 && this->string_buffer.length() < 43 && (buffer.find(" ") != std::string::npos || is_uppercase(buffer.front()));
+   bool isLineDiffOneAndStringLengthLessThan = y - this->pre_line == 1 && this->string_buffer.length() < 43 &&
+                                               (buffer.find(" ") != std::string::npos || (is_uppercase(buffer.front()) && this->key_vec.size() < 2));
 
    return (isNotInitialValue &&
            (isLessThanStartingValue || isXDiffGreaterThanOne || endsWithSpecial || isLineDiffGreaterThanOne || isLineDiffOneAndStringLengthLessThan));
@@ -401,7 +414,7 @@ std::optional<std::string> Dictionary::StringBufferControl(const std::string &bu
    const std::string keyWithCoord = buffer + "#" + std::to_string(x) + "#" + std::to_string(y);
 
    if (shouldFlushBuffer(y, x, buffer.length(), buffer)) {
-      spdlog::debug("FLUSH {}:{}", this->key_vec.size(), this->string_buffer);
+      spdlog::debug("Flush SRC({}):{}", this->key_vec.size(), this->string_buffer);
       FlushBuffer();
    }
 

@@ -8,8 +8,13 @@ namespace Watchdog {
     {
       while (true) {
         Sleep(100);
-        if ((GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState(VK_F5)) && Config::Setting::enable_refresh == false) {
-          Config::Setting::enable_refresh = true;
+        if ((GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState(VK_F5)) && Config::Setting::enable_translation == true) {
+          Config::Setting::enable_translation = false;
+          logger::info("reload dictionary");
+          Dictionary::GetSingleton()->Clear();
+          Dictionary::GetSingleton()->LoadCsv("./dfint_data/dfint_dictionary.csv","./dfint_data/kr_regex.txt");
+          Sleep(500);
+          Config::Setting::enable_translation = true;
           logger::info("refresh");
         }
         if ((GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState(VK_F3)) && Config::Setting::enable_translation == true) {

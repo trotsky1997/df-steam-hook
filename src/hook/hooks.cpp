@@ -19,6 +19,9 @@ namespace Hook {
    bool g_main_replace = false;
    bool g_top_replace = false;
 
+   int g_dimx = 0;
+   int g_dimy = 0;
+
    // cache for textures id
    LRUCache<std::string, long> texture_id_cache(500);
    LRUCache<std::wstring, long> texture_ws_id_cache(15000);
@@ -40,6 +43,8 @@ namespace Hook {
       ORIGINAL(gps_allocate)(ptr, dimx, dimy, screen_width, screen_height, dispx_z, dispy_z);
 
       ScreenManager::GetSingleton()->AllocateScreen(dimx, dimy);
+      g_dimx = dimx;
+      g_dimy = dimy;
 
       TTFManager::GetSingleton()->ClearCache();
       texture_id_cache.Clear();
@@ -662,12 +667,12 @@ namespace Hook {
    {
       int x = 0, y = 0;
       if (str.find("$SRC") != std::string::npos) {
+         str.erase(str.find("$SRC"));
          if (Utils::CoordExtract(str, x, y)) {
             gps->screenx = x;
             gps->screeny = y;
-            //spdlog::debug("\nCHANGE {}", str);
+            // spdlog::debug("\nCHANGE {}", str);
          }
-         str.erase(str.find("$SRC"));
          return false;
       }
       if (Utils::CoordExtract(str, x, y)) {
@@ -677,7 +682,14 @@ namespace Hook {
       return true;
    }
 
-   bool is_single = true;
+   /*실행흐름예상
+   1. 어딘가(addst_template...) 같은 곳에서 위치 색깔 같은거 결정하고 문자열 받음
+   2. 여기서(addst)가로챈 문자열 번역 후 텍스쳐 생성 기존 문자열 공백으로 변경
+    - 기존 문자위에 텍스쳐를 덮어 씌우기 때문에 공백이어야 깔끔히 출력됨
+    - 텍스쳐 길이만큼 공백을 추가해야 글자가 전부 나옴 아니면 중간에 잘리게 됨
+   3. 할거 다하고 한 문자 씩 쪼개서 (addchar)로 보냄
+   4. 위치 변경할 때 다음 문자열과 겹치게 되면 문자는 겹쳐지지 않고 밀려서 출력
+    출력위치: 전반적인 게임 텍스트=>첫글자 대문자(대략 1~5개)단어, 노란테두리 팝업창=>단어조합 다중문자열*/
    SETUP_ORIG_FUNC(addst);
    void __fastcall HOOK(addst)(graphicst_ *gps, std::string &str, justification_ justify, int space)
    {
@@ -689,99 +701,81 @@ namespace Hook {
             if (translation.value().find("$SKIP") != std::string::npos) {
                return;
             }
-            // spdlog::debug("GET TR {}",translation.value());
-            // spdlog::debug("Inject BF x{} y{}",gps->screenx, gps->screeny);
             std::string tstr = translation.value();
             if (StringCoordCheck(tstr, gps)) {
                int count = InjectTTFwstring<ScreenManager::ScreenType::Main>(tstr, gps->screenx, gps->screeny);
-               // spdlog::debug("Inject x{} y{}",gps->screenx, gps->screeny);
-               std::string blank;
-               blank.resize(count, ' ');
-               g_main_replace = true;
-               LockedCall(ttf_injection_lock, ORIGINAL(addst), gps, blank, justify, space);
-               g_main_replace = false;
-               return;
-            } else {
-               //spdlog::debug("Inject {}", tstr);
-               g_main_replace = true;
-               LockedCall(ttf_injection_lock, ORIGINAL(addst), gps, tstr, justify, space);
-               g_main_replace = false;
-               return;
+               tstr = "";
+               tstr.resize(count, ' ');
             }
+            g_main_replace = true;
+            LockedCall(ttf_injection_lock, ORIGINAL(addst), gps, tstr, justify, space);
+            g_main_replace = false;
+            return;
          }
       }
-      // if(!str.empty())
-      //    spdlog::debug("\nORI x{} y{}", gps->screenx, gps->screeny);
       ORIGINAL(addst)(gps, str, justify, space);
    }
 
-   // strings handling for dialog windows (top screen matrix)
+   // 출력위치: 주로 팝업창 튜토리얼, 안내창
    SETUP_ORIG_FUNC(addst_top);
    void __fastcall HOOK(addst_top)(graphicst_ *gps, std::string &str, __int64 a3)
    {
       if (gps && !str.empty() && Config::Setting::enable_translation && !ttf_injection_lock) {
-         // spdlog::debug("#addst_top :{}:",str);
          std::string text = str;
          Utils::SimpleString(text);
          auto translation = Dictionary::GetSingleton()->GetMulti(text.c_str(), gps->screenx, gps->screeny, Dictionary::StringType::Top);
          if (translation) {
-            // spdlog::debug("TOP src:{}  trans:{}  x{} y{}", str, translation.value(), gps->screenx, gps->screeny);
             if (translation.value().find("$SKIP") != std::string::npos) {
                return;
             }
             std::string tstr = translation.value();
             if (StringCoordCheck(tstr, gps)) {
                int count = InjectTTFwstring<ScreenManager::ScreenType::Top>(tstr, gps->screenx, gps->screeny);
-               std::string blank;
-               blank.resize(count, ' ');
-               g_top_replace = true;
-               LockedCall(ttf_injection_lock, ORIGINAL(addst_top), gps, blank, a3);
-               g_top_replace = false;
-               return;
+               tstr = "";
+               tstr.resize(count, ' ');
             }
+            g_top_replace = true;
+            LockedCall(ttf_injection_lock, ORIGINAL(addst_top), gps, tstr, a3);
+            g_top_replace = false;
+            return;
          }
       }
       ORIGINAL(addst_top)(gps, str, a3);
    }
 
-   // some colored string with color not from enum
-   // not see it
+   // 출력위치: 캐릭터창의 탭 내용 생각,특성,가치,욕구...=>문장조합 다중문자열
    SETUP_ORIG_FUNC(addcoloredst);
    void __fastcall HOOK(addcoloredst)(graphicst_ *gps, const char *str, __int64 a3)
    {
       auto len = strnlen_s(str, 1000);
       if (gps && str && len > 0 && len < 1000 && Config::Setting::enable_translation && !ttf_injection_lock) {
-         //spdlog::debug("## addcoloredst {}", str);
          auto translation = Dictionary::GetSingleton()->GetMulti(str, gps->screenx, gps->screeny, Dictionary::StringType::Colored);
          if (translation) {
-            // spdlog::debug("## addcoloredst {}", translation.value());
             if (translation.value().find("$SKIP") != std::string::npos) {
                return;
             }
             std::string tstr = translation.value();
             if (StringCoordCheck(tstr, gps)) {
                int count = InjectTTFwstring<ScreenManager::ScreenType::Main>(tstr, gps->screenx, gps->screeny);
-               std::string blank;
-               blank.resize(len, ' ');
-               g_main_replace = true;
-               LockedCall(ttf_injection_lock, ORIGINAL(addcoloredst), gps, blank.c_str(), a3);
-               g_main_replace = false;
-               return;
+               tstr = "";
+               tstr.resize(len, ' ');
             }
+            g_main_replace = true;
+            LockedCall(ttf_injection_lock, ORIGINAL(addcoloredst), gps, tstr.c_str(), a3);
+            g_main_replace = false;
+            return;
          }
       }
       ORIGINAL(addcoloredst)(gps, str, a3);
    }
 
-   // render through different procedure, not like addst or addst_top
-   /*In order to print letters between the y-axis tiles,
-   it is like calling it twice and printing it half by half.
-   Some_flag seems to store the upper value (8) and the lower value (16) to be output.*/
+   /*Y축 타일 사이로 출력 하기 위해서 글자를 반쪽씩 쪼개서 2번 출력
+   플래그는 출력 아래 위쪽을 정함 8은 위쪽 16은 아래쪽을 출력함
+   출력위치: 창의 탭 문자=>단어 */
    SETUP_ORIG_FUNC(addst_flag);
    void __fastcall HOOK(addst_flag)(graphicst_ *gps, std::string &str, __int64 a3, __int64 a4, int some_flag)
    {
       if (gps && !str.empty() && Config::Setting::enable_translation) {
-         // spdlog::debug("#addst_flag :{}:",str);
          auto translation = Dictionary::GetSingleton()->Get(str);
          if (translation) {
             int count = InjectTTFwstring<ScreenManager::ScreenType::Main>(translation.value(), gps->screenx, gps->screeny, some_flag);
@@ -796,11 +790,12 @@ namespace Hook {
       ORIGINAL(addst_flag)(gps, str, a3, a4, some_flag);
    }
 
-   // // dynamic template string
+   // dynamic template string
+   // 문자열 출력틀=>[내용:]이런 형태로 스타일이 포함되어 있는 문자열
    SETUP_ORIG_FUNC(addst_template);
    void __fastcall HOOK(addst_template)(renderer_2d_base_ *renderer, std::string &str)
    {
-      spdlog::debug("##Dynamic string :{}", str);
+      // spdlog::debug("##Dynamic string :{}", str);
       ORIGINAL(addst_template)(renderer, str);
    }
 
@@ -881,7 +876,7 @@ namespace Hook {
       ATTACH(addst_top);
       ATTACH(addst_flag);
       ATTACH(addcoloredst);
-      ATTACH(addst_template);
+      // ATTACH(addst_template);
 
       // search handling
       if (Config::Setting::enable_search) {
@@ -907,7 +902,7 @@ namespace Hook {
       DETACH(addst_top);
       DETACH(addst_flag);
       DETACH(addcoloredst);
-      DETACH(addst_template);
+      // DETACH(addst_template);
 
       // search handling
       if (Config::Setting::enable_search) {

@@ -207,7 +207,7 @@ SDL_Surface* TTFManager::CreateTexture(const std::string& str, SDL_Color font_co
    auto texture = TTF_RenderUTF8_Blended(this->font, str.c_str(), font_color);
    // TODO: rework missing utf8 chars  and font glyphs
    if (texture == NULL) {
-      logger::error("texture generation error on string {}", str);
+      //logger::error("texture generation error on string {}", str);
       texture = TTF_RenderUTF8_Blended(this->font, "x", font_color);
    }
    // scale to target tile size
@@ -220,6 +220,8 @@ SDL_Surface* TTFManager::CreateTexture(const std::string& str, SDL_Color font_co
 // 문자열을 받아서 텍스쳐 생성 후 타일 너비에 맞게 자른 후 캐시에 저장
 int TTFManager::CreateWSTexture(const std::wstring& wstr, int flag, SDL_Color font_color)
 {
+   if(wstr.empty()) return false;
+
    if (this->font == nullptr) {
       spdlog::error("trying to create texture before setting font");
       exit(2);
@@ -240,7 +242,7 @@ int TTFManager::CreateWSTexture(const std::wstring& wstr, int flag, SDL_Color fo
    // std::wstring wstr = Utils::s2ws(str);
    auto texture = TTF_RenderUNICODE_Blended(this->font, (Uint16*)wstr.c_str(), font_color);
    if (texture == NULL) {
-      spdlog::error("texture generation error on string {}", Utils::ws2s(wstr));
+      //spdlog::error("texture generation error on string {}", Utils::ws2s(wstr));
       return false;
    }
 
