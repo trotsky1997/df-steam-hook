@@ -20,13 +20,13 @@ class Dictionary
    {
       switch (str_type) {
          case Main:
-            return 135 - start_x;
+            return 128 - start_x;
          case Top:
             return 74 - std::abs(first_line_x - start_x);
          case Colored:
             return 42 - std::abs(first_line_x - start_x);
       }
-      return 135 - start_x;
+      return 128 - start_x;
    }
 
    void LoadCsv(const std::string &filename, const std::string &regex_filename);

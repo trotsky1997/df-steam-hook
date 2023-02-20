@@ -10,7 +10,7 @@ class TTFManager
    }
 
    void Init();
-   void LoadFont(const std::string& file, int ptsize, int shift_frame_from_up = 0);
+   void LoadFont(const std::string& file, int ptsize, int shift_frame_from_up = 0, int shift_flag_up = 0, int shift_flag_down = 0);
    void LoadScreen();
    SDL_Surface* GetSlicedTexture(const std::wstring& wstr);
    SDL_Surface* CreateTexture(const std::string& str, SDL_Color font_color = {255, 255, 255});
@@ -44,6 +44,8 @@ class TTFManager
    TTF_Font* font;
    SDL_Surface* screen;
    int shift_frame_from_up = 0;
+   int shift_flag_up = 0;
+   int shift_flag_down = 0;
 
    static const int frame_width = 8;
    static const int frame_height = 12;

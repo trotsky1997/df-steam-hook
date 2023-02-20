@@ -102,11 +102,11 @@ namespace Hook {
 
       // spdlog::debug("Inject str({})",str);
       std::wstring input = Utils::s2ws(str);
-      // ë¬¸ìì—´ í…ìŠ¤ì³ ë§Œë“¤ê³  ìë¥´ê¸°
+      // ¹®ÀÚ¿­ ÅØ½ºÃÄ ¸¸µé°í ÀÚ¸£±â
       int count = TTFManager::GetSingleton()->CreateWSTexture(input, flag);
       if (flag > 0) input += std::to_wstring(flag);
 
-      // ìë¥¸ í…ìŠ¤ì³ íƒ€ì¼ì— ë„£ê¸°
+      // ÀÚ¸¥ ÅØ½ºÃÄ Å¸ÀÏ¿¡ ³Ö±â
       for (int i = 0; i < count; i++) {
          std::wstring find(input);
          find += std::to_wstring(i);
@@ -334,7 +334,7 @@ namespace Hook {
          s -= char(0xE0);
          s += char(0xC0);
       }
-      // cyrillic Ñ‘
+      // cyrillic ¬×
       if (s == char(0xB8)) {
          s = char(0xA8);
       }
@@ -352,7 +352,7 @@ namespace Hook {
          s -= char(0xC0);
          s += char(0xE0);
       }
-      // cyrillic Ñ‘
+      // cyrillic ¬×
       if (s == char(0xA8)) {
          s = char(0xB8);
       }
@@ -682,14 +682,14 @@ namespace Hook {
       return true;
    }
 
-   /*ì‹¤í–‰íë¦„ì˜ˆìƒ
-   1. ì–´ë”˜ê°€(addst_template...) ê°™ì€ ê³³ì—ì„œ ìœ„ì¹˜ ìƒ‰ê¹” ê°™ì€ê±° ê²°ì •í•˜ê³  ë¬¸ìì—´ ë°›ìŒ
-   2. ì—¬ê¸°ì„œ(addst)ê°€ë¡œì±ˆ ë¬¸ìì—´ ë²ˆì—­ í›„ í…ìŠ¤ì³ ìƒì„± ê¸°ì¡´ ë¬¸ìì—´ ê³µë°±ìœ¼ë¡œ ë³€ê²½
-    - ê¸°ì¡´ ë¬¸ììœ„ì— í…ìŠ¤ì³ë¥¼ ë®ì–´ ì”Œìš°ê¸° ë•Œë¬¸ì— ê³µë°±ì´ì–´ì•¼ ê¹”ë”íˆ ì¶œë ¥ë¨
-    - í…ìŠ¤ì³ ê¸¸ì´ë§Œí¼ ê³µë°±ì„ ì¶”ê°€í•´ì•¼ ê¸€ìê°€ ì „ë¶€ ë‚˜ì˜´ ì•„ë‹ˆë©´ ì¤‘ê°„ì— ì˜ë¦¬ê²Œ ë¨
-   3. í• ê±° ë‹¤í•˜ê³  í•œ ë¬¸ì ì”© ìª¼ê°œì„œ (addchar)ë¡œ ë³´ëƒ„
-   4. ìœ„ì¹˜ ë³€ê²½í•  ë•Œ ë‹¤ìŒ ë¬¸ìì—´ê³¼ ê²¹ì¹˜ê²Œ ë˜ë©´ ë¬¸ìëŠ” ê²¹ì³ì§€ì§€ ì•Šê³  ë°€ë ¤ì„œ ì¶œë ¥
-    ì¶œë ¥ìœ„ì¹˜: ì „ë°˜ì ì¸ ê²Œì„ í…ìŠ¤íŠ¸=>ì²«ê¸€ì ëŒ€ë¬¸ì(ëŒ€ëµ 1~5ê°œ)ë‹¨ì–´, ë…¸ë€í…Œë‘ë¦¬ íŒì—…ì°½=>ë‹¨ì–´ì¡°í•© ë‹¤ì¤‘ë¬¸ìì—´*/
+   /*½ÇÇàÈå¸§¿¹»ó
+   1. ¾îµò°¡(addst_template...) °°Àº °÷¿¡¼­ À§Ä¡ »ö±ò °°Àº°Å °áÁ¤ÇÏ°í ¹®ÀÚ¿­ ¹ŞÀ½
+   2. ¿©±â¼­(addst)°¡·ÎÃ¦ ¹®ÀÚ¿­ ¹ø¿ª ÈÄ ÅØ½ºÃÄ »ı¼º ±âÁ¸ ¹®ÀÚ¿­ °ø¹éÀ¸·Î º¯°æ
+    - ±âÁ¸ ¹®ÀÚÀ§¿¡ ÅØ½ºÃÄ¸¦ µ¤¾î ¾º¿ì±â ¶§¹®¿¡ °ø¹éÀÌ¾î¾ß ±ò²ûÈ÷ Ãâ·ÂµÊ
+    - ÅØ½ºÃÄ ±æÀÌ¸¸Å­ °ø¹éÀ» Ãß°¡ÇØ¾ß ±ÛÀÚ°¡ ÀüºÎ ³ª¿È ¾Æ´Ï¸é Áß°£¿¡ Àß¸®°Ô µÊ
+   3. ÇÒ°Å ´ÙÇÏ°í ÇÑ ¹®ÀÚ ¾¿ ÂÉ°³¼­ (addchar)·Î º¸³¿
+   4. À§Ä¡ º¯°æÇÒ ¶§ ´ÙÀ½ ¹®ÀÚ¿­°ú °ãÄ¡°Ô µÇ¸é ¹®ÀÚ´Â °ãÃÄÁöÁö ¾Ê°í ¹Ğ·Á¼­ Ãâ·Â
+    Ãâ·ÂÀ§Ä¡: Àü¹İÀûÀÎ °ÔÀÓ ÅØ½ºÆ®=>Ã¹±ÛÀÚ ´ë¹®ÀÚ(´ë·« 1~5°³)´Ü¾î, ³ë¶õÅ×µÎ¸® ÆË¾÷Ã¢=>´Ü¾îÁ¶ÇÕ ´ÙÁß¹®ÀÚ¿­*/
    SETUP_ORIG_FUNC(addst);
    void __fastcall HOOK(addst)(graphicst_ *gps, std::string &str, justification_ justify, int space)
    {
@@ -716,7 +716,7 @@ namespace Hook {
       ORIGINAL(addst)(gps, str, justify, space);
    }
 
-   // ì¶œë ¥ìœ„ì¹˜: ì£¼ë¡œ íŒì—…ì°½ íŠœí† ë¦¬ì–¼, ì•ˆë‚´ì°½
+   // Ãâ·ÂÀ§Ä¡: ÁÖ·Î ÆË¾÷Ã¢ Æ©Åä¸®¾ó, ¾È³»Ã¢
    SETUP_ORIG_FUNC(addst_top);
    void __fastcall HOOK(addst_top)(graphicst_ *gps, std::string &str, __int64 a3)
    {
@@ -743,7 +743,7 @@ namespace Hook {
       ORIGINAL(addst_top)(gps, str, a3);
    }
 
-   // ì¶œë ¥ìœ„ì¹˜: ìºë¦­í„°ì°½ì˜ íƒ­ ë‚´ìš© ìƒê°,íŠ¹ì„±,ê°€ì¹˜,ìš•êµ¬...=>ë¬¸ì¥ì¡°í•© ë‹¤ì¤‘ë¬¸ìì—´
+   // Ãâ·ÂÀ§Ä¡: Ä³¸¯ÅÍÃ¢ÀÇ ÅÇ ³»¿ë »ı°¢,Æ¯¼º,°¡Ä¡,¿å±¸...=>¹®ÀåÁ¶ÇÕ ´ÙÁß¹®ÀÚ¿­
    SETUP_ORIG_FUNC(addcoloredst);
    void __fastcall HOOK(addcoloredst)(graphicst_ *gps, const char *str, __int64 a3)
    {
@@ -769,9 +769,9 @@ namespace Hook {
       ORIGINAL(addcoloredst)(gps, str, a3);
    }
 
-   /*Yì¶• íƒ€ì¼ ì‚¬ì´ë¡œ ì¶œë ¥ í•˜ê¸° ìœ„í•´ì„œ ê¸€ìë¥¼ ë°˜ìª½ì”© ìª¼ê°œì„œ 2ë²ˆ ì¶œë ¥
-   í”Œë˜ê·¸ëŠ” ì¶œë ¥ ì•„ë˜ ìœ„ìª½ì„ ì •í•¨ 8ì€ ìœ„ìª½ 16ì€ ì•„ë˜ìª½ì„ ì¶œë ¥í•¨
-   ì¶œë ¥ìœ„ì¹˜: ì°½ì˜ íƒ­ ë¬¸ì=>ë‹¨ì–´ */
+   /*YÃà Å¸ÀÏ »çÀÌ·Î Ãâ·Â ÇÏ±â À§ÇØ¼­ ±ÛÀÚ¸¦ ¹İÂÊ¾¿ ÂÉ°³¼­ 2¹ø Ãâ·Â
+   ÇÃ·¡±×´Â Ãâ·Â ¾Æ·¡ À§ÂÊÀ» Á¤ÇÔ 8Àº À§ÂÊ 16Àº ¾Æ·¡ÂÊÀ» Ãâ·ÂÇÔ
+   Ãâ·ÂÀ§Ä¡: Ã¢ÀÇ ÅÇ ¹®ÀÚ=>´Ü¾î */
    SETUP_ORIG_FUNC(addst_flag);
    void __fastcall HOOK(addst_flag)(graphicst_ *gps, std::string &str, __int64 a3, __int64 a4, int some_flag)
    {
@@ -791,7 +791,7 @@ namespace Hook {
    }
 
    // dynamic template string
-   // ë¬¸ìì—´ ì¶œë ¥í‹€=>[ë‚´ìš©:]ì´ëŸ° í˜•íƒœë¡œ ìŠ¤íƒ€ì¼ì´ í¬í•¨ë˜ì–´ ìˆëŠ” ë¬¸ìì—´
+   // ¹®ÀÚ¿­ Ãâ·ÂÆ²=>[³»¿ë:]ÀÌ·± ÇüÅÂ·Î ½ºÅ¸ÀÏÀÌ Æ÷ÇÔµÇ¾î ÀÖ´Â ¹®ÀÚ¿­
    SETUP_ORIG_FUNC(addst_template);
    void __fastcall HOOK(addst_template)(renderer_2d_base_ *renderer, std::string &str)
    {
@@ -806,7 +806,8 @@ namespace Hook {
    {
       auto ttf = TTFManager::GetSingleton();
       ttf->Init();
-      ttf->LoadFont(Config::Setting::font_name, Config::Setting::font_size, Config::Setting::font_shiftup);
+      ttf->LoadFont(Config::Setting::font_name, Config::Setting::font_size, Config::Setting::font_shiftup, 
+                  Config::Setting::font_flagup, Config::Setting::font_flagdown);
 
       // ttf inject, we swap get every char and swap it to our texture
       ATTACH(addchar);

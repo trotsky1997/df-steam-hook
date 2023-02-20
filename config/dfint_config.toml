@@ -9,3 +9,5 @@ enable_search = true
 font_name = "font.ttf"
 font_size = 14
 font_shiftup = 4
+font_flagup = 2
+font_flagdown = 2

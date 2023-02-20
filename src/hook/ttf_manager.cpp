@@ -22,10 +22,8 @@ Uint32 TTFManager::ReadPixel(SDL_Surface* surface, int x, int y)
          break;
 
       case 3:
-         if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
-            return p[0] << 16 | p[1] << 8 | p[2];
-         else
-            return p[0] | p[1] << 8 | p[2] << 16;
+         if (SDL_BYTEORDER == SDL_BIG_ENDIAN) return p[0] << 16 | p[1] << 8 | p[2];
+         else return p[0] | p[1] << 8 | p[2] << 16;
          break;
 
       case 4:
@@ -162,7 +160,7 @@ void TTFManager::ClearCache()
    this->sliced_ws_cache.Clear();
 }
 
-void TTFManager::LoadFont(const std::string& file, int ptsize, int shift_frame_from_up)
+void TTFManager::LoadFont(const std::string& file, int ptsize, int shift_frame_from_up, int shift_flag_up, int shift_flag_down)
 {
    if (this->font != nullptr) {
       TTF_CloseFont(this->font);
@@ -170,6 +168,8 @@ void TTFManager::LoadFont(const std::string& file, int ptsize, int shift_frame_f
    auto font = TTF_OpenFont(file.c_str(), ptsize);
    this->font = font;
    this->shift_frame_from_up = shift_frame_from_up;
+   this->shift_flag_up = shift_flag_up;
+   this->shift_flag_down = shift_flag_down;
    logger::debug("load font 0x{:x}", (uintptr_t)this->font);
 }
 
@@ -186,7 +186,7 @@ SDL_Surface* TTFManager::GetSlicedTexture(const std::wstring& wstr)
    if (cached) {
       return cached.value().get();
    }
-   spdlog::error("sliced texture error cach size:{} str:{}",this->sliced_ws_cache.Size(), Utils::ws2s(wstr));
+   spdlog::error("sliced texture error cach size:{} str:{}", this->sliced_ws_cache.Size(), Utils::ws2s(wstr));
    return nullptr;
 }
 
@@ -207,7 +207,7 @@ SDL_Surface* TTFManager::CreateTexture(const std::string& str, SDL_Color font_co
    auto texture = TTF_RenderUTF8_Blended(this->font, str.c_str(), font_color);
    // TODO: rework missing utf8 chars  and font glyphs
    if (texture == NULL) {
-      //logger::error("texture generation error on string {}", str);
+      // logger::error("texture generation error on string {}", str);
       texture = TTF_RenderUTF8_Blended(this->font, "x", font_color);
    }
    // scale to target tile size
@@ -220,7 +220,7 @@ SDL_Surface* TTFManager::CreateTexture(const std::string& str, SDL_Color font_co
 // 문자열을 받아서 텍스쳐 생성 후 타일 너비에 맞게 자른 후 캐시에 저장
 int TTFManager::CreateWSTexture(const std::wstring& wstr, int flag, SDL_Color font_color)
 {
-   if(wstr.empty()) return false;
+   if (wstr.empty()) return false;
 
    if (this->font == nullptr) {
       spdlog::error("trying to create texture before setting font");
@@ -242,26 +242,29 @@ int TTFManager::CreateWSTexture(const std::wstring& wstr, int flag, SDL_Color fo
    // std::wstring wstr = Utils::s2ws(str);
    auto texture = TTF_RenderUNICODE_Blended(this->font, (Uint16*)wstr.c_str(), font_color);
    if (texture == NULL) {
-      //spdlog::error("texture generation error on string {}", Utils::ws2s(wstr));
+      // spdlog::error("texture generation error on string {}", Utils::ws2s(wstr));
       return false;
    }
 
    int flag_shift = 0;
-   if (flag == 8) {  // Shift down
+   if (flag == 8) {  // Shift up
       texture = ResizeSurface(texture, texture->w, texture->h, std::round(texture->h * -0.45));
-      flag_shift = this->shift_frame_from_up - 1;
+      flag_shift = this->shift_flag_up + 1;
+      //spdlog::debug("flagup {}", flag_shift);
    }
 
-   if (flag == 16) {  // Shift up
+   if (flag == 16) {  // Shift dwon
       texture = ResizeSurface(texture, texture->w, texture->h, std::round(texture->h * 0.55));
-      flag_shift = this->shift_frame_from_up * -1;
+      flag_shift = this->shift_flag_down * -1 ;
+      //spdlog::debug("flagdown {}", flag_shift);
    }
    this->ws_cache.Put(input, texture);
 
    // 문자열 텍스쳐 자르기
    count = texture->w / this->frame_width + (texture->w % this->frame_width != 0);
    for (int x = 0; x < count; x++) {
-      auto slice_texture = SliceSurface(texture, x * this->frame_width, this->frame_height, this->frame_height, this->shift_frame_from_up + flag_shift);
+      auto slice_texture =
+          SliceSurface(texture, x * this->frame_width, this->frame_height, this->frame_height, this->shift_frame_from_up + flag_shift);
       std::wstring temp(input);
       temp += std::to_wstring(x);
       this->sliced_ws_cache.Put(temp, slice_texture);

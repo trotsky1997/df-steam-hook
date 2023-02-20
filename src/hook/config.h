@@ -65,6 +65,8 @@ namespace Config {
     inline auto font_name = Config::config["settings"]["font_name"].value_or<std::string>("font.ttf");
     inline auto font_size = Config::config["settings"]["font_size"].value_or<int>(14);
     inline auto font_shiftup = Config::config["settings"]["font_shiftup"].value_or<int>(4);
+    inline auto font_flagup = Config::config["settings"]["font_flagup"].value_or<int>(2);
+    inline auto font_flagdown = Config::config["settings"]["font_flagdown"].value_or<int>(2);
 
 
   }

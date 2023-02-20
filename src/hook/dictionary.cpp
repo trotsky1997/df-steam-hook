@@ -149,7 +149,7 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
                }
             }
             this->dict_log.emplace(input, result);
-            spdlog::debug("\n#TRANS:{}", result);
+            //spdlog::debug("\n#TRANS:{}", result);
             return result;
          } else {
             return std::nullopt;
@@ -329,21 +329,25 @@ void Dictionary::TranslationBuffer()
          std::string translation = GetTranslation(tstr);
          this->string_translation += " " + translation;
          buffer.erase(0, delimiterPos + 2);
-         spdlog::debug("TRANS:{}", this->string_translation);
+         //spdlog::debug("TRANS:{}", this->string_translation);
       }
    }
 
    if (!buffer.empty()) {
       std::string translation = GetTranslation(buffer);
       this->string_translation += " " + translation;
-      spdlog::debug("TRANS:{}", this->string_translation);
+      //spdlog::debug("TRANS:{}", this->string_translation);
    }
 }
 
 std::string Dictionary::GetTranslation(const std::string &tstr)
 {
    auto translation = Get(tstr);
-   return translation ? translation.value() : tstr;
+   if(translation) return translation.value();
+   else {
+      spdlog::debug("{}",tstr);
+      return tstr;
+   }
 }
 
 // 버퍼 문자열 비우기
@@ -352,13 +356,13 @@ void Dictionary::FlushBuffer()
    if (this->key_vec.size() == 1 || this->string_buffer.length() < 15) {
       auto ret = Get(this->string_buffer);
       if (ret) {
-         spdlog::debug("TRANS:{}", ret.value());
+         //spdlog::debug("TRANS:{}", ret.value());
          for (int i = 0; i < this->key_vec.size(); i++) {
             if (i == 0) this->dict_multi.emplace(this->key_vec[i], ret.value());
             else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
          }
       } else {
-         spdlog::debug("Trans fail:{}", this->string_buffer);
+         spdlog::debug("{}", this->string_buffer);
          // this->string_buffer += "$SRC";
          for (int i = 0; i < this->key_vec.size(); i++) {
             // if (i == 0) this->dict_multi.emplace(this->key_vec[i], this->string_buffer);
@@ -414,7 +418,7 @@ std::optional<std::string> Dictionary::StringBufferControl(const std::string &bu
    const std::string keyWithCoord = buffer + "#" + std::to_string(x) + "#" + std::to_string(y);
 
    if (shouldFlushBuffer(y, x, buffer.length(), buffer)) {
-      spdlog::debug("Flush SRC({}):{}", this->key_vec.size(), this->string_buffer);
+      //spdlog::debug("Flush SRC({}):{}", this->key_vec.size(), this->string_buffer);
       FlushBuffer();
    }
 

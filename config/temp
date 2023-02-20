@@ -120,368 +120,1508 @@ x58y10 j0:The
 x62y10 j0:Brown
 x68y10 j0:Seduction.
 
-x39y2 j1:Explore the history of The Dimensions of Forever.
-x16y7 j126:Usmza Ngobangot Slusasloronsad, "Usmza Flickeredtaxed the Luxurious Wealthy-Glow", female dragon
-x2y9 j112:Usmza
-x8y9 j176:Flickeredtaxed
-x23y9 j112:the
-x27y9 j176:Luxurious
-x37y9 j240:Wealthy-Glow
-x50y9 j240:was
-x54y9 j48:a
-x56y9 j112:dragon.
-x64y9 j48:She
-x68y9 j48:was
-x72y9 j176:one
-x76y9 j240:of
-x79y9 j112:the
-x83y9 j176:only
-x88y9 j240:ones
-x93y9 j112:of
-x96y9 j240:her
-x100y9 j48:kind.
-x106y9 j112:Usmza
-x112y9 j48:was
-x2y10 j176:associated
-x13y10 j112:with
-x18y10 j240:wealth
-x25y10 j48:and
-x29y10 j48:fire.
-x2y12 j112:In
-x5y12 j176:1,
-x8y12 j112:Usmza
-x14y12 j176:settled
-x22y12 j176:in
-x25y12 j240:Boweldepths
-x37y12 j48:the
-x41y12 j240:Crazy
-x47y12 j176:Ticks.
-x2y14 j112:In
-x5y14 j176:the
-x9y14 j48:early
-x15y14 j48:autumn
-x22y14 j112:of
-x25y14 j112:4,
-x28y14 j48:Usmza
-x34y14 j48:became
-x41y14 j176:an
-x44y14 j48:enemy
-x50y14 j176:of
-x53y14 j240:The
-x57y14 j112:Fragile
-x65y14 j176:Nightmare.
-#st x2y16 j112:In
-#st x5y16 j112:the
-#st x9y16 j240:early
-#st x15y16 j176:autumn
-#st x22y16 j112:of
-#st x25y16 j240:4,
-#st x28y16 j240:Usmza
-#st x34y16 j176:became
-#st x41y16 j48:an
-#st x44y16 j240:enemy
-#st x50y16 j176:of
-#st x53y16 j112:The
-#st x57y16 j48:Veiled
-#st x64y16 j176:Fiend.
-#st x2y18 j48:In
-#st x5y18 j112:the
-#st x9y18 j240:early
-#st x15y18 j240:autumn
-#st x22y18 j240:of
-#st x25y18 j112:4,
-#st x28y18 j176:Usmza
-#st x34y18 j176:attacked
-#st x43y18 j48:the
-#st x47y18 j48:goblin
-#st x54y18 j112:Ber
-#st x58y18 j112:Blackgang.
-#st x2y20 j176:In
-#st x5y20 j240:the
-#st x9y20 j176:early
-#st x15y20 j48:autumn
-#st x22y20 j112:of
-#st x25y20 j48:4,
-#st x28y20 j176:Usmza
-#st x34y20 j48:fought
-#st x41y20 j112:with
-#st x46y20 j176:the
-#st x50y20 j240:goblin
-#st x57y20 j48:Ber
-#st x61y20 j176:Blackgang.
-#st x72y20 j240:While
-#st x78y20 j176:defeated,
-#st x88y20 j176:the
-#st x92y20 j176:latter
-#st x99y20 j240:escaped
-#st x107y20 j176:unscathed.
-#st x2y22 j48:In
-#st x5y22 j112:the
-#st x9y22 j48:early
-#st x15y22 j112:autumn
-#st x22y22 j112:of
-#st x25y22 j240:4,
-#st x28y22 j176:Usmza
-#st x34y22 j176:devoured
-#st x43y22 j176:a
-#st x45y22 j112:beak
-#st x50y22 j176:dog
-#st x54y22 j176:of
-#st x57y22 j48:The
-#st x61y22 j112:Fragile
-#st x69y22 j112:Nightmare
-#st x79y22 j112:in
-#st x82y22 j240:Wraithtapers.
-#st x2y24 j240:In
-#st x5y24 j240:the
-#st x9y24 j48:early
-#st x15y24 j48:autumn
-#st x22y24 j240:of
-#st x25y24 j240:4,
-#st x28y24 j112:a
-#st x30y24 j48:gypsum
-#st x37y24 j176:figurine
-#st x46y24 j112:was
-#st x50y24 j48:stolen
-#st x57y24 j48:from
-#st x62y24 j176:Wraithtapers
-#st x75y24 j176:by
-#st x78y24 j240:Usmza
-#st x84y24 j48:during
-#st x91y24 j48:The
-#st x95y24 j240:Rampage
-#st x103y24 j112:of
-#st x106y24 j240:the
-#st x110y24 j112:dragon
-#st x117y24 j48:Usmza
+
+///////////////////////////////////////////////////////////////////////////
+
+Copyright (C) 2002-2023 by Tarn Adams
+Maximum interface percentage (not counting minimap/elevation)
+Use Classic ASCII glyphs
+Master Volume: 100%
+Music Volume: 100%
+Ambience Volume: 90%
+Sound Effects Volume: 80%
+Average Seconds Between Tracks/Interludes: 240
+Enter
+Numpad Enter
+ESC
+ESC
+F11
+Width 257
+Height 257
+Delete
+
+Minimum Elevation
+Maximum Elevation
+Elevation X-Variance
+Elevation Y-Variance
+Minimum Temperature
+Maximum Temperature
+Rainfall X-Variance
+Rainfall Y-Variance
+Temperature X-Variance
+Temperature Y-Variance
+Minimum Drainage
+Maximum Drainage
+Minimum Rainfall
+Maximum Rainfall
+Drainage X-Variance
+Drainage Y-Variance
+Volcanism X-Variance
+Volcanism Y-Variance
+Savagery X-Variance
+Savagery Y-Variance
+Minimum Volcanism
+Maximum Volcanism
+Minimum Savagery
+Maximum Savagery
+Elevation Weighted Range (0-20)
+Rain Weighted Range (0-20)
+Savagery X-Variance
+Savagery Y-Variance
+Drainage Weighted Range (0-20)
+Savagery Weighted Range (0-20)
+Temperature Weighted Range (0-20)
+Volcanism Weighted Range (0-20)
+Minimum Initial Wetland Square Count
+Minimum Initial Wetland Region Count
+Minimum Final Wetland Region Count
+Minimum Initial Forest Square Count
+Minimum Initial Desert Square Count
+Minimum Final Desert Region Count
+Minimum Initial Mountains Square Count
+Minimum Initial Ocean Square Count
+Minimum Initial Ocean Region Count
+Cavern Layer Passage Density Min
+Cavern Layer Passage Density Max
+World:
+Boldoltamunorid, "The Cyclopean Dragon-Universe"
+Defini Asada, "The Dimension of Visions"
+Ramul Artuk, "The Plane of Tempests"
+Vanilla Text
+Vanilla Languages
+Vanilla Descriptors
+Vanilla Materials
+Vanilla Environment
+Vanilla Plants
+Vanilla Items
+Vanilla Buildings
+Vanilla Bodies
+Vanilla Creatures
+Vanilla Entities
+Vanilla Reactions
+Vanilla Interactions
+Vanilla World Map
+Vanilla Interface
+Vanilla Music
+Vanilla Text
+Vanilla Plants
+Vanilla World Map
+Vanilla Interface
+Vanilla Music
+
+10000/75876 completed
+The First Age of Myth event sort 10000/75876 completed
+The Second Age of Myth event sort 10000/75876 completed
+The Chamber of Singing (enemy)
+The Crown-Tools of Charity (enemy)
+The Group of Gold (enemy)
+The Chaste Union (enemy)
+The Castle of Meditation (enemy)
+The Board of Truth (enemy)
+The Trumpet of Sounding (enemy)
+The Righteous Gloves (enemy)
+The Coalition of Doctrines (enemy)
+The Armor of Organization (enemy)
+The Cudgel of Craft (enemy)
+The Slippery Lance (enemy)
+The Infinite Smith (enemy)
+The Harmonious Oars (enemy)
+The Axe of Dells (enemy)
+The Lush Silver (enemy)
+
+Forty-Two Notable Kills
+Cosla Begunpeace the human
+Fikod Valleylanterns the dwarf
+Afe Lakesscraped the elf
+
+Thirteen Other Kills
+One alpaca ()
+in Sabrestabbed One drake ()
+in Workbridles Two cats ()
+in Ceilingsockets One cat ()
+in Ceilingsockets One horse ()
+in Ceilingsockets Three horses ()
+in Ceilingsockets One goose ()
+in Ceilingsockets One blue peahen ()
+in Ceilingsockets One donkey ()
+in Lancerlions One mule ()
+in Glazedragon
+10000/75876 completed
+
+late winter of 34
+Xoslogozru, "Praisehell", cave
+The Axe of Dells held
+midwinter of 46
+The Axe of Dells held a performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+midwinter of 46
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+49
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event banners
+a performance of The Luxury of Tulips
+49
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part
+The Creative Festival
+the elf Alisa Faintmeadows was the victor
+49,
+foot race in Lancerlions as part of The Creative Festival
+There were 10 competitors
+the elf Arane Distanceblossomed was the victor
+49
+The Axe of Dells held a performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+49
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+midwinter of 49
+The Axe of Dells held a performance of The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+49
+The Axe of Dells held a recital of The Chocolate Houses in Lancerlions as part of The Creative Festival
+midwinter of 49
+The Axe of Dells held a story recital in Lancerlions as part of The Creative Festival
+late winter of 49
+wrestling competition
+Lancerlions as part of The Creative Festival
+late winter of 49
+procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+50, The Seals
+Release of The Axe of Dells launched an expedition to reclaim Peakwhips
+50
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury of Tulips
+50,
+held a battle axe throwing competition in Lancerlions as part of The Creative
+55,
+recital of The Chocolate Houses in Lancerlions as part of
+Festival.
+55,
+story recital in Lancerlions as part of The Creative Festival
+55
+The Axe of Dells held a wrestling competition in Lancerlions as part of The Creative Festival
+55
+The Axe of Dells held a procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+The Lavender Meadow
+56
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury of Tulips
+56, The Axe
+Dells held a battle axe throwing competition in Lancerlions as part of The Creative Festival
+the elf Alisa Faintmeadows was the victor
+56,
+held a foot race in Lancerlions as part of The Creative Festival
+There were 7 competitors
+the elf Athe Jumppost
+the victor.
+56,
+The Sensual Desserts in Lancerlions as part of The Creative Festival
+56
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+56, The Axe
+Dells held a performance of The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+56,
+recital of The Chocolate Houses in Lancerlions as part of The Creative Festival
+56,
+story recital in Lancerlions as part of The Creative Festival
+late winter of 56
+The Axe of Dells held a wrestling competition in Lancerlions as part of The Creative Festival
+The event featured criers in front
+61
+61
+61
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury of Tulips
+61,
+held a battle axe throwing competition in Lancerlions as part of The Creative Festival
+the elf Alisa Faintmeadows was the victor
+61
+The Axe of Dells held a foot race in Lancerlions as part
+The Creative Festival
+Competing were the elf Thone Mortalroar
+the elf Epeve Whisperedglacier
+the elf Tira Whiskeredqueens and
+elf Inefa Satinywild
+the elf Thone Mortalroar was the victor
+61,
+performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+61,
+ceremony in Lancerlions as part of The Creative Festival
+event featured storytelling
+61,
+performance of The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+61,
+recital of The Chocolate Houses in Lancerlions as part of The Creative Festival
+61
+The Axe of Dells held a story recital in Lancerlions as part of The Creative Festival
+late winter of 61
+Lancerlions
+Creative Festival
+late winter of 61
+The Axe of Dells held a procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+Festival.
+62
+The Axe of Dells held a story recital in Lancerlions as part of The Creative Festival
+62
+The Axe of Dells held a wrestling competition in Lancerlions as part of The Creative Festival
+62
+The Axe of Dells held a procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+63, The Fence
+Courage of The Axe of Dells founded Tomeshrine
+63
+63,
+ceremony in Lancerlions as part of The Creative Festival
+event storytelling
+a performance of The Luxury
+Tulips
+63
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part of The Creative Festival
+the elf Alisa Faintmeadows was the victor
+63
+The Axe of Dells held a foot race in Lancerlions as part of The Creative Festival
+Competing were the elf Tira Whiskeredqueens
+the elf Inefa Satinywild was the victor
+63,
+performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+63,
+ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+63
+The Axe of Dells held a performance of The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+midwinter of 63
+The Axe of Dells held a recital of The Chocolate Houses in Lancerlions as part of The Creative Festival
+victor.
+64,
+The Sensual Desserts in Lancerlions as part of The Creative Festival
+64
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event images
+64
+The Axe of Dells held a performance
+The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+64,
+recital of The Chocolate Houses in Lancerlions as part
+The Creative Festival
+64,
+story recital in Lancerlions as part of The Creative Festival
+64,
+wrestling competition in Lancerlions as part
+The Creative Festival
+late winter of 64
+procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+65
+Dells.
+65,
+ceremony in Lancerlions as part of The Creative Festival
+event featured storytelling
+a performance of The Luxury of Tulips
+65
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part of
+Festival.
+the elf Alisa Faintmeadows was the victor
+65
+The Axe of Dells held a foot race in Lancerlions as part of The Creative Festival
+There were 5 competitors
+the elf Quico Lilacsparkles was the victor
+65,
+The Sensual Desserts in Lancerlions as part of The Creative Festival
+66
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury of Tulips
+66
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part of The Creative Festival
+elf Alisa Faintmeadows was the victor
+66,
+foot race
+There were 7 competitors
+the elf etile Tealbrass
+the victor.
+66,
+performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+66
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+event images
+66
+The Axe of Dells held a performance of The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+midwinter of 66
+The Axe of Dells held a recital of The Chocolate Houses in Lancerlions as part of The Creative
+66
+The Axe of Dells held a story recital in Lancerlions as part of The Creative Festival
+66
+The Axe of Dells held a wrestling competition
+Lancerlions as part of The Creative Festival
+dwarf Tobul Palewhip was
+victor.
+late winter of 66
+The Axe of Dells held a procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+67
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury
+Tulips
+67,
+battle axe throwing competition in Lancerlions as part of
+Festival.
+the elf Alisa Faintmeadows was the victor
+68
+The Bell of Conquerors of The Axe of Dells founded Ringcried
+68,
+Bell of Conquerors of The Axe of Dells constructed The Mechanical Clusters in Ringcried
+68
+The Girder of Barbarians
+The Axe of Dells founded Joyportals
+68
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury
+Tulips
+68
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part of The Creative Festival
+the elf Alisa Faintmeadows was the victor
+68,
+foot race
+There were 8 competitors
+the elf Alisa Faintmeadows was the victor
+68,
+performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+68,
+ceremony in Lancerlions as part of The Creative Festival
+The event images
+midwinter of 68
+The Axe of Dells held a performance of The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+68
+The Axe of Dells held a recital of The Chocolate Houses in Lancerlions as part of The Creative
+68
+The Axe of Dells held a story recital in Lancerlions as part of The Creative Festival
+68,
+wrestling competition
+Lancerlions as part of The Creative Festival
+68
+The Axe of Dells held a procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+76,
+foot race in Lancerlions as part of The Creative Festival
+Competing were the elf Nino Musicalwires and
+elf Thone Mortalroar
+the elf Nino Musicalwires was the victor
+76,
+Sensual Desserts in Lancerlions as part of The
+76,
+ceremony in Lancerlions as part of The Creative Festival
+event images
+76,
+Periwinkle of Smiling in Lancerlions as part of The
+76,
+recital of The Chocolate Houses in Lancerlions as part
+Festival.
+76,
+story recital in Lancerlions as part of The Creative Festival
+76
+The Axe of Dells held a wrestling competition in Lancerlions as part of The Creative Festival
+victor.
+76
+The Axe of Dells held a procession in Lancerlions as part of The Creative Festival
+The event featured criers in front
+77,
+Dells.
+77
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury of Tulips
+77
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part of The Creative Festival
+the elf Alisa Faintmeadows was the victor
+77,
+foot race in Lancerlions as part of The Creative Festival
+There were 8 competitors
+the elf Liceyi Bearfocus was the victor
+77
+The Axe of Dells held a performance of The Sensual Desserts in Lancerlions as part of The
+81,
+81,
+81,
+Competing were the elf Alino Mirthfulfences
+the elf Pila Budtruths
+the elf Imeva Showeredtwilights was
+victor.
+81,
+81,
+81,
+81,
+81,
+81,
+81,
+82,
+Yawning Flags of The Axe of Dells launched an expedition to reclaim Peakwhips
+82
+82
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury
+Tulips
+87
+The Axe of Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event images
+87
+The Axe of Dells held a performance
+The Periwinkle of Smiling in Lancerlions as part of The Creative Festival
+87
+The Axe of Dells held a recital of The Chocolate Houses in Lancerlions as part of The Creative Festival
+87
+The Axe of Dells held a story recital in Lancerlions as part of The Creative Festival
+late winter of 87
+The Axe of Dells held a wrestling competition in Lancerlions as part of The Creative Festival
+87
+The Axe of Dells held a procession
+The event featured criers in front
+88,
+88,
+88,
+88,
+88,
+88,
+10 competitors
+the elf Rifafa Queenmetals
+88,
+90,
+Enchantments of Bewilderment was claimed by The Axe of Dells
+90
+The Axe of Dells held a ceremony
+Lancerlions as part of The Creative Festival
+The event featured storytelling
+a performance of The Luxury
+Tulips
+90,
+battle axe throwing competition in Lancerlions as part of
+Festival.
+Competing were the elf Rifafa Beastlens and
+elf Alisa Faintmeadows
+the elf Alisa Faintmeadows was the victor
+90,
+foot race
+There were 5 competitors
+elf Iferi Spearlizard was the victor
+90
+The Axe of Dells held a performance of The Sensual Desserts in Lancerlions as part of The Creative Festival
+90,
+ceremony in Lancerlions as part of The Creative Festival
+The event featured storytelling
+90,
+Periwinkle of Smiling in Lancerlions as part of The
+90,
+recital of The Chocolate Houses in Lancerlions as part
+Festival.
+90,
+story recital in Lancerlions as part of The Creative Festival
+late winter of 90
+The Axe of Dells held a wrestling competition in Lancerlions as part of The Creative Festival
+90,
+procession
+The event featured criers in front
+91
+Dells.
+91
+91
+Glowedchanced the Intricacy
+Shell was offered to the dwarf Sodel Chaossacks of The Axe of Dells by the dwarf
+93,
+93,
+93,
+Unib Focusedbook was the victor
+The Sorcerous Fence of The Axe of Dells founded Wealthytrade
+94
+the human Rabin Fortuneguises fooled The Axe of Dells into believing he was "the human the monster slayer Avuz Constructscorch
+The Axe of Dells"
+94, The Axe
+Dells held a ceremony in Lancerlions as part of The Creative Festival
+The event banners
+a performance of The Luxury
+Tulips
+94
+The Axe of Dells held a battle axe throwing competition in Lancerlions as part of The Creative Competing were the elf Rifafa Beastlens and
+elf Alisa Faintmeadows
+the elf Alisa Faintmeadows was victor
+94,
+foot race in Lancerlions as part of The Creative Festival
+Competing were the elf Ada Glacialfights
+the elf Ada Glacialfights was the
+94,
+Sensual Desserts in Lancerlions as part of The
+94,
+ceremony in Lancerlions as part of The Creative Festival
+event featured storytelling
+94,
+Periwinkle of Smiling in Lancerlions as part of The
+95,
+Meyi Glacierrag was the victor
+95,
+95,
+95,
+95,
+95,
+95,
+95,
+96,
+96,
+96,
+8
+Thone Mortalroar was the victor
+96,
+98, The Axe
+Dells held a procession
+Lancerlions as part of The Creative Festival
+The event featured criers in front
+99
+The Axe of Dells swore to support The Purple Unions in war if the latter did likewise
+99,
+ceremony in Lancerlions as part of The Creative Festival
+event featured storytelling
+a performance of The Luxury of Tulips
+99,
+the elf Alisa Faintmeadows was the victor
+99
+The Axe of Dells held a foot race in Lancerlions as part of The Creative Festival
+There were 8 competitors
+the elf Pili Groveamuse was the victor
+99,
+99,
+99,
+99,
+99,
+99,
+Unib Focusedbook was the victor
+99,
+Morul Kodor, "The Pages of Dawn"
+Pages of Dawn
+dwarven group from the Cyclopean Dragon-Universe
+Dawn.
+1
+1
+captain of the guard
+The Pages of Dawn
+1
+the mayor of The Pages of Dawn
+1
+The Pages of Dawn
+Legendrings.
+1
+3
+7
+7
+7
+10
+12
+1
+Pages of Dawn.
+1, The Pages
+Dawn of
+founded Legendrings
+1
+champion of The Pages of Dawn
+3
+7
+7
+the forgotten beast Uxzo Ghoulroasted the Fists of Shade devoured a donkey
+The Pages of Dawn in Legendrings
+7,
+forgotten beast Uxzo Ghoulroasted the Fists of Shade devoured a dog
+Pages of Dawn in Legendrings
+10
+12
+12
+14
+14
+the hydra Zimun Gutsesteemed the Youthful Goal devoured a llama of The Pages
+Dawn in Legendrings
+14
+23,
+Pages
+Dawn
+constructed The Constructive Peppers in Legendrings
+midsummer of 24
+25,
+Pages
+Dawn of The Axe
+Dells finished the construction of The Entangled Tunnel connecting Legendrings and
+The Pages of Dawn of
+founded Legendrings
+Dawn.
+late autumn
+3,
+Dawn.
+7
+7
+7
+the forgotten beast Uxzo Ghoulroasted the Fists of Shade devoured a dog
+Pages of Dawn in Legendrings
+10
+12
+12
+14
+14,
+14
+23, The Pages
+Dawn of The Axe of Dells constructed The Constructive Peppers in Legendrings
+24
+The Pages of Dawn
+25, The Pages
+25
+[23:12:07.228] [debug] Pages of Dawn.
+[23:12:07.228] [debug] late autumn of 3
+[23:12:07.229] [debug] 7,
+[23:12:07.230] [debug] 7
+[23:12:07.231] [debug] 7
+[23:12:07.232] [debug] 10,
+[23:12:07.233] [debug] 12,
+[23:12:07.234] [debug] 12
+[23:12:07.235] [debug] The Pages of Dawn
+[23:12:07.236] [debug] late summer of 14
+[23:12:07.237] [debug] 14,
+[23:12:07.237] [debug] hydra Zimun Gutsesteemed
+[23:12:07.237] [debug] Youthful Goal devoured a llama of The Pages
+[23:12:07.238] [debug] Dawn in Legendrings
+[23:12:07.238] [debug] 14
+[23:12:07.239] [debug] 23, The Pages
+[23:12:07.239] [debug] Dawn of The Axe of Dells constructed The Constructive Peppers in Legendrings
+[23:12:07.240] [debug] 24
+[23:12:07.240] [debug] The Pages of Dawn
+[23:12:07.240] [debug] 25,
+[23:12:07.241] [debug] Pages
+[23:12:07.241] [debug] Dawn of The Axe
+[23:12:07.241] [debug] Dells finished
+[23:12:07.242] [debug] 25
+[23:12:07.244] [debug] 26,
+[23:12:07.245] [debug] 26,
+[23:12:07.251] [debug] 7
+[23:12:07.252] [debug] late spring of 10
+[23:12:07.253] [debug] 12
+[23:12:07.253] [debug] 12
+[23:12:07.254] [debug] 14
+[23:12:07.255] [debug] 14,
+[23:12:07.255] [debug] hydra Zimun Gutsesteemed the Youthful Goal devoured a llama of The Pages
+[23:12:07.255] [debug] Dawn in Legendrings
+[23:12:07.256] [debug] 14
+[23:12:07.256] [debug] the minotaur Ugsnor Powerroar the Night
+[23:12:07.257] [debug] 23,
+[23:12:07.257] [debug] Pages
+[23:12:07.258] [debug] Dawn of The Axe
+[23:12:07.258] [debug] Dells constructed The Constructive Peppers in Legendrings
+[23:12:07.259] [debug] 24
+[23:12:07.259] [debug] 25, The Pages
+[23:12:07.260] [debug] Dawn of The Axe
+[23:12:07.261] [debug] 25
+[23:12:07.262] [debug] Dawn.
+[23:12:07.263] [debug] 26,
+[23:12:07.263] [debug] 26
+[23:12:07.264] [debug] the troll Atog Stonebeasts the Sorcery of Vaulting devoured a rooster of The Pages of Dawn in
+[23:12:07.264] [debug] 26
+[23:12:07.264] [debug] the troll Atog Stonebeasts the Sorcery of Vaulting devoured a gander of The Pages of Dawn in
+[23:12:07.266] [debug] devoured a ram
+[23:12:07.266] [debug] The Pages of Dawn in Legendrings
+[23:12:07.266] [debug] 30,
+[23:12:07.272] [debug] Strifeful Corridor connecting Legendrings
+[23:12:07.272] [debug] 14
+[23:12:07.273] [debug] 14,
+[23:12:07.273] [debug] 14
+[23:12:07.274] [debug] 23, The Pages
+[23:12:07.274] [debug] Dawn of The Axe of Dells constructed The Constructive Peppers in Legendrings
+[23:12:07.275] [debug] 24
+[23:12:07.276] [debug] exchange for leniency as the captain of the guard of The Pages of Dawn
+[23:12:07.276] [debug] 25,
+[23:12:07.276] [debug] Pages
+[23:12:07.277] [debug] Dawn of The Axe of Dells finished
+[23:12:07.277] [debug] construction
+[23:12:07.278] [debug] 25
+[23:12:07.279] [debug] Dawn.
+[23:12:07.279] [debug] 26,
+[23:12:07.280] [debug] 26
+[23:12:07.282] [debug] 26,
+[23:12:07.282] [debug] troll Atog Stonebeasts the Sorcery of Vaulting devoured a gander of The Pages
+[23:12:07.282] [debug] Dawn in
+[23:12:07.283] [debug] devoured a ram of The Pages of Dawn in Legendrings
+[23:12:07.283] [debug] 30,
+[23:12:07.284] [debug] 32
+[23:12:07.285] [debug] 35,
+[23:12:07.286] [debug] roc Ukust Vinebears
+[23:12:07.286] [debug] Foggy devoured a bull of The Pages
+[23:12:07.286] [debug] Dawn
+[23:12:07.286] [debug] Legendrings.
+[23:12:07.287] [debug] 40,
+[23:12:07.293] [debug] 24,
+[23:12:07.293] [debug] dwarf Momuz Greatestrelic began accepting bribes
+[23:12:07.294] [debug] exchange for leniency as the captain of the guard of The Pages of Dawn
+[23:12:07.294] [debug] 25,
+[23:12:07.294] [debug] Pages
+[23:12:07.294] [debug] Dawn of The Axe of Dells finished
+[23:12:07.295] [debug] construction
+[23:12:07.295] [debug] 25,
+[23:12:07.296] [debug] Dawn.
+[23:12:07.297] [debug] 26,
+[23:12:07.297] [debug] 26
+[23:12:07.298] [debug] the troll Atog Stonebeasts the Sorcery of Vaulting devoured a rooster of The Pages
+[23:12:07.298] [debug] Dawn in
+[23:12:07.298] [debug] 26,
+[23:12:07.300] [debug] devoured a ram of The Pages of Dawn in Legendrings
+[23:12:07.301] [debug] 30,
+[23:12:07.301] [debug] 32
+[23:12:07.302] [debug] 35,
+[23:12:07.302] [debug] roc Ukust Vinebears
+[23:12:07.302] [debug] Foggy devoured a bull of The Pages
+[23:12:07.303] [debug] Dawn in Legendrings
+[23:12:07.303] [debug] 40
+[23:12:07.304] [debug] 40,
+[23:12:07.304] [debug] ettin Bagost Sparklemirth
+[23:12:07.305] [debug] 40,
+[23:12:07.307] [debug] 42,
+[23:12:07.307] [debug] Lokum Bellstood began embezzling funds as the manager
+[23:12:07.307] [debug] The Pages of Dawn
+[23:12:07.308] [debug] 43,
+[23:12:07.308] [debug] dwarf Lokum Bellstood was convicted of disorderly conduct by The Pages
+[23:12:07.315] [debug] 25,
+[23:12:07.316] [debug] 26
+[23:12:07.317] [debug] 26,
+[23:12:07.317] [debug] troll Atog Stonebeasts the Sorcery of Vaulting devoured a rooster of The Pages of Dawn in
+[23:12:07.317] [debug] 26
+[23:12:07.318] [debug] the troll Atog Stonebeasts the Sorcery of Vaulting devoured a gander of The Pages
+[23:12:07.318] [debug] Dawn in
+[23:12:07.318] [debug] 26
+[23:12:07.319] [debug] the troll Atog Stonebeasts the Sorcery of Vaulting devoured a ram
+[23:12:07.319] [debug] 30, The Pages
+[23:12:07.320] [debug] 32,
+[23:12:07.320] [debug] dwarf Thob Tonguewhipped began embezzling funds as the broker of The Pages of Dawn
+[23:12:07.321] [debug] 35,
+[23:12:07.321] [debug] roc Ukust Vinebears the Foggy devoured a bull of The Pages
+[23:12:07.321] [debug] Dawn in Legendrings
+[23:12:07.322] [debug] 40
+[23:12:07.323] [debug] 40
+[23:12:07.324] [debug] 40,
+[23:12:07.325] [debug] 43
+[23:12:07.327] [debug] 43
+[23:12:07.328] [debug] 44
+[23:12:07.329] [debug] the manager of The Pages of Dawn
+[23:12:07.329] [debug] 49,
+[23:12:07.335] [debug] Unib Focusedbook began embezzling funds as the chief medical dwarf of The Pages Dawn
+[23:12:07.875] [debug] 26
+[23:12:07.876] [debug] 26
+[23:12:07.876] [debug] the troll Atog Stonebeasts the Sorcery of Vaulting devoured a gander of The Pages
+[23:12:07.876] [debug] Dawn in Legendrings
+[23:12:07.877] [debug] 26,
+[23:12:07.877] [debug] troll Atog Stonebeasts the Sorcery of Vaulting devoured a ram of The Pages
+[23:12:07.877] [debug] Dawn in Legendrings
+[23:12:07.878] [debug] 30, The Pages
+[23:12:07.878] [debug] late winter of 32
+[23:12:07.879] [debug] 35,
+[23:12:07.879] [debug] roc Ukust Vinebears
+[23:12:07.881] [debug] 40
+[23:12:07.882] [debug] Dawn.
+[23:12:07.883] [debug] 40,
+[23:12:07.885] [debug] 42,
+[23:12:07.885] [debug] dwarf Lokum Bellstood began embezzling funds as the manager of The Pages of Dawn
+[23:12:07.885] [debug] 43
+[23:12:07.887] [debug] six years.
+[23:12:07.887] [debug] 43,
+[23:12:07.887] [debug] dwarf Lokum Bellstood was imprisoned by The Pages of Dawn
+[23:12:07.888] [debug] 44,
+[23:12:07.889] [debug] Dawn.
+[23:12:07.889] [debug] 49,
+[23:12:07.890] [debug] Unib Focusedbook began embezzling funds as the chief medical dwarf of The Pages of Dawn
+[23:12:07.890] [debug] 51,
+[23:12:07.890] [debug] Pages
+[23:12:07.890] [debug] Dawn of The Axe
+[23:12:07.891] [debug] Dells finished
+[23:12:07.907] [debug] 26
+[23:12:07.907] [debug] the troll Atog Stonebeasts the Sorcery
+[23:12:07.908] [debug] Vaulting devoured a gander of The Pages of Dawn in
+[23:12:07.908] [debug] devoured a ram
+[23:12:07.909] [debug] 30,
+[23:12:07.909] [debug] 32,
+[23:12:07.910] [debug] dwarf Thob Tonguewhipped began embezzling funds as the broker of The Pages of Dawn
+[23:12:07.910] [debug] 35
+[23:12:07.910] [debug] the roc Ukust Vinebears
+[23:12:07.911] [debug] Foggy devoured a bull of The Pages
+[23:12:07.911] [debug] Dawn in Legendrings
+[23:12:07.912] [debug] 40,
+[23:12:07.912] [debug] Dawn.
+[23:12:07.913] [debug] 40,
+[23:12:07.914] [debug] Dawn.
+[23:12:07.915] [debug] 42,
+[23:12:07.915] [debug] dwarf Lokum Bellstood began embezzling funds as the manager
+[23:12:07.915] [debug] The Pages of Dawn
+[23:12:07.916] [debug] 43,
+[23:12:07.916] [debug] dwarf Lokum Bellstood was convicted
+[23:12:07.917] [debug] 43
+[23:12:07.918] [debug] imprisoned by The Pages
+[23:12:07.918] [debug] Dawn.
+[23:12:07.918] [debug] 44
+[23:12:07.919] [debug] Dawn.
+[23:12:07.920] [debug] 49,
+[23:12:07.920] [debug] Unib Focusedbook began embezzling funds
+[23:12:07.920] [debug] the chief medical dwarf of The Pages of Dawn
+[23:12:07.921] [debug] 51, The Pages
+[23:12:07.921] [debug] Dawn of The Axe
+[23:12:07.921] [debug] Dells finished
+[23:12:07.921] [debug] construction
+[23:12:07.923] [debug] 54,
+[23:12:07.924] [debug] 60
+[23:12:07.924] [debug] convicted of disorderly conduct by The Pages
+[23:12:07.930] [debug] seven years.
+[23:12:07.931] [debug] 40,
+[23:12:07.931] [debug] 40,
+[23:12:07.932] [debug] ettin Bagost Sparklemirth the Amethyst of Judges
+[23:12:07.933] [debug] 40,
+[23:12:07.933] [debug] Dawn.
+[23:12:07.934] [debug] 42,
+[23:12:07.934] [debug] dwarf Lokum Bellstood began embezzling funds as the manager of The Pages of Dawn
+[23:12:07.935] [debug] 43
+[23:12:07.935] [debug] disorderly conduct by The Pages
+[23:12:07.936] [debug] 43,
+[23:12:07.936] [debug] dwarf Lokum Bellstood was imprisoned by The Pages of Dawn
+[23:12:07.936] [debug] 44
+[23:12:07.937] [debug] Dawn.
+[23:12:07.937] [debug] 49
+[23:12:07.938] [debug] chief medical dwarf of The Pages of Dawn
+[23:12:07.939] [debug] 51,
+[23:12:07.939] [debug] Pages
+[23:12:07.939] [debug] Dawn
+[23:12:07.940] [debug] 54
+[23:12:07.942] [debug] 60,
+[23:12:07.942] [debug] Lokum Bellstood was convicted of disorderly conduct by
+[23:12:07.943] [debug] 60,
+[23:12:07.943] [debug] dwarf Lokum Bellstood was imprisoned by The Pages of Dawn
+[23:12:07.944] [debug] 60
+[23:12:07.945] [debug] late autumn of 60
+[23:12:07.947] [debug] 62
+[23:12:07.948] [debug] 68,
+[23:12:07.949] [debug] Dawn.
+[23:12:07.949] [debug] 71
+[23:12:07.955] [debug] Pages of Dawn.
+[23:12:07.956] [debug] 43,
+[23:12:07.956] [debug] dwarf Lokum Bellstood was imprisoned by The Pages of Dawn
+[23:12:07.957] [debug] the manager of The Pages of Dawn
+[23:12:07.957] [debug] 49,
+[23:12:07.957] [debug] dwarf Unib Focusedbook began embezzling funds as the chief medical dwarf of The Pages Dawn
+[23:12:07.958] [debug] 51,
+[23:12:07.958] [debug] Pages
+[23:12:07.958] [debug] Dawn of The Axe of Dells finished the construction
+[23:12:07.959] [debug] 54,
+[23:12:07.960] [debug] 60,
+[23:12:07.961] [debug] 60,
+[23:12:07.962] [debug] dwarf Lokum Bellstood was imprisoned by The Pages
+[23:12:07.962] [debug] Dawn.
+[23:12:07.962] [debug] 60,
+[23:12:07.963] [debug] 60,
+[23:12:07.965] [debug] 62,
+[23:12:07.965] [debug] cyclops Okang Bluetwinkles
+[23:12:07.966] [debug] 68
+[23:12:07.968] [debug] 71,
+[23:12:07.968] [debug] Momuz Savestockades began embezzling funds as the dungeon master
+[23:12:07.968] [debug] The Pages
+[23:12:07.968] [debug] Dawn.
+[23:12:07.969] [debug] 72,
+[23:12:07.969] [debug] Dastot Tradeearly became
+[23:12:07.969] [debug] champion of The Pages of Dawn
+[23:12:07.970] [debug] 74
+[23:12:07.971] [debug] 74,
+[23:12:07.972] [debug] troll olsmu Honorauthored devoured a ram of The Pages
+[23:12:07.972] [debug] Dawn in Legendrings
+[23:12:07.972] [debug] 74,
+[23:12:07.973] [debug] troll Atog Stonebeasts
+[23:12:07.973] [debug] Sorcery of Vaulting devoured a goose
+[23:12:07.973] [debug] Pages of Dawn in Legendrings
+[23:12:07.974] [debug] 74,
+[23:12:07.980] [debug] 49,
+[23:12:07.981] [debug] Unib Focusedbook began embezzling funds as the chief medical dwarf of The Pages of Dawn
+[23:12:07.981] [debug] 51,
+[23:12:07.981] [debug] Pages
+[23:12:07.981] [debug] Dawn of The Axe of Dells finished the construction
+[23:12:07.982] [debug] 54,
+[23:12:07.983] [debug] 60
+[23:12:07.984] [debug] seven years.
+[23:12:07.984] [debug] 60,
+[23:12:07.985] [debug] dwarf Lokum Bellstood was imprisoned by The Pages of Dawn
+[23:12:07.985] [debug] 60,
+[23:12:07.986] [debug] 62,
+[23:12:07.987] [debug] cyclops Okang Bluetwinkles
+[23:12:07.987] [debug] 68
+[23:12:07.988] [debug] 71,
+[23:12:07.988] [debug] Momuz Savestockades began embezzling funds as the dungeon master
+[23:12:07.989] [debug] The Pages
+[23:12:07.989] [debug] Dawn.
+[23:12:07.989] [debug] 72,
+[23:12:07.991] [debug] 74,
+[23:12:07.992] [debug] Dawn.
+[23:12:07.992] [debug] 74
+[23:12:07.992] [debug] the troll olsmu Honorauthored devoured a ram of The Pages
+[23:12:07.993] [debug] Dawn in Legendrings
+[23:12:07.994] [debug] Atog Stonebeasts
+[23:12:07.994] [debug] Sorcery of Vaulting devoured a goose
+[23:12:07.994] [debug] Pages of Dawn in Legendrings
+[23:12:07.995] [debug] 74,
+[23:12:07.995] [debug] 74,
+[23:12:07.998] [debug] boar
+[23:12:08.004] [debug] The Pages of Dawn in Legendrings
+[23:12:08.556] [debug] Practicedbolted.
+[23:12:08.557] [debug] 54,
+[23:12:08.557] [debug] 60,
+[23:12:08.558] [debug] dwarf Lokum Bellstood
+[23:12:08.558] [debug] convicted of disorderly conduct by The Pages
+[23:12:08.559] [debug] 60,
+[23:12:08.559] [debug] dwarf Lokum Bellstood was imprisoned by The Pages
+[23:12:08.560] [debug] Dawn.
+[23:12:08.560] [debug] 60,
+[23:12:08.561] [debug] 62,
+[23:12:08.562] [debug] 68
+[23:12:08.563] [debug] 71,
+[23:12:08.563] [debug] dwarf Momuz Savestockades began embezzling funds as the dungeon master of The Pages
+[23:12:08.563] [debug] Dawn.
+[23:12:08.564] [debug] 72,
+[23:12:08.565] [debug] 74,
+[23:12:08.566] [debug] 74,
+[23:12:08.566] [debug] troll olsmu Honorauthored devoured a ram
+[23:12:08.567] [debug] Pages
+[23:12:08.567] [debug] Dawn in Legendrings
+[23:12:08.567] [debug] Atog Stonebeasts the Sorcery of Vaulting devoured a goose
+[23:12:08.567] [debug] Pages of Dawn in Legendrings
+[23:12:08.568] [debug] 74,
+[23:12:08.569] [debug] 74,
+[23:12:08.569] [debug] troll olsmu Honorauthored devoured a ram of The Pages
+[23:12:08.569] [debug] Dawn in Legendrings
+[23:12:08.570] [debug] boar
+[23:12:08.570] [debug] The Pages of Dawn in Legendrings
+[23:12:08.571] [debug] ewe
+[23:12:08.571] [debug] doe rabbit
+[23:12:08.586] [debug] Dawn in Legendrings
+[23:12:08.587] [debug] 60,
+[23:12:08.587] [debug] imprisoned by The Pages of Dawn
+[23:12:08.588] [debug] 60,
+[23:12:08.589] [debug] Dawn.
+[23:12:08.590] [debug] 62,
+[23:12:08.590] [debug] cyclops Okang Bluetwinkles
+[23:12:08.590] [debug] Day
+[23:12:08.591] [debug] 68
+[23:12:08.592] [debug] 71
+[23:12:08.592] [debug] the dungeon master of The Pages of Dawn
+[23:12:08.593] [debug] 72,
+[23:12:08.594] [debug] The Pages
+[23:12:08.594] [debug] Dawn.
+[23:12:08.595] [debug] 74
+[23:12:08.595] [debug] 74
+[23:12:08.597] [debug] 74,
+[23:12:08.597] [debug] troll Atog Stonebeasts
+[23:12:08.597] [debug] Sorcery
+[23:12:08.599] [debug] devoured a hen of The Pages of Dawn in Legendrings
+[23:12:08.600] [debug] devoured a boar
+[23:12:08.601] [debug] Dawn in Legendrings
+[23:12:08.601] [debug] ewe
+[23:12:08.604] [debug] 74,
+[23:12:08.605] [debug] 74,
+[23:12:08.612] [debug] 68,
+[23:12:08.613] [debug] 71,
+[23:12:08.613] [debug] Savestockades
+[23:12:08.614] [debug] the dungeon master of The Pages of Dawn
+[23:12:08.614] [debug] 72,
+[23:12:08.615] [debug] 74,
+[23:12:08.616] [debug] 74,
+[23:12:08.617] [debug] 74
+[23:12:08.617] [debug] the troll Atog Stonebeasts
+[23:12:08.617] [debug] Sorcery
+[23:12:08.618] [debug] 74,
+[23:12:08.619] [debug] troll olsmu Honorauthored devoured a hen
+[23:12:08.619] [debug] The Pages of Dawn in Legendrings
+[23:12:08.619] [debug] 74,
+[23:12:08.620] [debug] troll olsmu Honorauthored devoured a ram
+[23:12:08.620] [debug] The Pages of Dawn in Legendrings
+[23:12:08.620] [debug] 74,
+[23:12:08.622] [debug] 74,
+[23:12:08.624] [debug] devoured a doe rabbit
+[23:12:08.625] [debug] Dawn in Legendrings
+[23:12:08.625] [debug] nanny goat of The Pages of Dawn in Legendrings
+[23:12:08.626] [debug] reindeer cow of The Pages of Dawn in Legendrings
+[23:12:08.627] [debug] 75,
+[23:12:08.628] [debug] 75,
+[23:12:08.629] [debug] 81,
+[23:12:08.629] [debug] Goden Roastedlances
+[23:12:08.630] [debug] the captain of the guard of The Pages of Dawn
+[23:12:08.636] [debug] 81
+[23:12:08.637] [debug] 74
+[23:12:08.638] [debug] 74
+[23:12:08.639] [debug] the troll Atog Stonebeasts the Sorcery
+[23:12:08.640] [debug] 74,
+[23:12:08.640] [debug] 74
+[23:12:08.641] [debug] 74,
+[23:12:08.642] [debug] troll olsmu Honorauthored devoured a boar
+[23:12:08.642] [debug] The Pages of Dawn in Legendrings
+[23:12:08.643] [debug] 74,
+[23:12:08.643] [debug] doe rabbit
+[23:12:08.644] [debug] Dawn in Legendrings
+[23:12:08.644] [debug] nanny goat of The Pages of Dawn in Legendrings
+[23:12:08.645] [debug] dog of The Pages of Dawn in Legendrings
+[23:12:08.646] [debug] reindeer cow of The Pages of Dawn in Legendrings
+[23:12:08.646] [debug] 75,
+[23:12:08.647] [debug] dwarf Olin Robustoiled became
+[23:12:08.647] [debug] militia commander
+[23:12:08.647] [debug] The Pages of Dawn
+[23:12:08.648] [debug] 75, The Pages
+[23:12:08.648] [debug] Dawn of The Axe
+[23:12:08.649] [debug] 81,
+[23:12:08.650] [debug] The Pages of Dawn
+[23:12:08.651] [debug] 81,
+[23:12:08.652] [debug] 81,
+[23:12:08.652] [debug] dwarf Goden Roastedlances began accepting bribes in exchange for leniency as the captain of
+[23:12:08.653] [debug] guard of The Pages of Dawn under the influence of the dwarf necromancer Sarvesh Glazedyearling
+[23:12:08.656] [debug] Pages of Dawn.
+[23:12:08.656] [debug] 86,
+[23:12:08.663] [debug] 74,
+[23:12:08.663] [debug] troll olsmu Honorauthored devoured a hen of The Pages
+[23:12:08.664] [debug] Dawn in Legendrings
+[23:12:08.664] [debug] 74,
+[23:12:08.665] [debug] boar of The Pages
+[23:12:08.665] [debug] Dawn in Legendrings
+[23:12:08.666] [debug] ewe
+[23:12:08.667] [debug] doe rabbit of The Pages
+[23:12:08.667] [debug] Dawn in Legendrings
+[23:12:08.668] [debug] nanny goat of The Pages of Dawn in Legendrings
+[23:12:08.669] [debug] reindeer cow of The Pages of Dawn in Legendrings
+[23:12:08.670] [debug] 75
+[23:12:08.671] [debug] The Pages of Dawn
+[23:12:08.671] [debug] 75,
+[23:12:08.672] [debug] 81,
+[23:12:08.672] [debug] dwarf Goden Roastedlances
+[23:12:08.672] [debug] the captain of the guard of The Pages of Dawn
+[23:12:08.673] [debug] 81
+[23:12:08.674] [debug] 81,
+[23:12:08.674] [debug] dwarf Goden Roastedlances began accepting bribes in exchange for leniency as the captain of
+[23:12:08.674] [debug] guard of The Pages of Dawn under the influence of the dwarf necromancer Sarvesh Glazedyearling
+[23:12:08.675] [debug] 82,
+[23:12:08.676] [debug] Dawn.
+[23:12:08.677] [debug] 86
+[23:12:08.677] [debug] hammerer of The Pages
+[23:12:08.678] [debug] Dawn.
+[23:12:08.678] [debug] 89,
+[23:12:08.678] [debug] forgotten beast Idash Moistbeaches
+[23:12:08.679] [debug] 89,
+[23:12:08.679] [debug] forgotten beast Idash Moistbeaches devoured a billy goat
+[23:12:08.685] [debug] The Pages of Dawn in Legendrings
+[23:12:08.686] [debug] boar
+[23:12:08.686] [debug] The Pages of Dawn in Legendrings
+[23:12:08.687] [debug] ewe
+[23:12:08.687] [debug] doe rabbit of The Pages of Dawn in Legendrings
+[23:12:08.688] [debug] nanny goat of The Pages of Dawn in Legendrings
+[23:12:08.689] [debug] dog of The Pages
+[23:12:08.689] [debug] Dawn in Legendrings
+[23:12:08.690] [debug] reindeer cow of The Pages of Dawn in Legendrings
+[23:12:08.690] [debug] 75
+[23:12:08.691] [debug] The Pages of Dawn
+[23:12:08.691] [debug] 75, The Pages
+[23:12:08.693] [debug] 81,
+[23:12:08.694] [debug] 81
+[23:12:08.696] [debug] Pages of Dawn.
+[23:12:08.696] [debug] 81,
+[23:12:08.696] [debug] dwarf Goden Roastedlances began accepting bribes in exchange for leniency as the captain of
+[23:12:08.697] [debug] guard of The Pages of Dawn under
+[23:12:08.697] [debug] influence of
+[23:12:08.697] [debug] dwarf necromancer Sarvesh Glazedyearling
+[23:12:08.698] [debug] 82,
+[23:12:08.699] [debug] Dawn.
+[23:12:08.699] [debug] 86,
+[23:12:08.699] [debug] Onget Channelringed became
+[23:12:08.700] [debug] hammerer of The Pages of Dawn
+[23:12:08.700] [debug] 89,
+[23:12:08.700] [debug] forgotten beast Idash Moistbeaches
+[23:12:08.701] [debug] 89,
+[23:12:08.701] [debug] forgotten beast Idash Moistbeaches devoured a billy goat
+[23:12:08.702] [debug] The Pages
+[23:12:08.702] [debug] Dawn in Legendrings
+[23:12:08.702] [debug] 93,
+[23:12:08.704] [debug] 93,
+[23:12:08.709] [debug] dwarf iton Standardveil began embezzling funds as the manager of The Pages of Dawn
+[23:12:08.710] [debug] doe rabbit
+[23:12:08.710] [debug] Dawn in Legendrings
+[23:12:08.711] [debug] nanny goat of The Pages of Dawn in Legendrings
+[23:12:08.712] [debug] reindeer cow of The Pages of Dawn in Legendrings
+[23:12:08.713] [debug] 75
+[23:12:08.713] [debug] 75,
+[23:12:08.714] [debug] Pages
+[23:12:08.714] [debug] Dawn of The Axe
+[23:12:08.714] [debug] Dells finished
+[23:12:08.714] [debug] construction
+[23:12:08.716] [debug] 81,
+[23:12:08.716] [debug] The Pages of Dawn
+[23:12:08.716] [debug] 81,
+[23:12:08.717] [debug] Reg Worshipbronze
+[23:12:08.717] [debug] mayor of The Pages of Dawn
+[23:12:08.718] [debug] 81,
+[23:12:08.718] [debug] dwarf Goden Roastedlances began accepting bribes in exchange for leniency as the captain guard of The Pages of Dawn under
+[23:12:08.718] [debug] influence of
+[23:12:08.718] [debug] dwarf necromancer Sarvesh Glazedyearling
+[23:12:08.719] [debug] 82,
+[23:12:08.720] [debug] Dawn.
+[23:12:08.720] [debug] 86,
+[23:12:08.721] [debug] Onget Channelringed became
+[23:12:08.721] [debug] hammerer of The Pages of Dawn
+[23:12:08.722] [debug] 89,
+[23:12:08.722] [debug] forgotten beast Idash Moistbeaches
+[23:12:08.722] [debug] 89,
+[23:12:08.723] [debug] forgotten beast Idash Moistbeaches devoured a billy goat
+[23:12:08.723] [debug] The Pages
+[23:12:08.723] [debug] Dawn in Legendrings
+[23:12:08.724] [debug] 93,
+[23:12:08.725] [debug] Dawn.
+[23:12:08.725] [debug] 93,
+[23:12:08.725] [debug] dwarf iton Standardveil
+[23:12:08.725] [debug] manager of The Pages of Dawn
+[23:12:08.726] [debug] 96,
+[23:12:08.727] [debug] Dawn.
+[23:12:08.727] [debug] 96,
+[23:12:08.728] [debug] Atog Stonebeasts the Sorcery
+[23:12:08.768] [debug] reindeer cow of The Pages of Dawn in Legendrings
+[23:12:08.768] [debug] 75
+[23:12:08.769] [debug] The Pages of Dawn
+[23:12:08.769] [debug] 75,
+[23:12:08.770] [debug] 81,
+[23:12:08.770] [debug] dwarf Goden Roastedlances
+[23:12:08.771] [debug] the captain of the guard of The Pages of Dawn
+[23:12:08.771] [debug] 81,
+[23:12:08.772] [debug] 81,
+[23:12:08.772] [debug] dwarf Goden Roastedlances began accepting bribes in exchange for leniency as the captain of
+[23:12:08.772] [debug] guard of The Pages of Dawn under
+[23:12:08.773] [debug] influence of
+[23:12:08.773] [debug] dwarf necromancer Sarvesh Glazedyearling
+[23:12:08.774] [debug] 82,
+[23:12:08.775] [debug] 86,
+[23:12:08.775] [debug] Onget Channelringed became
+[23:12:08.775] [debug] hammerer of The Pages of Dawn
+[23:12:08.776] [debug] 89
+[23:12:08.776] [debug] the forgotten beast Idash Moistbeaches
+[23:12:08.777] [debug] 89,
+[23:12:08.777] [debug] forgotten beast Idash Moistbeaches devoured a billy goat
+[23:12:08.777] [debug] Pages of Dawn in Legendrings
+[23:12:08.778] [debug] 93,
+[23:12:08.779] [debug] 93,
+[23:12:08.779] [debug] dwarf iton Standardveil began embezzling funds as the manager of The Pages
+[23:12:08.779] [debug] Dawn.
+[23:12:08.780] [debug] 96,
+[23:12:08.782] [debug] 96,
+[23:12:08.782] [debug] Zulash Playedmaster
+[23:12:08.783] [debug] guineacock
+[23:12:08.783] [debug] 96,
+[23:12:08.784] [debug] ram
+[23:12:08.886] [debug] Palmmanors.
+[23:12:08.887] [debug] 81,
+[23:12:08.887] [debug] Goden Roastedlances
+[23:12:08.887] [debug] captain of the guard of The Pages of Dawn
+[23:12:08.888] [debug] 81,
+[23:12:08.888] [debug] Reg Worshipbronze
+[23:12:08.888] [debug] mayor of The Pages
+[23:12:08.889] [debug] Dawn.
+[23:12:08.889] [debug] 81,
+[23:12:08.889] [debug] dwarf Goden Roastedlances began accepting bribes
+[23:12:08.890] [debug] exchange for leniency as the captain of
+[23:12:08.890] [debug] guard of The Pages of Dawn under the influence of the dwarf necromancer Sarvesh Glazedyearling
+[23:12:08.891] [debug] 82,
+[23:12:08.892] [debug] 86,
+[23:12:08.892] [debug] 89,
+[23:12:08.894] [debug] The Pages
+[23:12:08.894] [debug] Dawn.
+[23:12:08.894] [debug] 89,
+[23:12:08.895] [debug] forgotten beast Idash Moistbeaches devoured a billy goat
+[23:12:08.895] [debug] Pages of Dawn in Legendrings
+[23:12:08.895] [debug] 93,
+[23:12:08.896] [debug] 93,
+[23:12:08.896] [debug] dwarf iton Standardveil began embezzling funds as the manager of The Pages of Dawn
+[23:12:08.897] [debug] 96,
+[23:12:08.897] [debug] troll Atog Stonebeasts the Sorcery
+[23:12:08.898] [debug] 96,
+[23:12:08.898] [debug] Zulash Playedmaster
+[23:12:08.899] [debug] guineacock of The Pages of Dawn in Legendrings
+[23:12:08.899] [debug] 96,
+[23:12:08.900] [debug] ram of The Pages of Dawn
+[23:12:08.900] [debug] Legendrings.
+[23:12:08.901] [debug] 96,
+[23:12:08.901] [debug] Atog Stonebeasts
+[23:12:08.903] [debug] drake of The Pages of Dawn
+[23:12:08.903] [debug] Legendrings.
+[23:12:08.918] [debug] Dawn in
+[23:12:16.300] [debug] Iki Vari, "The Thorn of Gliding"
+[23:12:16.300] [debug] Thorn
+[23:12:16.302] [debug] The Thorn of Gliding of The Defensive Vale founded Distancelake
+[23:12:16.302] [debug] The Thorn of Gliding of The Defensive Vale constructed The Bed
+[23:12:16.302] [debug] Drinks in Distancelake
+[23:12:16.303] [debug] 1,
+[23:12:16.304] [debug] 7,
+[23:12:16.305] [debug] Gliding.
+[23:12:16.306] [debug] 20,
+[23:12:16.306] [debug] Thorn
+[23:12:16.306] [debug] Gliding of The Defensive Vale constructed The Poetic Butters in Distancelake
+[23:12:16.307] [debug] 20,
+[23:12:16.308] [debug] The Thorn of Gliding
+[23:12:16.308] [debug] 35,
+[23:12:16.309] [debug] Thorn of Gliding
+[23:12:16.309] [debug] 42,
+[23:12:16.310] [debug] Thorn
+[23:12:16.311] [debug] Gliding.
+[23:12:16.311] [debug] 55,
+[23:12:16.311] [debug] Thorn
+[23:12:16.311] [debug] Gliding of The Defensive Vale constructed The Butters of Saffron
+[23:12:16.312] [debug] Distancelake.
+[23:12:16.312] [debug] 65,
+[23:12:16.312] [debug] minotaur Ushmal
+[23:12:16.314] [debug] 67,
+[23:12:16.314] [debug] Thorn
+[23:12:16.315] [debug] Gliding of The Defensive Vale constructed The Mushrooms of Playing in Distancelake
+[23:12:16.315] [debug] 70,
+[23:12:16.316] [debug] Thorn
+[23:12:16.316] [debug] Gliding.
+[23:12:16.317] [debug] 74,
+[23:12:16.318] [debug] 85,
+[23:12:16.318] [debug] Thorn
+[23:12:16.318] [debug] Gliding of The Defensive Vale constructed The Whiskered Peach
+[23:12:16.341] [debug] Distancelake.
 
 
 
-
-(x:54,y:25,j:1,s:Continue active game)
-(x:48,y:28,j:1,s:Start new game in existing world)
-(x:56,y:31,j:1,s:Create new world)
-(x:60,y:34,j:1,s:Settings)
-(x:60,y:37,j:1,s:About DF)
-(x:62,y:40,j:1,s:Quit)
-(x:0,y:48,j:0,s:Copyright (C) 2002-2023 by Tarn Adams)
-(x:0,y:47,j:3,s:v)
-(x:6,y:47,j:0,s:50.05)
-(x:25,y:25,j:3,s:World: )
-(x:32,y:25,j:0,s:Defini Asada, "The Dimension of Visions")
-(x:25,y:26,j:0,s:1st Granite, early spring, 100)
-(x:86,y:26,j:3,s:Folder: )
-(x:94,y:26,j:0,s:region3)
-(x:12,y:25,j:0,s:Delete)
-(x:25,y:28,j:3,s:World: )
-(x:32,y:28,j:0,s:Ramul Artuk, "The Plane of Tempests")
-(x:25,y:29,j:0,s:1st Granite, early spring, 100)
-(x:86,y:29,j:3,s:Folder: )
-(x:94,y:29,j:0,s:region2)
-(x:12,y:28,j:0,s:Delete)
-(x:25,y:31,j:3,s:World: )
-(x:32,y:31,j:0,s:Thur Kodor, "The Universes of Dawn")
-(x:25,y:32,j:0,s:1st Granite, early spring, 100)
-(x:86,y:32,j:3,s:Folder: )
-(x:94,y:32,j:0,s:region7)
-(x:12,y:31,j:0,s:Delete)
-(x:25,y:34,j:3,s:World: )
-(x:32,y:34,j:0,s:Thur Som, "The Universe of Oracles")
-(x:25,y:35,j:0,s:1st Granite, early spring, 100)
-(x:86,y:35,j:3,s:Folder: )
-(x:94,y:35,j:0,s:region5)
-(x:12,y:34,j:0,s:Delete)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:26,s:Initialization complete...)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:19,y:4,j:32,s:10000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:20000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:30000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:40000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:50000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:60000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:70000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:18,s:Historical events )
-(x:35,y:4,j:32,s:70712/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:36,s:Check for culled historical figures )
-(x:37,y:4,j:32,s:10000/11441 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:36,s:Check for culled historical figures )
-(x:49,y:4,j:32,s:11441/11441 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:19,s:Historical figures )
-(x:20,y:4,j:32,s:10000/14639 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:19,s:Historical figures )
-(x:36,y:4,j:32,s:14639/14639 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:19,s:Artifacts completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:20,s:Structures completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 10000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 20000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 30000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 40000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 50000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 60000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 70000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The First Age of Myth event sort 70712/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 10000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 20000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 30000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 40000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 50000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 60000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 70000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Age of Legends event sort 70712/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 10000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 20000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 30000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 40000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 50000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 60000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 70000/70712 completed)
-(x:1,y:2,j:105,s:Sorting)
-(x:1,y:4,j:64,s:The Second Age of Myth event sort 70712/70712 completed)
-(x:40,y:2,j:64,s:Explore the history of The Dimension of Visions.)
-(x:47,y:7,j:33,s:Select a category below to begin.)
-(x:35,y:12,j:18,s:Historical figures)
-(x:86,y:12,j:0,s:11507)
-(x:35,y:15,j:115,s:Sites)
-(x:88,y:15,j:0,s:510)
-(x:35,y:18,j:65,s:Artifacts)
-(x:88,y:18,j:0,s:102)
-(x:35,y:21,j:22,s:Codices, scrolls, etc.)
-(x:88,y:21,j:0,s:757)
-(x:35,y:24,j:111,s:Regions)
-(x:88,y:24,j:0,s:249)
-(x:35,y:27,j:19,s:Underground regions)
-(x:88,y:27,j:0,s:244)
-(x:35,y:30,j:32,s:Civilizations and other entities)
-(x:88,y:30,j:0,s:863)
-(x:35,y:33,j:83,s:Structures)
-(x:88,y:33,j:0,s:330)
-(x:35,y:36,j:17,s:Chronicles by age)
-(x:90,y:36,j:0,s:3)
-(x:40,y:2,j:64,s:Explore the history of The Dimension of Visions.)
-(x:47,y:7,j:33,s:Select a category below to begin.)
-(x:35,y:12,j:18,s:Historical figures)
-(x:86,y:12,j:0,s:11507)
-(x:35,y:15,j:115,s:Sites)
-(x:88,y:15,j:0,s:510)
-(x:35,y:18,j:65,s:Artifacts)
-(x:88,y:18,j:0,s:102)
-(x:35,y:21,j:22,s:Codices, scrolls, etc.)
-(x:88,y:21,j:0,s:757)
-(x:35,y:24,j:111,s:Regions)
-(x:88,y:24,j:0,s:249)
-(x:35,y:27,j:19,s:Underground regions)
-(x:88,y:27,j:0,s:244)
-(x:35,y:30,j:32,s:Civilizations and other entities)
-(x:88,y:30,j:0,s:863)
-(x:35,y:33,j:83,s:Structures)
-(x:88,y:33,j:0,s:330)
-(x:35,y:36,j:17,s:Chronicles by age)
-(x:90,y:36,j:0,s:3)
-(x:40,y:2,j:64,s:Explore the history of The Dimension of Visions.)
-(x:47,y:7,j:33,s:Select a category below to begin.)
-(x:35,y:12,j:18,s:Historical figures)
-(x:86,y:12,j:0,s:11507)
-(x:35,y:15,j:115,s:Sites)
-(x:88,y:15,j:0,s:510)
-(x:35,y:18,j:65,s:Artifacts)
-(x:88,y:18,j:0,s:102)
-(x:35,y:21,j:22,s:Codices, scrolls, etc.)
-(x:88,y:21,j:0,s:757)
-(x:35,y:24,j:111,s:Regions)
-(x:88,y:24,j:0,s:249)
-(x:35,y:27,j:19,s:Underground regions)
-(x:88,y:27,j:0,s:244)
-(x:35,y:30,j:32,s:Civilizations and other entities)
-(x:88,y:30,j:0,s:863)
-(x:35,y:33,j:83,s:Structures)
-(x:88,y:33,j:0,s:330)
-(x:35,y:36,j:17,s:Chronicles by age)
-(x:90,y:36,j:0,s:3)
-(x:40,y:2,j:64,s:Explore the history of The Dimension of Visions.)
-(x:32,y:7,j:126,s:Ngos Olangog Gomux, "Ngos Ledfather the Steamy", bronze colossus)
-(x:2,y:9,j:144,s:Ngos)
-(x:7,y:9,j:144,s:Ledfather)
-(x:17,y:9,j:16,s:the)
-(x:21,y:9,j:208,s:Steamy)
-(x:28,y:9,j:208,s:was)
-(x:32,y:9,j:16,s:a)
-(x:34,y:9,j:80,s:bronze)
-(x:41,y:9,j:80,s:colossus.)
-(x:51,y:9,j:144,s:It)
-(x:54,y:9,j:80,s:was)
-(x:58,y:9,j:16,s:one)
-(x:62,y:9,j:208,s:of)
-(x:65,y:9,j:16,s:the)
-(x:69,y:9,j:208,s:only)
-(x:74,y:9,j:144,s:ones)
-(x:79,y:9,j:80,s:of)
-
-
-
-
-{2, 14, "In"},
-{5, 14, "the"},
-{9, 14, "early"},
-{15, 14, "summer"},
-{22, 14, "of"},
-{25, 14, "5,"},
-{28, 14, "Ngos"},
-{33, 14, "became"},
-{40, 14, "an"},
-{43, 14, "enemy"},
-{49, 14, "of"},
-{52, 14, "The"},
-{56, 14, "League"},
-{63, 14, "of"},
-{66, 14, "Memory."}
-{25, 5, "She has an amazing memory, very good creativity and" }
-{25, 6, "a sum of patience, but she has poor analytical abilities"}
-{25, 7, "and an iffy sense for music."}
-{30, 1, "Start New Game"}
-{30, 2, "Option"}
-{40, 2, "Save"}
-{30, 3, "Exit Game"}
+game state changed to StateManager::Menu
+Cadenianenu, "The Destined Planets"
+One save
+region1
+Nosingthikut, "Brushbooks"
+,
+game state changed to StateManager::Loading, clearing texture cache
+Vanilla Text
+game state changed to StateManager::Game, clearing texture cache
+Nosingthikut
+Brushbooks
+7
+persimmon tree twigs, persimmon leaves
+persimmon tree branches, persimmon leaves
+thick persimmon tree branches
+Open the citizen
+information menu.
+Hotkey:
+Dastot Idensemor, Miner
+Kivish Ebalasmel, Woodworker
+Mafol Mosustomus, Mason
+Zefon Luzatlimul, Metalcrafter
+Fath Rovodtosed, Fisherdwarf
+Zefon Rakustsoloz, Planter
+Avuz Iluzol, expedition leader
+Open the place
+information menu.
+Hotkey:
+Open the task
+information menu.
+Hotkey:
+Hotkey:
+Citizens are restricted
+using their Specialization button
+Tasks are restricted
+setting their work detail to "Only selected do this"
+If a task does not have a default work detail, you can create a custom work detail
+Once you assign citizens to the task, you can then set "Only selected do this" if you want to restrict it
+Open the work orders
+menu.
+Hotkey:
+Open the nobles and
+administrators menu.
+Hotkey:
+This worker is not
+any free tasks that
+become available.
+Click to toggle.
+Hotkey:
+orders are used to automate Tasks in Workshops
+For instance, you can create an order to Make Wooden Bins if you are out
+empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month
+You can also create work orders at specific Workshops from their building sheet
+your production if you wish
+Expedition leader
+Militia commander
+Sheriff
+Hammerer
+Manager
+Chief medical dwarf
+Broker
+Bookkeeper
+administrators also require rooms.
+Here you can view your nobles, as well
+Once the first leader is assigned, subsequent Captain positions will appear
+The bookkeeper keeps an accurate count of items in the fortress. They work in their office
+to improve the precision of the count.
+The broker uses their appraisal skill to allow you to see the value of items in the
+fortress. They are also the default negotiator with visiting merchants.
+The chief medical dwarf allows you to see the overall health of dwarves in your fortress.
+The manager handles work orders. Once your fortress reaches a certain population, the
+manager must work in an office to validate work orders.
+Hotkey:
+If you have
+law enforcement administrator like a Sheriff or Captain of the Guard, witnesses of crimes will make reports, which find their way here
+It is recommended to place a certain number
+eload dictionary
+rying to load dictionary from csv file ./dfint_data/dfint_dictionary.csv
+sv dictionary loaded, total lines 20866
+dd regex in csv dictionary, total lines 20960
+efresh
+Nosingthikut
+Brushbooks
+7
+Hotkey:
+Hotkey:
+Hotkey:
+Finish setting dig
+orders.
+Hotkey:
+Set tree chopping
+orders.
+Hotkey:
+Set plant gathering
+orders.
+Hotkey:
+Set wall smoothing,
+engraving, track
+carving, and
+fortification orders.
+Hotkey:
+Remove mining,
+woodcutting, plant
+gathering, and
+smoothing orders.
+Hotkey:
+Place structures and
+work areas that require
+construction materials.
+Hotkey:
+Place stockpiles for
+item storage.
+Hotkey:
+Place zones to
+establish meeting
+areas, pastures, and
+more.
+Hotkey:
+Establish burrows to
+organize work and
+living spaces in larger
+Hotkey:
+Set hauling routes for
+Hotkey:
+traffic areas.
+Hotkey:
+Designate items for
+claim forbidden items
+item visibility.
+Hotkey:
+willow twigs, willow leaves
+willow branches, willow leaves
+over ramps at the
+current elevation.
+Hotkey:
+Zoom out from the play
+area.
+Hotkey:
+depth numerically (1 to
+7.)
+Zoom in on the play
+Recenter on the deepest
+discovered area at this
+location.
+Recenter on the surface
+Edit the recenter
+hotkey locations.
+thick willow branches
+willow trunk
+If you don't have a Bookkeeper, or they don't have an Office to work in, numbers may be approximate
+Open the stocks window,
+where you can see all
+of your fortress's
+Hotkey:
+(sheep wool shirt)
+Owner: Zefon Luzatlimul, Metalcrafter
+<1�
+This is a sheep wool shirt.  It is made from sheep
+wool cloth.  The thread is midnight blue with dimple
+With Zefon Luzatlimul, Metalcr...
+<1�
+Dense common reed
+Dense rush
+Dense meadowsweet
+Stray Cat (Tame)
+Dense purple moor grass
+Dense purple moor grass
+Stray Horse Foal (Tame)
+Dense sawgrass
+Dense purple moor grass
+Dense field sedge
+Dense sawgrass
+Rat weed
+limestone
+Dense cattail
+Foxtail millet plants, foxtail millet leaves
+Stray Boar (Tame)
+tick tick Wagon
+Dense meadowsweet
+Zefon Rakustsoloz, Planter
+Dense rush
+a swarm of acorn flies
+Dense cattail
+(iron anvil)
+78�
+This is a iron anvil.
+In Wagon
+-
+Dabu & Simon Swerwer
+-
+Dabu & Simon Swerwer
+-
+Dabu & Simon Swerwer
+Fisher berries
+Fath Rovodtosed, Fisherdwarf
+loamy sand
+raw brook lamprey,  [2]
+raw shad,  [3]
+Dense common reed
+Stray Dog (Tame)
+Stray Billy Goat (Tame)
+Dense sawgrass
+Dense meadowsweet
+raw steelhead trout,  [2]
+Dense field sedge
+Toggle the visibility
+of the item.  Hidden
+items cannot be seen
+but citizens will still
+use them.
+Toggle the melt status
+of the item.  Items are
+melted at any smelter.
+Toggle the dump status
+dumped in dumping zones.
+Toggle the forbidden
+status of the item.
+Citizens will not use
+forbidden items or
+buildings.
+(pig tail seeds Bag (cave spider s...
+This is a pig tail seeds Bag (cave spider silk).  It
+is made from cave spider silk cloth.
+(pig tail seeds)
+(pig tail seeds)
+(pig tail seeds)
+(pig tail seeds)
+(pig tail seeds)
+Avuz Iluzol, expedition leader
+Stray Horse (Tame)
+Quinoa, quinoa leaves
+Dastot Idensemor, Miner
+Copyright (C) 2002-2023 by Tarn Adams
+v50.07
+game state changed to StateManager::Menu
+[23:15:26.604] [info] hooks uninstalled
