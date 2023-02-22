@@ -696,7 +696,7 @@ namespace Hook {
       if (gps && !str.empty() && Config::Setting::enable_translation && !ttf_injection_lock) {
          std::string text = str;
          Utils::SimpleString(text);
-         auto translation = Dictionary::GetSingleton()->GetMulti(text.c_str(), gps->screenx, gps->screeny, Dictionary::StringType::Main);
+         auto translation = Dictionary::GetSingleton()->GetMulti(text.c_str(), gps->screenx, gps->screeny, Dictionary::StringType::Main, justify);
          if (translation) {
             if (translation.value().find("$SKIP") != std::string::npos) {
                return;

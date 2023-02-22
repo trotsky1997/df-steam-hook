@@ -30,7 +30,7 @@ class Dictionary
    }
 
    void LoadCsv(const std::string &filename, const std::string &regex_filename);
-   std::optional<std::string> GetMulti(const char *key, int x, int y, StringType type = StringType::Main);
+   std::optional<std::string> GetMulti(const char *key, int x, int y, StringType type = StringType::Main, int justify = -1);
    std::optional<std::string> Get(const std::string &key);
    bool Exist(std::string &key);
    void Add(std::string &key, std::string &value);
@@ -62,7 +62,7 @@ class Dictionary
    void StoreBuffer(const std::string &buffer, const std::string &key, int x, int y);
    void SaveToStringMap(int index, int &preX, int &preY, int &length, std::string &temp, bool isSrc);
    std::string GetTranslation(const std::string &tstr);
-   std::optional<std::string> StringBufferControl(const std::string &buffer, int x, int y, StringType type);
+   std::optional<std::string> StringBufferControl(const std::string &buffer, int x, int y, StringType type, int justify);
 
    bool shouldInitBuffer(int y) const;
    bool shouldFlushBuffer(int y, int x, int length, const std::string &buffer);
