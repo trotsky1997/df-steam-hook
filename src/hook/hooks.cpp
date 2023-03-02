@@ -163,10 +163,10 @@ namespace Hook {
    void __fastcall HOOK(addchar)(graphicst_ *gps, wchar_t symbol, char advance)
    {
       g_gps_main = gps;
+
       if (ScreenManager::GetSingleton()->isInitialized() && g_textures_ptr != nullptr && g_main_replace == false) {
          // InjectTTFChar<ScreenManager::ScreenType::Main>(symbol, gps->screenx, gps->screeny);
-         auto tile = ScreenManager::GetSingleton()->GetTile<ScreenManager::ScreenType::Main>(gps->screenx, gps->screeny);
-         tile->tex_pos = 0;
+         ScreenManager::GetSingleton()->ClearTile<ScreenManager::ScreenType::Main>(gps->screenx, gps->screeny);
       }
       ORIGINAL(addchar)(gps, symbol, advance);
    }
@@ -178,8 +178,7 @@ namespace Hook {
       g_gps_main = gps;
       if (ScreenManager::GetSingleton()->isInitialized() && g_textures_ptr != nullptr && g_top_replace == false) {
          // InjectTTFChar<ScreenManager::ScreenType::Top>(symbol, gps->screenx, gps->screeny);
-         auto tile = ScreenManager::GetSingleton()->GetTile<ScreenManager::ScreenType::Top>(gps->screenx, gps->screeny);
-         tile->tex_pos = 0;
+         ScreenManager::GetSingleton()->ClearTile<ScreenManager::ScreenType::Top>(gps->screenx, gps->screeny);
       }
       ORIGINAL(addchar_top)(gps, symbol, advance);
    }
@@ -710,6 +709,7 @@ namespace Hook {
             g_main_replace = true;
             LockedCall(ttf_injection_lock, ORIGINAL(addst), gps, tstr, justify, space);
             g_main_replace = false;
+
             return;
          }
       }
@@ -776,6 +776,7 @@ namespace Hook {
    void __fastcall HOOK(addst_flag)(graphicst_ *gps, std::string &str, __int64 a3, __int64 a4, int some_flag)
    {
       if (gps && !str.empty() && Config::Setting::enable_translation) {
+         // spdlog::debug("{}",str);
          auto translation = Dictionary::GetSingleton()->Get(str);
          if (translation) {
             int count = InjectTTFwstring<ScreenManager::ScreenType::Main>(translation.value(), gps->screenx, gps->screeny, some_flag);
@@ -806,8 +807,8 @@ namespace Hook {
    {
       auto ttf = TTFManager::GetSingleton();
       ttf->Init();
-      ttf->LoadFont(Config::Setting::font_name, Config::Setting::font_size, Config::Setting::font_shiftup, 
-                  Config::Setting::font_flagup, Config::Setting::font_flagdown);
+      ttf->LoadFont(Config::Setting::font_name, Config::Setting::font_size, Config::Setting::font_shiftup, Config::Setting::font_flagup,
+                    Config::Setting::font_flagdown);
 
       // ttf inject, we swap get every char and swap it to our texture
       ATTACH(addchar);

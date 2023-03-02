@@ -71,7 +71,7 @@ class ScreenManager
    }
 
    template <ScreenType screen_type>
-   void ClearLine(int x, int y, int len)
+   void ClearTile(int x, int y, int len = 1)
    {
       for (int i = 0; i < len; i++) {
          auto tile = GetTile<screen_type>(x + i, y);

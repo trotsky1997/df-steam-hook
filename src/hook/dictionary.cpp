@@ -1,6 +1,6 @@
 #include "dictionary.h"
 
-#include "korean_josa.hpp"
+// #include "korean_josa.hpp"
 #include "ttf_manager.h"
 #include "utils.hpp"
 
@@ -26,6 +26,7 @@ std::string Dictionary::EraseFrontBackBlank(std::string &str)
 std::string Dictionary::EraseStringComma(std::string &str)
 {
    // ReplaceAll(str, ",", "");
+   ReplaceAll(str, "\"", "");
    char charToCount = ' ';
    int count = std::count(str.begin(), str.end(), charToCount);
    if (count >= 1 && str.find('.') != std::string::npos) ReplaceAll(str, ".", "");
@@ -199,18 +200,17 @@ void Dictionary::StoreBuffer(const std::string &buffer, const std::string &key, 
       if (this->pre_line == y) {  //&& std::abs(x - this->pre_len_x) >= 1) {
          this->start_x = this->pre_len_x;
          this->start_y = y;
-         // spdlog::debug("\n#1 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+         spdlog::debug("\n#1 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
       }  // 앞에 줄보다 위 아래인 경우 // && std::abs(x - this->pre_len_x) > 1
       else if (abs(this->pre_line - y) == 1 && this->string_buffer.length() > 15) {
          this->start_y = this->pre_line - y == 1 ? y + 1 : y;
          this->start_x = this->pre_line - y == 1 ? this->pre_len_x : this->first_line_x;
-         // spdlog::debug("\n#2 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
+         spdlog::debug("\n#2 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
       } else {  // 새롭게 시작하는 문자열
          this->start_x = x;
          this->first_line_x = x;
          this->start_y = y;
-         // spdlog::debug("\n#3 x{}y{}, sx{}sy{}, pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x,
-         // buffer);
+         spdlog::debug("\n#3 x{}y{}, sx{}sy{}, pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
       }
       this->key_vec.push_back(key);
       this->pre_line = y;
@@ -221,7 +221,7 @@ void Dictionary::StoreBuffer(const std::string &buffer, const std::string &key, 
       this->key_vec.push_back(key);
       if (this->pre_len_x - x == 0) this->string_buffer += buffer;
       else this->string_buffer += " " + buffer;
-      if (this->string_buffer.size() > 500) InitBuffer();  // 이상하게 길게 붙었을 경우 초기화
+      if (this->string_buffer.size() > MAX_BUFFER) InitBuffer();  // 이상하게 길게 붙었을 경우 초기화
       this->pre_line = y;
       this->pre_len_x = x + buffer.length();
    }
@@ -274,9 +274,6 @@ void Dictionary::PrepareBufferOut()
 {
    std::vector<std::string> valueVec;
    int len = this->GetLineLimit();
-
-   std::wstring changeJosa = Korean::ReplaceJosa(Utils::s2ws(this->string_translation));
-   this->string_translation = Utils::ws2s(changeJosa);
 
    std::stringstream ss(this->string_translation);
    std::string valueLine, word;
@@ -341,23 +338,19 @@ void Dictionary::TranslationBuffer()
    while (delimiterPos != std::string::npos) {
       delimiterPos = buffer.find_first_of(delimiter);
       if (delimiterPos != std::string::npos) {
-         // int gap = 1;
-         // if (buffer[delimiterPos] == ',') gap = 0;
          std::string tstr = buffer.substr(0, delimiterPos);
          std::string translation = GetTranslation(tstr);
-         // if (buffer[delimiterPos] == '.') this->string_translation += " " + translation + buffer[delimiterPos];
-         // else
          this->string_translation += " " + translation;
          buffer.erase(0, delimiterPos + 2);
-         // spdlog::debug("TRANS:{}", this->string_translation);
       }
    }
 
    if (!buffer.empty()) {
       std::string translation = GetTranslation(buffer);
       this->string_translation += " " + translation;
-      // spdlog::debug("TRANS:{}", this->string_translation);
    }
+
+   spdlog::debug("TRANS:{}", this->string_translation);
 }
 
 std::string Dictionary::GetTranslation(const std::string &tstr)
@@ -365,7 +358,7 @@ std::string Dictionary::GetTranslation(const std::string &tstr)
    auto translation = Get(tstr);
    if (translation) return translation.value();
    else {
-      spdlog::debug("{}", tstr);
+      // spdlog::debug("{}", tstr);
       return tstr;
    }
 }
@@ -373,11 +366,11 @@ std::string Dictionary::GetTranslation(const std::string &tstr)
 // 버퍼 문자열 비우기
 void Dictionary::FlushBuffer()
 {
-   if (this->key_vec.size() == 1) {  // || this->string_buffer.length() < 15) {
+   if (this->key_vec.size() == 1 || this->string_buffer.length() < 15) {
       auto ret = Get(this->string_buffer);
       if (this->str_type == StringType::Main) spdlog::debug("1 size {}", this->string_buffer);
       if (ret) {
-         // spdlog::debug("TRANS:{}:{}", ret.value(), this->string_buffer);
+         // spdlog::debug("1 size:{}:{}", ret.value(), this->string_buffer);
          for (int i = 0; i < this->key_vec.size(); i++) {
             if (i == 0) this->dict_multi.emplace(this->key_vec[i], ret.value());
             else this->dict_multi.emplace(this->key_vec[i], this->SKIP);
@@ -417,8 +410,11 @@ bool Dictionary::shouldFlushBuffer(int y, int x, int length, const std::string &
    bool endsWithSpecial = endsWithSpecialCharacter(this->string_buffer);         // 문자열 끝이 특수문자일때
    bool isLineDiffGreaterThanOne = y - this->pre_line > 1;                       // 이전줄과의 간격이 1줄 이상일때
    bool isLineDiffOneAndStringLengthLessThan = y - this->pre_line == 1 && this->string_buffer.length() < 43 &&
+                                               this->str_type != StringType::Colored &&
                                                (buffer.find(" ") != std::string::npos || (is_uppercase(buffer.front()) && this->key_vec.size() < 2));
 
+   // spdlog::debug("CHECK {} {} {} {} {}
+   // {}",isNotInitialValue,isLessThanStartingValue,isXDiffGreaterThanOne,endsWithSpecial,isLineDiffGreaterThanOne,isLineDiffOneAndStringLengthLessThan);
    return (isNotInitialValue &&
            (isLessThanStartingValue || isXDiffGreaterThanOne || endsWithSpecial || isLineDiffGreaterThanOne || isLineDiffOneAndStringLengthLessThan));
 }
@@ -432,6 +428,8 @@ bool Dictionary::endsWithSpecialCharacter(const std::string &buffer)
 std::optional<std::string> Dictionary::StringBufferControl(const std::string &buffer, int x, int y, StringType type, int justify)
 {
    const std::string keyWithCoord = buffer + "#" + std::to_string(x) + "#" + std::to_string(y);
+   // spdlog::debug(":{}", buffer);
+
    if (shouldFlushBuffer(y, x, buffer.length(), buffer)) {
       spdlog::debug("Flush SRC({}){}:{}", this->key_vec.size(), this->str_type, this->string_buffer);
       FlushBuffer();
@@ -469,8 +467,8 @@ std::optional<std::string> Dictionary::StringBufferControl(const std::string &bu
 
 std::optional<std::string> Dictionary::GetMulti(const char *key, int x, int y, StringType type, int justify)
 {
-   auto len = strnlen_s(key, 500);
-   if (!key || len <= 0 || len >= 500) {
+   auto len = strnlen_s(key, MAX_BUFFER);
+   if (!key || len <= 0 || len >= MAX_BUFFER) {
       return std::nullopt;
    }
 

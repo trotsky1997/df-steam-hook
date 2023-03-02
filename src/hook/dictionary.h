@@ -69,6 +69,7 @@ class Dictionary
    bool endsWithSpecialCharacter(const std::string &buffer);
 
    const std::string SKIP = "$SKIP";
+   const int MAX_BUFFER = 1000;
    int line_limit = 40;
    int start_y = -1;
    int start_x = -1;
