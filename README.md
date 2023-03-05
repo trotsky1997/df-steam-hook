@@ -5,7 +5,7 @@
 
 ## 설치 방법:
 
-- [RELEASE](https://github.com/dfint/df-steam-hook/releases) 에서 `dfint_release.zip` , `font.DLL.zip` 파일을 받아서 게임 최상위 폴더에 압축을 풉니다. 압축을 풀고 나서 `dfint_launcher.exe`를 실행합니다.
+- [RELEASE](https://github.com/Kheeman/df-steam-hook/releases) 에서 `dfint_release.zip` , `font.DLL.zip` 파일을 받아서 게임 최상위 폴더에 압축을 풉니다. 압축을 풀고 나서 `dfint_launcher.exe`를 실행합니다.
 
 ## 기본 기능:
 
