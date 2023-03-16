@@ -3,72 +3,73 @@
 [![XMake](https://github.com/dfint/df-steam-hook/actions/workflows/xmake.yml/badge.svg)](https://github.com/dfint/df-steam-hook/actions/workflows/xmake.yml)
 [![clang-format Check](https://github.com/dfint/df-steam-hook/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/dfint/df-steam-hook/actions/workflows/clang-format-check.yml)
 
-## 설치 방법:
+## 使用方法:
+[Korean](https://github.com/trotsky1997/df-steam-hook/blob/main/README.md)
 
-- [RELEASE](https://github.com/Kheeman/df-steam-hook/releases) 에서 `dfint_release.zip` , `font.DLL.zip` 파일을 받아서 게임 최상위 폴더에 압축을 풉니다. 압축을 풀고 나서 `dfint_launcher.exe`를 실행합니다.
+- [RELEASE](https://github.com/Kheeman/df-steam-hook/releases) 从游戏中获取`dfint_release.zip`， `font.DLL.zip`文件，并将其压缩到游戏的顶级文件夹中。解压后启动`dfint_launcher.exe`。
 
-## 기본 기능:
+## 工作方式:
 
-- 드워프 포트리스 글자를 가로채서 dfint_dictionary.csv 와 kr_regex.txt를 참고해서 글자를 그림으로 생성 후에 화면에 뿌립니다.
+- 截取矮人要塞字符，参考dfint_dictionary.csv和kr_regex.txt将字符生成图片并铺在屏幕上。
 
 ## 추가 기능:
 
-- 게임 충돌 할 때 `dfint_data\crash_reports`폴더에 (`cr_*.txt` files) 파일 생성됩니다
-- DF의 버전 별로 동시에 지원할 수 있으며, `dfint_data/offset` 디렉토리에 구성 파일을 추가하여 새 버전을 추가할 수 있습니다.
+- 当游戏崩溃时，会在 dfint_data\crash_reports 文件夹中创建一个文件（ cr_*.txt 文件）。
+- DF的各个版本可以同时支持，可以通过在 dfint_data/offset 目录下添加配置文件来添加新的版本。
 
 - 단축키:
-  - <kbd>Ctrl</kbd>+<kbd>F2</kbd> - csv 파일 다시 읽기
-  - <kbd>Ctrl</kbd>+<kbd>F3</kbd> - 번역 끄기
-  - <kbd>Ctrl</kbd>+<kbd>F4</kbd> - 번역 켜기
-  - <kbd>Ctrl</kbd>+<kbd>F5</kbd> - 번역 파일 다시읽기
+  - <kbd>Ctrl</kbd>+<kbd>F2</kbd> - 再次读取csv文件
+  - <kbd>Ctrl</kbd>+<kbd>F3</kbd> - 关闭翻译
+  - <kbd>Ctrl</kbd>+<kbd>F4</kbd> - 打开翻译
+  - <kbd>Ctrl</kbd>+<kbd>F5</kbd> - 重读翻译文件
 
-- `dfint_config.toml` 파일 내용을 수정해서 폰트, 사이즈 조절 가능</br></br> <img src="https://user-images.githubusercontent.com/72431617/222711176-b8b9ceee-d0ad-40e7-86f3-27c7a2f1ee19.jpg" height="200"/></br>
+- `dfint_config.toml` 可以通过修改文件内容来调整字体和大小</br></br> <img src="https://user-images.githubusercontent.com/72431617/222711176-b8b9ceee-d0ad-40e7-86f3-27c7a2f1ee19.jpg" height="200"/></br>
 
-  - `log_level` - 위의 번호에 따라서 `dfint_data`폴더에 `dfint_log.log`파일 로그 내용이 달라집니다.
-  - `crash_report` - 크래쉬 파일 생성 유무
-  - `enable_search` - 한글버전에선 사용 안합니다 상관없음
-  - `font_name` - 폰트설정
-  - `font_size` - 폰트 크기를 설정합니다
-  - `font_shiftup` - 폰트 위치를 숫자만큼 올립니다
-  - `font_flagup` - 탭 글자 반 위쪽의 위치를 수정합니다
-  - `font_flagdown` - 탭 글자 반 아래쪽의 위치를 수정합니다
+  - `log_level` - 根据上面的数字， dfint_data 文件夹中的 dfint_log.log 文件日志的内容不同。
+  - `crash_report` - 是否创建崩溃文件
+  - `enable_search` - 缺省设置
+  - `font_name` - 字体设置
+  - `font_size` - 设置字体大小
+  - `font_shiftup` - 将字体锚点增加一个数字
+  - `font_flagup` - 固定制表符在上半部分的位置
+  - `font_flagdown` - 固定制表符中间的位置
 
-## 문제점:
-- 아직 많은 문제가 있습니다 몇가지 해결방법을 올립니다.
-- 게임에서 기본적인 번역 절차가 게임 내 텍스트 읽기 -> 번역 파일 비교 -> 찾은 번역 글자 그림 생성 -> 원래 위치에 번역그림 넣기 순으로 돌아갑니다. 게임에서 지속적으로 화면 전체 텍스트를 뿌리기 떄문에 스크롤할때나 새로운 창, 내용이 나타낼때 게임 텍스트틀 읽을 때 순서가 꼬여서 번역을 제대로 못찾을 때가 있습니다. 그럴땐 <kbd>Ctrl</kbd>+<kbd>F5</kbd> 다시 읽기 하시면 됩니다.
-- 화면갱신의 문제가 있어 번역 그림을 제대로 갱신이 안되서 글자가 깨질때가 있습니다. 그런 경우 윈도우 창 전환, 게임 내 층간 이동(마우스 휠), 마우스로 툴팁표시를 하시면 제대로 나옵니다.
+## 问题:
+- 还有很多问题，这里有一些缓解方案。
+- 游戏中的基本翻译过程可以追溯到阅读游戏内文本-> 比较翻译文件-> 为找到的翻译文本创建图片-> 将翻译图片放在原始位置。由于游戏不断地在屏幕上展开整个文本，当滚动时，出现新窗口或内容时，阅读游戏文本框时，顺序会被扭曲，有时无法正确找到翻译。在这种情况下，敲击<kbd>Ctrl</kbd>+<kbd>F5</kbd> 刷新使您可以再次阅读。
+- 更新画面有问题，所以有时会因为翻译图片没有正常更新而导致文字断掉。在这种情况下，如果您切换窗口、在游戏中的楼层之间移动（鼠标滚轮）以及使用鼠标显示工具提示，它就会正常显示。
 
-## 번역 수정하기:
-- 번역사이트는 게임 텍스트를 그대로 가져와서 글자가 정돈이 안되어 있습니다. 실제 게임 상에서 출력되는 텍스트를 단어, 짧은 문장, 긴 문장 구분을 해야되고 단어를 조합해서 문장을 만들기 때문에 `kr_regex.txt`파일을 이용해서 수정을 해야 됩니다.
- > 수정 예시
+## 编辑翻译：
+- 翻译网站采用游戏文字原样，所以字母没有排列。实际游戏中显示的文字需要分为单词、短句和长句，由于句子是单词组合而成的，所以需要使用 kr_regex.txt 文件进行修改。
+ > 修改示例
  >
  > <img src="https://user-images.githubusercontent.com/72431617/222723315-475781df-a234-43ee-b9f8-583f3020a553.jpg" height="100"/>
  > <img src="https://user-images.githubusercontent.com/72431617/222723488-21861a7a-8836-4c30-be72-fa974871b715.jpg" height="100"/>
  >
- > 여기 게임에서 번역 된것과 끈것이 있습니다. 확인을 한 후 `dfint_dictionary.csv` 파일과 `kr_regex.txt` 파일을 확인 합니다.
+ > 这是游戏中的翻译和弦乐。确认后，检查 dfint_dictionary.csv 文件和 kr_regex.txt 文件。
  >
  > <img src="https://user-images.githubusercontent.com/72431617/222725573-285e45c1-2722-412c-84f8-d14805afc82f.jpg" height="200"/>
  >
- > 살펴보면 kr_regex.txt 파일의 `{s,} her {s,}`가 적용 되어 이상하게 되었습니다. 번역 텍스트를 찾을 때 `,` `.` `줄` 기준으로 구분해서 찾습니다. 이 경우 `$2의 $1`->`culture, she holds의 다른사람들처럼`으로 되어서 한문장으로 인식하고 다음 줄은 다른 문장으로 되서 craftsdwarfship~ 은 찾지 못해서 영어로 출력 되었습니다.
+ >看了一下，应用了kr_regex.txt文件中的 {s,} her {s,} ，奇怪了。搜索译文时，除以 , . 줄 的条件即可找到。在这种情况下， $2의 $1 -> culture, she holds의 다른사람들처럼 被识别为一个句子，下一行是另一个句子，所以没有找到craftsdwarfship~，所以输出为英文。相应地修改它。
  > 이것을 적절히 수정해 봅니다.
  >
  > <img src="https://user-images.githubusercontent.com/72431617/222729741-3dbf5380-5a9d-4a6c-9cf9-dadfec5f67bb.jpg" height="200"/>
  >
- > 문장의 구조와 csv 번역된 내용을 참고해서 `kr_regex.txt'에 추가합니다. 파일을 저장하고 <kbd>Ctrl</kbd>+<kbd>F5</kbd>로 확인을 해봅니다.
+ > 参考句子结构和csv翻译后的内容添加到`kr_regex.txt'。保存文件并用<kbd>Ctrl</kbd>+<kbd>F5</kbd>确认。
  >
  > <img src="https://user-images.githubusercontent.com/72431617/222730805-4cd71d6d-580e-46c6-a689-387f2a4bb7db.jpg" height="100"/>
  >
- > culture가 없었네요. `kr_regex.txt` , `dfint_dictionary.csv` 둘중 하나에 추가시켜 놓고 다시 확인을 해봅니다.
+ > 没有文化名称。将其添加到 kr_regex.txt 或 dfint_dictionary.csv 并再次检查。
  >
  > <img src="https://user-images.githubusercontent.com/72431617/222731714-af984d39-32b3-4a8a-af00-6e5cf633621e.jpg" height="100"/>
  >
- > 이제 수정을 완료 했습니다. 
-- `kr_regex.txt`파일의 정규식은 순서대로 읽습니다. 그래서 큰 범위가 적용 되는 것은 가급적 밑에 두시거나 잘게 쪼게시면 됩니다. 예를 들어 `She is dragon.` 의 문장이 있다면 위쪽에 `She {s,}` 가 있고 아래쪽에 `{s,} is dragon.` 순서로 되어 있으면 위쪽이 먼저 적용되어 `is dragon.` 이 남아서 `{s,} is dragon.`은 인식이 안됩니다. 쪼개서 다시 `{s,} dragon.` 하면 인식이 되나 이렇게 잘게 쪼개 버리면 `he are dragon, she was dragon...` 온갖 경우의 것들이 다 잡히기 때문에 번역을 정하기가 힙듭니다. 적절히 `dfint_dictionary.csv` 파일에 어떻게 되어 있는지 확인하고 수정하시면 됩니다.
-- 한글 조사 자동 선택 기능이 추가 되었습니다. `(이)가|(와)과|(을)를|(은)는|(아)야|(이)여|(으)로|(이)라` 이 형태로 번역파일에 넣으면 알아서 선택해서 나옵니다. 예들들어 `드워프(은)는 키가 작다.` 를 `드워프는 키가 작다.` 로 바뀌어 출력됩니다. regex에도 적용 되어서 게임 내 조합형 문장이 있을 때 유용하게 사용 할 수 있습니다.
+ > 您现在已经完成了编辑过程。
+- kr_regex.txt 文件中的正则表达式是按顺序读取的。因此，如果应用范围较大，可以将其放在下面或切成小块。比如有一个 She is dragon. 的句子，如果上面有 She {s,} ，下面有 {s,} is dragon. ，那么先应用上面的，剩下 is dragon. ，那么 {s,} is dragon. 就无法识别。如果你再拆分成 {s,} dragon. ，它会被识别，但是如果你把它拆分成这样的小块，很难决定翻译，因为 he are dragon, she was dragon... 中的各种东西都被捕获了。您可以在 dfint_dictionary.csv 文件中检查它是否正确并进行更正。
+- 增加了韩国研究自动选择功能。 (이)가|(와)과|(을)를|(은)는|(아)야|(이)여|(으)로|(이)라 如果你把它以这种形式放入翻译文件中，它会自动出来。例如， 드워프(은)는 키가 작다. 被替换为 드워프는 키가 작다. 并打印出来。它也适用于正则表达式，所以当游戏中有组合语句时它会很有用。
 
-## 추가 사항:
+## 更多细节：
 
-- 아직 많이 부족합니다만 번역에 조금이라도 도움이 되고자 업로드 합니다.
+- 还是不够，但我正在上传它以帮助翻译。
 
 
 
