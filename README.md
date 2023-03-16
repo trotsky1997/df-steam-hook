@@ -51,7 +51,6 @@
  > <img src="https://user-images.githubusercontent.com/72431617/222725573-285e45c1-2722-412c-84f8-d14805afc82f.jpg" height="200"/>
  >
  >看了一下，应用了kr_regex.txt文件中的 {s,} her {s,} ，奇怪了。搜索译文时，除以 , . 줄 的条件即可找到。在这种情况下， $2의 $1 -> culture, she holds의 다른사람들처럼 被识别为一个句子，下一行是另一个句子，所以没有找到craftsdwarfship~，所以输出为英文。相应地修改它。
- > 이것을 적절히 수정해 봅니다.
  >
  > <img src="https://user-images.githubusercontent.com/72431617/222729741-3dbf5380-5a9d-4a6c-9cf9-dadfec5f67bb.jpg" height="200"/>
  >
