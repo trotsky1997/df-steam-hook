@@ -4,7 +4,7 @@
 [![clang-format Check](https://github.com/dfint/df-steam-hook/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/dfint/df-steam-hook/actions/workflows/clang-format-check.yml)
 
 ## 使用方法:
-[Korean](https://github.com/trotsky1997/df-steam-hook/blob/main/README.md)
+[Korean](https://github.com/trotsky1997/df-steam-hook/blob/main/README.md)|[English](https://github.com/dfint/df-steam-hook/blob/main/README.md)|简体中文
 
 - [RELEASE](https://github.com/Kheeman/df-steam-hook/releases) 从游戏中获取`dfint_release.zip`， `font.DLL.zip`文件，并将其压缩到游戏的顶级文件夹中。解压后启动`dfint_launcher.exe`。
 
