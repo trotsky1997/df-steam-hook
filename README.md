@@ -12,7 +12,11 @@
 
 - 截取矮人要塞字符，参考dfint_dictionary.csv和kr_regex.txt将字符生成图片并铺在屏幕上。
 
-## 추가 기능:
+## 附加功能:
+
+### 模糊匹配
+
+### 在线翻译与缓存
 
 - 当游戏崩溃时，会在 dfint_data\crash_reports 文件夹中创建一个文件（ cr_*.txt 文件）。
 - DF的各个版本可以同时支持，可以通过在 dfint_data/offset 目录下添加配置文件来添加新的版本。
