@@ -1,5 +1,16 @@
 #pragma once
+#include<iostream>
+#include<regex>
+#include<map>
 
+/*This code defines a C++ class called Korean, which contains another nested class called Josa.
+
+The Josa class appears to be responsible for handling various grammatical rules in the Korean language related to suffixes applied to words. It employs a series of private helper methods and data structures such as JosaPair, JosaPatternPaird, InsertJosaPatternPair, and ChooseJosa to accomplish its task.
+
+The Korean class itself has two static methods, one that returns an instance of Josa (GetJosaInstance()) and one that replaces any found josa in the input string (ReplaceJosa(const std::wstring& srcText, std::wstring& outText)).
+
+It is worth noting that this code assumes the use of Unicode strings due to the presence of std::wstring throughout the class definition.
+*/
 class Korean
 {
   public:
@@ -26,16 +37,16 @@ class Korean
 
 };  // end_of_class Korean
 
-Korean::Josa::Josa() : _josaRegex(L"\\(ÀÌ\\)°¡|\\(¿Í\\)°ú|\\(À»\\)¸¦|\\(Àº\\)´Â|\\(¾Æ\\)¾ß|\\(ÀÌ\\)¿©|\\(À¸\\)·Î|\\(ÀÌ\\)¶ó")
+Korean::Josa::Josa() : _josaRegex(L"\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½|\\(ï¿½ï¿½\\)ï¿½ï¿½")
 {
-   InsertJosaPatternPair(L"(ÀÌ)°¡", L"ÀÌ", L"°¡");
-   InsertJosaPatternPair(L"(¿Í)°ú", L"°ú", L"¿Í");
-   InsertJosaPatternPair(L"(À»)¸¦", L"À»", L"¸¦");
-   InsertJosaPatternPair(L"(Àº)´Â", L"Àº", L"´Â");
-   InsertJosaPatternPair(L"(¾Æ)¾ß", L"¾Æ", L"¾ß");
-   InsertJosaPatternPair(L"(À¸)·Î", L"À¸·Î", L"·Î");
-   InsertJosaPatternPair(L"(ÀÌ)¿©", L"ÀÌ¿©", L"¿©");
-   InsertJosaPatternPair(L"(ÀÌ)¶ó", L"ÀÌ¶ó", L"¶ó");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½ï¿½ï¿½ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½Ì¿ï¿½", L"ï¿½ï¿½");
+   InsertJosaPatternPair(L"(ï¿½ï¿½)ï¿½ï¿½", L"ï¿½Ì¶ï¿½", L"ï¿½ï¿½");
 }
 
 void Korean::Josa::Replace(const std::wstring& srcText, std::wstring& outText)
@@ -86,12 +97,12 @@ void Korean::Josa::InsertJosaPatternPair(const std::wstring& pattern, const std:
 const std::wstring& Korean::Josa::ChooseJosa(wchar_t prevChar, const std::wstring& preStr, const std::wstring& josaKey, const JosaPair& josaPair)
 {
    bool isWhat = false;
-   if (prevChar >= 0xAC00 && prevChar <= 0xD7A3)  // Korean
+   if (prevChar >= 0x4E00 && prevChar <= 0x9FFF)  // Korean
    {
-      int localCode = prevChar - 0xAC00;
+      int localCode = prevChar - 0x4E00;
       int jongCode = localCode % 28;
-      isWhat |= jongCode > 0 && josaKey != L"(À¸)·Î" ? true : false;
-      isWhat |= (jongCode == 0 || jongCode == 8) && josaKey != L"(À¸)·Î" ? false : true;
+      isWhat |= jongCode > 0 && josaKey != L"(ï¿½ï¿½)ï¿½ï¿½" ? true : false;
+      isWhat |= (jongCode == 0 || jongCode == 8) && josaKey != L"(ï¿½ï¿½)ï¿½ï¿½" ? false : true;
    } else if ((0x61 <= prevChar && prevChar <= 0x7A) || (0x41 <= prevChar && prevChar <= 0x5A))  // English
    {
       std::wsmatch match;

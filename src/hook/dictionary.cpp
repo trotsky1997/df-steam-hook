@@ -1,9 +1,21 @@
 #include "dictionary.h"
 
+#include <rapidfuzz/fuzz.hpp>
+
 // #include "korean_josa.hpp"
+#include <windows.h>
+#include <winhttp.h>
+
+#include <algorithm>
+#include <map>
+#include <optional>
+
+#include "regex"
+#include "string"
 #include "ttf_manager.h"
 #include "utils.hpp"
-
+#include "mutex"
+std::mutex youdao_mutex;
 void Dictionary::ReplaceAll(std::string &subject, const std::string &search, const std::string &replace)
 {
    size_t pos = 0;
@@ -164,6 +176,189 @@ std::optional<std::string> Dictionary::RegexSearch(const std::string &key)
    return std::nullopt;
 }
 
+/* online Machine Translation*/
+#include <curl/curl.h>
+#include <json/json.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include <format>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <thread>
+using namespace std;
+std::map<std::string, std::string> youdaoMap;
+ int youdaoFlag = 0;
+
+string GbkToUtf8(const char *src_str)
+{
+   int len = MultiByteToWideChar(CP_ACP, 0, src_str, -1, NULL, 0);
+   wchar_t *wstr = new wchar_t[len + 1];
+   memset(wstr, 0, len + 1);
+   MultiByteToWideChar(CP_ACP, 0, src_str, -1, wstr, len);
+   len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);
+   char *str = new char[len + 1];
+   memset(str, 0, len + 1);
+   WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, len, NULL, NULL);
+   string strTemp = str;
+   if (wstr) delete[] wstr;
+   if (str) delete[] str;
+   return strTemp;
+}
+
+string Utf8ToGbk(const char *src_str)
+{
+   int len = MultiByteToWideChar(CP_UTF8, 0, src_str, -1, NULL, 0);
+   wchar_t *wszGBK = new wchar_t[len + 1];
+   memset(wszGBK, 0, len * 2 + 2);
+   MultiByteToWideChar(CP_UTF8, 0, src_str, -1, wszGBK, len);
+   len = WideCharToMultiByte(CP_ACP, 0, wszGBK, -1, NULL, 0, NULL, NULL);
+   char *szGBK = new char[len + 1];
+   memset(szGBK, 0, len + 1);
+   WideCharToMultiByte(CP_ACP, 0, wszGBK, -1, szGBK, len, NULL, NULL);
+   string strTemp(szGBK);
+   if (wszGBK) delete[] wszGBK;
+   if (szGBK) delete[] szGBK;
+   return strTemp;
+}
+
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+   ((std::string *)userp)->append((char *)contents, size * nmemb);
+   return size * nmemb;
+}
+
+string youdaoEscape(string text){
+      CURL *curl;
+   // std::string text;
+   // getline(cin,text);
+
+   curl = curl_easy_init();
+   if (curl) {
+      for (int i = 0; i < text.length(); i++) {
+         if (text[i] == '\!' && text[i] == '?' && text[i] == '.' &&  text[i] == ','
+            ) {  // 如果不是字母或数字
+            text[i] = '.';         // 替换为一个空格
+         }
+         else if (!std::isalnum(text[i]) && text[i] != '\'' && text[i] != '"' 
+            ) {  // 如果不是字母或数字
+            text[i] = ' ';         // 替换为一个空格
+         }
+      }
+      text = curl_easy_escape(curl, text.c_str(), text.length());
+}
+   return text;
+}
+
+void SendRequestToYouDaoAPI(string text)
+{
+   // if (youdaoMap.find(text) != youdaoMap.end()) {
+   //    return youdaoMap[text];
+   // }
+   if (youdaoFlag == 0){
+      youdaoFlag = 1;
+      const std::string file_path = "./youdaoMap.json";
+     
+
+      std::ifstream input_file(file_path);  // 打开 JSON 文件
+
+      if (input_file.good()) {   // 文件存在，加载到内存对象 youdaoMap
+         Json::Value root;
+         input_file >> root;  // 从文件读取数据
+
+         for (const auto& key : root.getMemberNames()) {       
+            youdaoMap.emplace(key, root[key].asString());  // 将 json 中的所有键值对都放入 map 当中
+         }
+
+         input_file.close();     // 关闭文件流
+      } else {
+         youdao_mutex.lock();
+         // std::cout << "File not found." << std::endl;
+         std::ofstream ofs("./youdaoMap.json");
+         ofs.close();
+         youdao_mutex.unlock();
+
+
+      }
+   }
+   CURL *curl;
+   CURLcode res;
+   std::string readBuffer;
+   // std::string text;
+   // getline(cin,text);
+
+   curl = curl_easy_init();
+   if (curl) {
+
+      // std::cout<<text<<std::endl;
+      std::string url = "http://fanyi.youdao.com/translate?doctype=text&i=" + text;
+      // std::cout<<url<<std::endl;
+      curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+      curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+      curl_easy_setopt(
+          curl, CURLOPT_USERAGENT,
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.42");
+      curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+      res = curl_easy_perform(curl);
+      curl_easy_cleanup(curl);
+
+      // std::string res = Utf8ToGbk(readBuffer.c_str());
+      string res = readBuffer;
+      std::size_t pos = res.find("result=");
+      std::string ans = res.substr(pos + 7);
+      spdlog::debug("{} translated to {} by youdao.", text, ans);
+
+      youdaoMap.insert(std::pair<std::string, std::string>(text, ans));
+   }
+   
+   // 将std::map<std::string, std::string>对象转换为json值
+   Json::Value root(Json::objectValue);
+   for (const auto &entry : youdaoMap) {
+      root[entry.first] = entry.second;
+   }
+
+   // 将json值写入文件
+   youdao_mutex.lock();
+   std::ofstream ofs("./youdaoMap.json");
+   ofs << root;
+   ofs.close();
+   youdao_mutex.unlock();
+   // return "";
+}
+
+// Calculate Jaro-Winkler distance
+double calc_similarity(const std::string &s1, const std::string &s2)
+{
+   return rapidfuzz::fuzz::ratio(s1, s2);
+}
+
+std::map<std::string, std::string> fuzzyMap;
+
+// Find the key with highest similarity to the given input key
+std::string find_similar_key(const std::unordered_map<std::string, std::string> &my_map, const std::string &input_key, double threshold)
+{
+   double max_similarity = 0.0;
+   std::string result_key;
+   if (fuzzyMap.find(input_key) != fuzzyMap.end()) {
+      return fuzzyMap[input_key];
+   }
+#pragma omp parallel for
+   for (const auto &pair : my_map) {
+      double similarity = calc_similarity(pair.first, input_key);
+      if (similarity > max_similarity) {
+         max_similarity = similarity;
+         result_key = pair.first;
+      }
+   }
+
+   if (max_similarity < threshold) {
+      result_key = "";
+   }
+   fuzzyMap.insert(std::pair<std::string, std::string>(input_key, result_key));
+   return result_key;
+}
+
 std::optional<std::string> Dictionary::Get(const std::string &key)
 {
    if (key.empty()) {
@@ -181,6 +376,21 @@ std::optional<std::string> Dictionary::Get(const std::string &key)
    }
    auto ret = RegexSearch(input);
    if (ret) return ret;
+   auto simil_key = find_similar_key(this->dict, key, 85);
+   if (simil_key != "") {
+      return this->dict.at(simil_key);
+   }
+   string text = youdaoEscape(key);
+   if (youdaoMap.find(text) != youdaoMap.end()) {
+      return youdaoMap[text];
+   } else {
+      if (key[0] <= '9' && key[0] >= '0') {
+         return std::nullopt;
+      }
+      std::thread t(SendRequestToYouDaoAPI, text);
+      t.detach();
+   }
+
    return std::nullopt;
 }
 
@@ -191,22 +401,22 @@ void Dictionary::InitBuffer()
    this->string_translation = "";
    this->start_y = -1;
 }
-// 문자열 위치를 정해서 버퍼에 저장
+// 确定字符串位置并保存到缓冲器
 void Dictionary::StoreBuffer(const std::string &buffer, const std::string &key, int x, int y)
 {
-   // 처음 시작되는 첫 문자열의 위치를 결정하고 저장 다음 문자열은 시작 문자열 뒤로 붙는다
+   // 确定第一个字符串开始的位置，保存之后字符串紧跟在开始字符串之后
    if (this->start_y == -1) {
-      // 앞에 줄과 같은 줄인 경우
+      // 前面的一行
       if (this->pre_line == y) {  //&& std::abs(x - this->pre_len_x) >= 1) {
          this->start_x = this->pre_len_x;
          this->start_y = y;
          spdlog::debug("\n#1 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
-      }  // 앞에 줄보다 위 아래인 경우 // && std::abs(x - this->pre_len_x) > 1
+      }  // 如果是在前排下方 // && std::abs(x - this->pre_len_x) > 1
       else if (abs(this->pre_line - y) == 1 && this->string_buffer.length() > 15) {
          this->start_y = this->pre_line - y == 1 ? y + 1 : y;
          this->start_x = this->pre_line - y == 1 ? this->pre_len_x : this->first_line_x;
          spdlog::debug("\n#2 x{}y{}, sx{}sy{},pre{},first{}, {}", x, y, this->start_x, this->start_y, this->pre_len_x, this->first_line_x, buffer);
-      } else {  // 새롭게 시작하는 문자열
+      } else {  // 重新开始的字符串
          this->start_x = x;
          this->first_line_x = x;
          this->start_y = y;
@@ -217,16 +427,16 @@ void Dictionary::StoreBuffer(const std::string &buffer, const std::string &key, 
       this->pre_len_x = x + buffer.length();
       this->string_buffer = buffer;
       EraseFrontBackBlank(this->string_buffer);
-   } else {  // 다음 문자열
+   } else {  // 下一个字符串
       this->key_vec.push_back(key);
       if (this->pre_len_x - x == 0) this->string_buffer += buffer;
       else this->string_buffer += " " + buffer;
-      if (this->string_buffer.size() > MAX_BUFFER) InitBuffer();  // 이상하게 길게 붙었을 경우 초기화
+      if (this->string_buffer.size() > MAX_BUFFER) InitBuffer();  // 异常加长时初始化
       this->pre_line = y;
       this->pre_len_x = x + buffer.length();
    }
 }
-// 단어를 원본에 맞춰서 비교하고 출력될 위치를 조정하여 맵에 저장
+// 将单词与原本进行比较，并调整输出位置，保存到映射中
 void Dictionary::SaveToStringMap(int index, int &preX, int &preY, int &length, std::string &temp, bool isSrc)
 {
    int x, y, tempLen;
@@ -264,12 +474,12 @@ void Dictionary::SaveToStringMap(int index, int &preX, int &preY, int &length, s
    this->dict_multi.emplace(this->key_vec[index], temp);
 }
 
-bool isKorean(const char *src)
+bool isKorean(const char *src)  // 也可用于检测中文字符
 {
    return src[0] & 0x80 ? true : false;
 }
 
-// 번역된 문자열 출력되기전 준비
+// 翻译字符串输出前的准备
 void Dictionary::PrepareBufferOut()
 {
    std::vector<std::string> valueVec;
@@ -277,7 +487,7 @@ void Dictionary::PrepareBufferOut()
 
    std::stringstream ss(this->string_translation);
    std::string valueLine, word;
-   // 단어가 아닌 문장으로 된 문자열이 들어와서 단어 단위로 잘라서 제한 길이에 맞춰 저장
+   // 出现不是单词的句子的字符串，以单词为单位切下来，按照限制长度储存
    if (this->str_type == StringType::Colored) {
       while (getline(ss, word, ' ')) {
          if (word.empty()) continue;
@@ -291,7 +501,7 @@ void Dictionary::PrepareBufferOut()
       if (!valueLine.empty()) {
          valueVec.push_back(valueLine);
       }
-   } else {  // 단어 단위로 잘라서 저장
+   } else {  // 以单词为单位切下来储存
       std::string josa = "";
       while (getline(ss, word, ' ')) {
          if (word.empty()) continue;
@@ -311,7 +521,7 @@ void Dictionary::PrepareBufferOut()
    Utils::CoordExtract(temp, preX, preY);
    preX = this->start_x;
    preY = this->start_y;
-   // 원본의 순서대로 위치에 맞게 번역 저장
+   // 按照原本的顺序，按照位置保存翻译
    for (int index = 0; index < this->key_vec.size(); index++) {
       for (int i = index; i < valueVec.size(); i++) {
          if (position_map.count(valueVec[i])) {
@@ -328,7 +538,7 @@ void Dictionary::PrepareBufferOut()
    }
 }
 
-// 사전에서 번역 문자열로 교체
+// 从字典替换成翻译字符串
 void Dictionary::TranslationBuffer()
 {
    // spdlog::debug("TranslationBuffer");
@@ -363,7 +573,7 @@ std::string Dictionary::GetTranslation(const std::string &tstr)
    }
 }
 
-// 버퍼 문자열 비우기
+// 清空缓存区
 void Dictionary::FlushBuffer()
 {
    if (this->key_vec.size() == 1 || this->string_buffer.length() < 15) {
@@ -442,7 +652,7 @@ std::optional<std::string> Dictionary::StringBufferControl(const std::string &bu
    this->str_type = type;
    if (shouldInitBuffer(y)) {
       InitBuffer();
-      // 여러줄 조합 단어, 1줄 문장 혼합해서 들어와서 여기서 공백기준으로 문장만 걸러냄
+      // 多行组合词、一行句子混合后进入，仅以空白标准过滤句子
       if (this->str_type == StringType::Main) {
          char charToCount = ' ';
          int count = std::count(buffer.begin(), buffer.end(), charToCount);
