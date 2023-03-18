@@ -74,7 +74,25 @@
 
 - 还是不够，但我正在上传它以帮助翻译。
 
+## 构建
 
+首先，[安装Scoop](https://scoop.sh/),[安装Visual Studio和MSVC](https://visualstudio.microsoft.com/zh-hans/).
+使用scoop安装Xmake，vcpkg
+```
+scoop install xmake
+scoop install vcpkg
+```
+设置Xmake
 
+`set_targetdir("C:/Users/aka/Desktop/Game/") `中目录设置为你的游戏根目录。
+相应的检查你的Windows kit安装地址和Vcpkg安装地址，设置包含目录。
+```
+add_linkdirs("C:\\Users\\aka\\scoop\\apps\\vcpkg\\current\\installed\\x64-windows\\lib")
+add_linkdirs("C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.22000.0\\um\\x64")
+add_includedirs("C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22000.0\\um")
+add_includedirs("C:\\Users\\aka\\scoop\\apps\\vcpkg\\current\\installed\\x64-windows\\include")
+```
+
+在项目根目录执行`xmake`,进行构建。
 
 
