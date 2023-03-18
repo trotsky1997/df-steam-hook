@@ -2,7 +2,7 @@
 
 #include "sdl_functions.hpp"
 #include "utils.hpp"
-#include "korean_josa.hpp"
+// #include "korean_josa.hpp"
 
 // @raydan scaling methods
 // TODO: rework it to look more prettier
@@ -241,8 +241,8 @@ int TTFManager::CreateWSTexture(const std::wstring& wstr, int flag, SDL_Color fo
 
    // 문자열 텍스쳐 생성
    // std::wstring wstr = Utils::s2ws(str);
-   std::wstring changeJosa = Korean::ReplaceJosa(wstr);
-   auto texture = TTF_RenderUNICODE_Blended(this->font, (Uint16*)changeJosa.c_str(), font_color);
+   // std::wstring changeJosa = Korean::ReplaceJosa(wstr);
+   auto texture = TTF_RenderUNICODE_Blended(this->font, (Uint16*)wstr.c_str(), font_color);
    if (texture == NULL) {
       // spdlog::error("texture generation error on string {}", Utils::ws2s(wstr));
       return false;
