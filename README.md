@@ -59,7 +59,7 @@
 - 报告项目错误或提出功能提议
 
 - 赞助项目
- [新建 BMP 图像](https://user-images.githubusercontent.com/30512160/226165993-e7628434-cb5e-4b0d-ac74-0365113ff1bb.png)
+ ![新建 BMP 图像](https://user-images.githubusercontent.com/30512160/226165993-e7628434-cb5e-4b0d-ac74-0365113ff1bb.png)
 
 - 参与社区讨论
 
