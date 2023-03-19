@@ -42,6 +42,46 @@
   - `font_flagup` - 固定制表符在上半部分的位置
   - `font_flagdown` - 固定制表符中间的位置
 
+
+
+
+
+## 如何参与汉化项目
+- 参与翻译
+
+在[transifex](https://www.transifex.com/home/)官网注册账号并登陆后，打开[项目地址](https://www.transifex.com/dwarf-fortress-translation/dwarf-fortress-steam/translate/#zh-Hans/$/444386763?q=translated%3Ano)参与词条汉化、润色。
+
+- 参与[汉化语序正则](https://github.com/trotsky1997/df-steam-hook/blob/main/config/kr_regex.txt)编写
+
+- 参与项目代码改进
+本地编译方法见[链接](https://github.com/trotsky1997/df-steam-hook/edit/main/README.md##构建)
+
+- 报告项目错误或提出功能提议
+
+- 赞助项目
+ [新建 BMP 图像](https://user-images.githubusercontent.com/30512160/226165993-e7628434-cb5e-4b0d-ac74-0365113ff1bb.png)
+
+- 参与社区讨论
+
+
+## 构建
+首先，安装`Scoop`,安装`Visual Studio`和`MSVC`.使用`scoop`安装`Xmake`, `vcpkg`
+```
+scoop install xmake
+scoop install vcpkg
+```
+设置`Xmake` .
+`set_ targetdir("c:/Users/aka/Desktop/Game/")`中目录设 置为你的游戏根目录。
+
+相应的检查你的Windows kit安装地址和Vcpkg安装地址，设置包含目录。
+```
+add_ linkdirs("C:\Users\\aka\\scoop\ \apps\\vcpkg\ \current\\installed\ \x64-windows\\lib")
+add_ linkdirs("C:\\Program Files (x86)\\Windows Kits\10\\Lib\\10. 0.22000.0\ \um\\x64" )
+add_ _includedirs("C:\\Program Files (x86)\Windows Kits \\10\\Include\\10.0.22000.0\\um")
+add_ _includedirs("C:\\Users\\aka\\scoop\\apps\\vcpkg\ \current\ \installed\\x64-windows \\include")
+```
+在项目根目录执行`xmake` ,进行构建。
+
 ## 问题:
 - 还有很多问题，这里有一些缓解方案。
 - 游戏中的基本翻译过程可以追溯到阅读游戏内文本-> 比较翻译文件-> 为找到的翻译文本创建图片-> 将翻译图片放在原始位置。由于游戏不断地在屏幕上展开整个文本，当滚动时，出现新窗口或内容时，阅读游戏文本框时，顺序会被扭曲，有时无法正确找到翻译。在这种情况下，敲击<kbd>Ctrl</kbd>+<kbd>F5</kbd> 刷新使您可以再次阅读。
@@ -73,43 +113,4 @@
  > 您现在已经完成了编辑过程。
 - kr_regex.txt 文件中的正则表达式是按顺序读取的。因此，如果应用范围较大，可以将其放在下面或切成小块。比如有一个 She is dragon. 的句子，如果上面有 She {s,} ，下面有 {s,} is dragon. ，那么先应用上面的，剩下 is dragon. ，那么 {s,} is dragon. 就无法识别。如果你再拆分成 {s,} dragon. ，它会被识别，但是如果你把它拆分成这样的小块，很难决定翻译，因为 he are dragon, she was dragon... 中的各种东西都被捕获了。您可以在 dfint_dictionary.csv 文件中检查它是否正确并进行更正。
 - 增加了韩国研究自动选择功能。 (이)가|(와)과|(을)를|(은)는|(아)야|(이)여|(으)로|(이)라 如果你把它以这种形式放入翻译文件中，它会自动出来。例如， 드워프(은)는 키가 작다. 被替换为 드워프는 키가 작다. 并打印出来。它也适用于正则表达式，所以当游戏中有组合语句时它会很有用。
-
-
-
-## 如何参与汉化项目
-- 参与翻译
-
-在[transifex](https://www.transifex.com/home/)官网注册账号并登陆后，打开[项目地址](https://www.transifex.com/dwarf-fortress-translation/dwarf-fortress-steam/translate/#zh-Hans/$/444386763?q=translated%3Ano)参与词条汉化、润色。
-
-- 参与[汉化语序正则](https://github.com/trotsky1997/df-steam-hook/blob/main/config/kr_regex.txt)编写
-
-- 参与项目代码改进
-本地编译方法见[链接](https://github.com/trotsky1997/df-steam-hook/edit/main/README.md##构建)
-
-- 报告项目错误或提出功能提议
-
-- 赞助项目
-- 
-![新建 BMP 图像](https://user-images.githubusercontent.com/30512160/226165993-e7628434-cb5e-4b0d-ac74-0365113ff1bb.png)
-
-- 参与社区讨论
-
-
-## 构建
-首先，安装`Scoop`,安装`Visual Studio`和`MSVC`.使用`scoop`安装`Xmake`, `vcpkg`
-```
-scoop install xmake
-scoop install vcpkg
-```
-设置`Xmake` .
-`set_ targetdir("c:/Users/aka/Desktop/Game/")`中目录设 置为你的游戏根目录。
-
-相应的检查你的Windows kit安装地址和Vcpkg安装地址，设置包含目录。
-```
-add_ linkdirs("C:\Users\\aka\\scoop\ \apps\\vcpkg\ \current\\installed\ \x64-windows\\lib")
-add_ linkdirs("C:\\Program Files (x86)\\Windows Kits\10\\Lib\\10. 0.22000.0\ \um\\x64" )
-add_ _includedirs("C:\\Program Files (x86)\Windows Kits \\10\\Include\\10.0.22000.0\\um")
-add_ _includedirs("C:\\Users\\aka\\scoop\\apps\\vcpkg\ \current\ \installed\\x64-windows \\include")
-```
-在项目根目录执行`xmake` ,进行构建。
 
