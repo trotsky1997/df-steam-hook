@@ -8,11 +8,19 @@
 
 - [RELEASE](https://github.com/Kheeman/df-steam-hook/releases) 从游戏中获取`dfint_release.zip`， `font.DLL.zip`文件，并将其压缩到游戏的顶级文件夹中。解压后启动`dfint_launcher.exe`。
 
+![新建 BMP 图像](https://user-images.githubusercontent.com/30512160/226165993-e7628434-cb5e-4b0d-ac74-0365113ff1bb.png)
+
 ## 工作方式:
 
 - 截取矮人要塞字符，参考dfint_dictionary.csv和kr_regex.txt将字符生成图片并铺在屏幕上。
 
-## 추가 기능:
+## 附加功能:
+
+## 模糊匹配
+改进匹配规则，增加词条词库命中率
+## 机器翻译和缓存
+自适应处理游戏内随机生成文本，使用过程需要联网。
+## 改进汉语语序正则
 
 - 当游戏崩溃时，会在 dfint_data\crash_reports 文件夹中创建一个文件（ cr_*.txt 文件）。
 - DF的各个版本可以同时支持，可以通过在 dfint_data/offset 目录下添加配置文件来添加新的版本。
@@ -66,9 +74,23 @@
 - kr_regex.txt 文件中的正则表达式是按顺序读取的。因此，如果应用范围较大，可以将其放在下面或切成小块。比如有一个 She is dragon. 的句子，如果上面有 She {s,} ，下面有 {s,} is dragon. ，那么先应用上面的，剩下 is dragon. ，那么 {s,} is dragon. 就无法识别。如果你再拆分成 {s,} dragon. ，它会被识别，但是如果你把它拆分成这样的小块，很难决定翻译，因为 he are dragon, she was dragon... 中的各种东西都被捕获了。您可以在 dfint_dictionary.csv 文件中检查它是否正确并进行更正。
 - 增加了韩国研究自动选择功能。 (이)가|(와)과|(을)를|(은)는|(아)야|(이)여|(으)로|(이)라 如果你把它以这种形式放入翻译文件中，它会自动出来。例如， 드워프(은)는 키가 작다. 被替换为 드워프는 키가 작다. 并打印出来。它也适用于正则表达式，所以当游戏中有组合语句时它会很有用。
 
-## 更多细节：
+## 构建
+首先，安装`Scoop`,安装`Visual Studio`和`MSVC`.使用`scoop`安装`Xmake`, `vcpkg`
+```
+scoop install xmake
+scoop install vcpkg
+```
+设置`Xmake` .
+`set_ targetdir("c:/Users/aka/Desktop/Game/")`中目录设 置为你的游戏根目录。
 
-- 还是不够，但我正在上传它以帮助翻译。
+相应的检查你的Windows kit安装地址和Vcpkg安装地址，设置包含目录。
+```
+add_ linkdirs("C:\Users\\aka\\scoop\ \apps\\vcpkg\ \current\\installed\ \x64-windows\\lib")
+add_ linkdirs("C:\\Program Files (x86)\\Windows Kits\10\\Lib\\10. 0.22000.0\ \um\\x64" )
+add_ _includedirs("C:\\Program Files (x86)\Windows Kits \\10\\Include\\10.0.22000.0\\um")
+add_ _includedirs("C:\\Users\\aka\\scoop\\apps\\vcpkg\ \current\ \installed\\x64-windows \\include")
+```
+在项目根目录执行`xmake` ,进行构建。
 
 
 
