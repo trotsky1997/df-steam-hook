@@ -12,3 +12,6 @@ ci/
 
 # temp
 *.bak
+.xmake/
+deps/
+prod/
